@@ -10,6 +10,7 @@ class Hello extends Component
             <h3> Team Members name are as follows:</h3>
             <ol>
                 <li>Divyashree Bangalore Subbaraya (dv520656@dal.ca)</li>
+				<li>Akshay Garg (ak561005@dal.ca)</li>
             </ol>
         </>
 
