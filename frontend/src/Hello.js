@@ -11,6 +11,7 @@ class Hello extends Component
             <ol>
                 <li>Divyashree Bangalore Subbaraya (dv520656@dal.ca)</li>
 				<li>Akshay Garg (ak561005@dal.ca)</li>
+				<li>Jay Patel (jy680475@dal.ca)</li>
             </ol>
         </>
 
