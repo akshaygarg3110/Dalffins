@@ -13,6 +13,7 @@ class Hello extends Component
 				<li>Akshay Garg (ak561005@dal.ca)</li>
 				<li>Jay Patel (jy680475@dal.ca)</li>
                 <li>Tanuj Sobti (tanuj.sobti@dal.ca)</li>
+                <li>Vamsi Krishna Utla (utla@dal.ca)</li>
             </ol>
         </>
 
