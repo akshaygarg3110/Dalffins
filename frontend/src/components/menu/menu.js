@@ -20,13 +20,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const update = () => {
-  history.push('/kitchen');
-}
+
 
 export default function Menu() {
-  const history = useHistory();
   const classes = useStyles();
+
+  const history = useHistory();
+  const update = () => {
+  history.push("/kitchen");
+}
 
   return (
     <div className={classes.root}>
@@ -35,7 +37,7 @@ export default function Menu() {
           <Typography variant="h4" className={classes.title}>
             Dalffins
           </Typography>
-          <Button color="inherit" onClick="update">Kitchen</Button>
+          <Button color="inherit" onClick={update}>Kitchen</Button>
           <Button color="inherit">Help</Button>
           <Button color="inherit">Cart</Button>
           <Button color="inherit">Settings</Button>

@@ -21,7 +21,7 @@ function App() {
           <MyKitchen />
         </Route>
 
-        <Route path="/new">
+        <Route path="/">
           <Food_Selection />
         </Route>
       </Switch>
