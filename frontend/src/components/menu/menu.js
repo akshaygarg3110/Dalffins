@@ -5,7 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,7 +16,8 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    marginLeft:20
+    marginLeft:20,
+    fontFamily: "cursive"
   },
 }));
 
@@ -27,7 +28,7 @@ export default function Menu() {
 
   const history = useHistory();
   const update = () => {
-  history.push("/kitchen");
+    history.push("/kitchen");
 }
 
   return (
