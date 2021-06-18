@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import "./food_selection.css";
-import Food_Item from "../food_item/food_item";
+import Food_Item from "../../components/food_item/food_item";
 import Carousel from "react-bootstrap/Carousel";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";

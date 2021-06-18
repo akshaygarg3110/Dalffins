@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Food_Selection from "./components/food_selection/food_selection";
+import Food_Selection from "./pages/food_selection/food_selection";
 import { Switch, Route } from "react-router-dom";
 
 function App() {
