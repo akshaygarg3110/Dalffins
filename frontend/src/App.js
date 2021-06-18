@@ -5,6 +5,7 @@ import MyKitchen from "./pages/Kitchen/MyKitchen";
 import { Switch, Route } from "react-router-dom";
 import Menu from './components/menu/menu';
 import Footer from './components/footer/footer';
+import SignUp from "./pages/sign_up/SignUp";
 
 function App() {
   return (
@@ -21,9 +22,12 @@ function App() {
           <MyKitchen />
         </Route>
 
-        <Route path="/">
+        <Route exact path= '/' component= {SignUp}/>
+
+        <Route exact path="/registersuccess">
           <Food_Selection />
         </Route>
+
       </Switch>
       <footer>
         <Footer />

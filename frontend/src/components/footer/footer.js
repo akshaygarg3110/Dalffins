@@ -26,7 +26,7 @@ export default function Menu() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar style={{ backgroundColor:"lightgrey"}}>
-          <Button color="inherit" style={{ marginLeft:'auto', marginRight:'auto', color: "black"}}>CopyRight@2021 Dalffins</Button>
+          <Button color="inherit" style={{ marginLeft:'auto', marginRight:'auto', color: "black"}}>Copyright © 2021 Dalffins. All rights reserved.</Button>
         </Toolbar>
       </AppBar>
     </div>
