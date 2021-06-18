@@ -37,6 +37,7 @@ const Food_Selection = () => {
 
   return (
     <div className="div-dimensions center-align">
+      <br/><br/>
       <h1>{kitchenName}</h1>
       <br />
       <Carousel style={{ height: "50vh" }}>

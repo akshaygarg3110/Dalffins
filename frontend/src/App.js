@@ -1,22 +1,24 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Food_Selection from "./pages/food_selection/food_selection";
+import MyKitchen from "./pages/Kitchen/MyKitchen";
 import { Switch, Route } from "react-router-dom";
+import Menu from './components/menu/menu';
+import Footer from './components/footer/footer';
 
 function App() {
   return (
     <>
       <header>
-        {" "}
-        <h1>Dalfinns</h1>
+        < Menu />
       </header>
       <Switch>
-        <Route exact path="/">
+        <Route exact path="/foodSelection">
           <Food_Selection />
         </Route>
 
-        <Route exact path="/old">
-          <Food_Selection />
+        <Route exact path="/kitchen">
+          <MyKitchen />
         </Route>
 
         <Route path="/new">
@@ -24,8 +26,7 @@ function App() {
         </Route>
       </Switch>
       <footer>
-        {" "}
-        <h6> CopyRight</h6>
+        <Footer />
       </footer>
     </>
   );
