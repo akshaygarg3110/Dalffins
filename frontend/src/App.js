@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import Food_Selection from "./components/food_selection/food_selection";
+import { Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <>
+      <header>
+        {" "}
+        <h1>Dalfinns</h1>
       </header>
-    </div>
+      <Switch>
+        <Route exact path="/">
+          <Food_Selection />
+        </Route>
+
+        <Route exact path="/old">
+          <Food_Selection />
+        </Route>
+
+        <Route path="/new">
+          <Food_Selection />
+        </Route>
+      </Switch>
+      <footer>
+        {" "}
+        <h6> CopyRight</h6>
+      </footer>
+    </>
   );
 }
 
