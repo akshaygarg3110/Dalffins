@@ -23,7 +23,11 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function Menu() {
+export default function Menu(props) {
+
+  const noOfOrderItems = props.orderedItems.size;
+  console.log(noOfOrderItems) ;
+
   const classes = useStyles();
 
   const history = useHistory();
@@ -31,16 +35,20 @@ export default function Menu() {
     history.push("/kitchen");
 }
 
+const summary = () => {
+  history.push("/summaryAndPayment");
+}
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h4" className={classes.title}>
+          <Typography variant="h4" className={classes.title} style={{color:"#ffc107"}}>
             Dalffins
           </Typography>
           <Button color="inherit" onClick={update}>Kitchen</Button>
           <Button color="inherit">Help</Button>
-          <Button color="inherit">Cart</Button>
+          {noOfOrderItems > 0 ? <Button color="inherit" style={{color:"#ffc107"}} onClick={summary}><b>Cart({noOfOrderItems})</b></Button> : <Button color="inherit" onClick={summary}>Cart</Button> }
           <Button color="inherit">Settings</Button>
         </Toolbar>
       </AppBar>

@@ -8,13 +8,17 @@ import Footer from "./components/footer/footer";
 import SignUp from "./pages/sign_up/SignUp";
 import Layout from "./components/Kitchen/Layout";
 import Main from "./components/Kitchen/Main";
+import SummaryAndPayment from "./pages/SummaryAndPayment/SummaryAndPayment"
 
 function App() {
   const [orderedItems, setOrderedItems] = useState(new Map());
+  const [orderedItemsSize, setOrderedItemsSize] = useState(0);
 
   const orderItemHandler = (orderedItemsInput) => {
     console.log(orderedItemsInput);
     setOrderedItems(orderedItemsInput);
+    setOrderedItemsSize(orderedItems.size);
+    console.log(orderedItemsSize);
   };
 
   return (
@@ -35,7 +39,9 @@ function App() {
             </Main>
           </Layout>
         </Route>
-
+        <Route exact path="/summaryAndPayment">
+          <SummaryAndPayment orderItems={orderedItems}/>
+        </Route>
         <Route exact path="/" component={SignUp} />
 
         <Route exact path="/registersuccess">
