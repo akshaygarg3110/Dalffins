@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-const Food_Selection = () => {
+const Food_Selection = (props) => {
   const [kitchenName, setKitchenName] = useState("Indian Kitchen");
   const [kitchenImages, setKitchenImages] = useState([
     "images/Kitchen1.jpg",
@@ -51,6 +51,8 @@ const Food_Selection = () => {
         orderedItemsMap.delete(orderItemId);
       }
     }
+
+    props.onOrderItemClick(orderedItemsMap);
   };
 
   return (

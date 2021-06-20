@@ -25,7 +25,7 @@ function App() {
       </header>
       <Switch>
         <Route exact path="/foodSelection">
-          <Food_Selection />
+          <Food_Selection onOrderItemClick={orderItemHandler} />
         </Route>
 
         <Route exact path="/kitchen">
