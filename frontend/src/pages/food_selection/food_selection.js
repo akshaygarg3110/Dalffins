@@ -14,12 +14,14 @@ const Food_Selection = () => {
   ]);
   const [foodItems, setFoodItems] = useState([
     {
+      id: 1,
       image: "images/Dal-Makhani.jpg",
       item: "Dal Makhani Meal",
       description: "dal makhani, 4 roti, salad, 1 glass of lassi(700-900 Cal.)",
       price: "$5.90 + tax",
     },
     {
+      id: 2,
       image: "images/Rajma-Chawal-3.jpg",
       item: "Rajma Chawal Meal",
       description:
@@ -27,6 +29,7 @@ const Food_Selection = () => {
       price: "$6.20 + tax",
     },
     {
+      id: 3,
       image: "images/paneer-butter-masala_-2.jpg",
       item: "Paneer Butter Masala Meal",
       description:
@@ -35,9 +38,30 @@ const Food_Selection = () => {
     },
   ]);
 
+  const [orderedItemsMap, setOrderedItemsMap] = useState(new Map());
+
+  const orderItemHandler = (orderedItem) => {
+    console.log("Selection page");
+    console.log(orderedItem);
+
+    let orderItemId = orderedItem.id;
+    let quantity = orderedItem.quantity;
+
+    if (orderedItemsMap.get(orderItemId) === undefined && quantity > 0) {
+      orderedItemsMap.set(orderedItem.id, orderedItem);
+    } else {
+      if (quantity == 0) {
+        orderedItemsMap.delete(orderItemId);
+      }
+    }
+
+    console.log(orderedItemsMap);
+  };
+
   return (
     <div className="div-dimensions center-align">
-      <br/><br/>
+      <br />
+      <br />
       <h1>{kitchenName}</h1>
       <br />
       <Carousel style={{ height: "50vh" }}>
@@ -60,7 +84,10 @@ const Food_Selection = () => {
         <Row>
           {foodItems.map((foodItem) => (
             <Col sm={4}>
-              <Food_Item foodItem={foodItem} />
+              <Food_Item
+                foodItem={foodItem}
+                onOrderItemClick={orderItemHandler}
+              />
             </Col>
           ))}
         </Row>

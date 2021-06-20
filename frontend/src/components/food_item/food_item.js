@@ -10,11 +10,17 @@ const Food_Item = (props) => {
 
   const addItem = () => {
     setQuantity(quantity + 1);
+    props.foodItem.quantity = quantity + 1;
+    console.log(props.foodItem);
+    props.onOrderItemClick(props.foodItem);
   };
 
   const removeItem = () => {
     if (quantity > 0) {
       setQuantity(quantity - 1);
+      props.foodItem.quantity = quantity - 1;
+      console.log(props.foodItem);
+      props.onOrderItemClick(props.foodItem);
     } else {
       <Alert>This is a alert—check it out!</Alert>;
     }
