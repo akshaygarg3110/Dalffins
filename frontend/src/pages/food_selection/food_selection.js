@@ -41,9 +41,6 @@ const Food_Selection = () => {
   const [orderedItemsMap, setOrderedItemsMap] = useState(new Map());
 
   const orderItemHandler = (orderedItem) => {
-    console.log("Selection page");
-    console.log(orderedItem);
-
     let orderItemId = orderedItem.id;
     let quantity = orderedItem.quantity;
 
@@ -54,8 +51,6 @@ const Food_Selection = () => {
         orderedItemsMap.delete(orderItemId);
       }
     }
-
-    console.log(orderedItemsMap);
   };
 
   return (
