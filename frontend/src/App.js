@@ -1,3 +1,4 @@
+import React, { Component, useState } from "react";
 import "./App.css";
 import Food_Selection from "./pages/food_selection/food_selection";
 import MyKitchen from "./pages/Kitchen/MyKitchen";
@@ -5,8 +6,8 @@ import { Switch, Route } from "react-router-dom";
 import Menu from "./components/menu/menu";
 import Footer from "./components/footer/footer";
 import SignUp from "./pages/sign_up/SignUp";
-import Layout from "./components/kitchen/Layout";
-import Main from "./components/kitchen/Main";
+import Layout from "./components/Kitchen/Layout";
+import Main from "./components/Kitchen/Main";
 
 function App() {
   const [orderedItems, setOrderedItems] = useState(new Map());
