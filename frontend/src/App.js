@@ -6,9 +6,9 @@ import { Switch, Route } from "react-router-dom";
 import Menu from "./components/menu/menu";
 import Footer from "./components/footer/footer";
 import SignUp from "./pages/sign_up/SignUp";
-import Layout from "./components/Kitchen/Layout";
-import Main from "./components/Kitchen/Main";
-import SummaryAndPayment from "./pages/SummaryAndPayment/SummaryAndPayment"
+import Layout from "./components/kitchen/Layout";
+import Main from "./components/kitchen/Main";
+import SummaryAndPayment from "./pages/SummaryAndPayment/SummaryAndPayment";
 
 function App() {
   const [orderedItems, setOrderedItems] = useState(new Map());
@@ -40,7 +40,7 @@ function App() {
           </Layout>
         </Route>
         <Route exact path="/summaryAndPayment">
-          <SummaryAndPayment orderItems={orderedItems}/>
+          <SummaryAndPayment orderItems={orderedItems} />
         </Route>
         <Route exact path="/" component={SignUp} />
 

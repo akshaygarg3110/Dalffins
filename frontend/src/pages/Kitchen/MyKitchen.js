@@ -34,7 +34,7 @@ function MyKitchen() {
           <h2>Welcome to the kitchen</h2>
         </Title>
         <div style={{ height: "100%" }}>
-          <KitchenImage src="./assets/K12.jpg" alt="kitchen" />
+          <KitchenImage src="./assets/k12.jpg" alt="kitchen" />
         </div>
       </TitleSection>
       <DishList />
