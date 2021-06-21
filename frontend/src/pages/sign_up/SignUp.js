@@ -18,7 +18,7 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import Checkbox from '@material-ui/core/Checkbox';
-import { useHistory } from "react-router-dom";
+import { useHistory,Link } from "react-router-dom";
 
 function SignUp() {
     const [password, setPassword] = useState("");
@@ -57,7 +57,7 @@ function SignUp() {
         
         setDetail(pre => ({ ...pre, snackbar: true }))
         setDetail(pre => ({ ...pre, phoneNumber: '' }))
-        history.push("/registersuccess")
+        history.push("/home")
 
     }
 
@@ -149,11 +149,8 @@ function SignUp() {
 
     return (
         <section>
-            {/* <header style={{ fontFamily: "cursive", textAlign: "center" }}>
-                Dalffins
-            </header> */}
 
-            <Container component="main" maxWidth="lg" className="mainContainer">
+            <Container component="main" maxWidth="md" className="mainContainer">
                 <Paper elevation={3} className="inside" >
                     <Card style={{ margin: '3%', height: '100%' }} md={6}>
                         <CardMedia
@@ -169,6 +166,13 @@ function SignUp() {
                             <Typography variant="h5" style={{ textAlign: 'center', marginBottom: '3%' }}>
                                 Dalffins Registration form!
                             </Typography>
+
+                            <Typography variant="h6" style={{ fontSize:'15px',textAlign: 'center', marginLeft: '2%',paddingBottom:'3%'}}>
+                            <Grid item xs={12}>
+                                Already have an account?<Link to ="/login"> Login</Link>
+                            </Grid>
+                             </Typography>
+
                         </Grid>
 
                         <Grid container spacing={3}>
@@ -348,9 +352,6 @@ function SignUp() {
                 </Paper>
             </Container>
 
-            {/* <footer style={{ textAlign: 'center' }}>
-                Copyright © 2021 Dalffins. All rights reserved.
-            </footer> */}
         </section>
     );
 }

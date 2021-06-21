@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Food_Selection from "./pages/food_selection/food_selection";
 import MyKitchen from "./pages/Kitchen/MyKitchen";
@@ -6,9 +6,10 @@ import { Switch, Route } from "react-router-dom";
 import Menu from "./components/menu/menu";
 import Footer from "./components/footer/footer";
 import SignUp from "./pages/sign_up/SignUp";
-import Layout from "./components/kitchen/Layout";
-import Main from "./components/kitchen/Main";
+import Layout from "./components/Kitchen/Layout";
+import Main from "./components/Kitchen/Main";
 import SummaryAndPayment from "./pages/SummaryAndPayment/SummaryAndPayment";
+import Login from './pages/login/Login';
 
 function App() {
   const [orderedItems, setOrderedItems] = useState(new Map());
@@ -44,9 +45,16 @@ function App() {
         </Route>
         <Route exact path="/" component={SignUp} />
 
-        <Route exact path="/registersuccess">
+        <Route exact path="/home">
           <Food_Selection />
         </Route>
+
+        <Route exact path="/login" component={Login} />
+
+        <Route exact path="/home">
+          <Food_Selection />
+        </Route>
+
       </Switch>
       <footer>
         <Footer />
