@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import "./Help.scss";
 import { Button, Col, Row } from "react-bootstrap";
 import AddIcon from "@material-ui/icons/Add";
+import NewSupportTicketModal from "../../components/Help/NewSupportTicketModal/NewSupportTicketModal";
 
 class Help extends Component {
   state = {
+    newSupportTicketModalVisibility: false,
     tickets: [
       {
         reason: "Technical Issue",
@@ -30,8 +32,16 @@ class Help extends Component {
     ],
   };
 
+  openNewSupportTicketModal = () => {
+    this.setState({ newSupportTicketModalVisibility: true });
+  };
+
+  handleOnModalClose = () => {
+    this.setState({ newSupportTicketModalVisibility: false });
+  };
+
   render() {
-    const { tickets } = this.state;
+    const { tickets, newSupportTicketModalVisibility } = this.state;
 
     return (
       <div className="help-container container">
@@ -40,7 +50,10 @@ class Help extends Component {
             <h1>Support Requests</h1>
           </Col>
           <Col className="text-right my-auto">
-            <Button className="btn-new-request">
+            <Button
+              className="btn-new-request"
+              onClick={this.openNewSupportTicketModal}
+            >
               <AddIcon /> Raise a new support request
             </Button>
           </Col>
@@ -60,6 +73,11 @@ class Help extends Component {
             ))}
           </Row>
         </div>
+
+        <NewSupportTicketModal
+          show={newSupportTicketModalVisibility}
+          onClose={this.handleOnModalClose}
+        />
       </div>
     );
   }
