@@ -9,7 +9,8 @@ import SignUp from "./pages/sign_up/SignUp";
 import Layout from "./components/Kitchen/Layout";
 import Main from "./components/Kitchen/Main";
 import SummaryAndPayment from "./pages/SummaryAndPayment/SummaryAndPayment";
-import Login from './pages/login/Login';
+import Login from "./pages/login/Login";
+import Help from "./pages/Help/Help";
 
 function App() {
   const [orderedItems, setOrderedItems] = useState(new Map());
@@ -55,6 +56,7 @@ function App() {
           <Food_Selection />
         </Route>
 
+        <Route exact path="/help" component={Help} />
       </Switch>
       <footer>
         <Footer />
