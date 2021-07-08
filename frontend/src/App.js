@@ -9,6 +9,7 @@ import SignUp from "./pages/sign_up/SignUp";
 import Layout from "./components/Kitchen/Layout";
 import Main from "./components/Kitchen/Main";
 import SummaryAndPayment from "./pages/SummaryAndPayment/SummaryAndPayment";
+import Help from "./pages/Help/Help";
 import Login from './pages/login/Login';
 import HomePage from "./pages/homePage/HomePage";
 import ForgotPasswordGetCode from './pages/forgotPassword/ForgotPasswordGetCode';
@@ -63,6 +64,7 @@ function App() {
 
         <Route exact path="/resetPassword" component={ResetPassword} />
 
+        <Route exact path="/help" component={Help} />
       </Switch>
       <footer>
         <Footer />

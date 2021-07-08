@@ -5,6 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,17 +21,17 @@ const useStyles = makeStyles((theme) => ({
   sticky: {
     position: "fixed",
     top: 0,
-    width: "100%"
+    width: "100%",
+    marginLeft: "20",
+    fontFamily: "cursive",
   },
 }));
 
 export default function Menu(props) {
-
   const noOfOrderItems = props.orderedItems.size;
   console.log(noOfOrderItems);
 
   const classes = useStyles();
-
   const history = useHistory();
 
   const update = () => {
@@ -53,6 +54,10 @@ export default function Menu(props) {
     history.push("/login")
   }
 
+  const onHelpClickHandler = () => {
+    history.push("/help")
+  }
+
 
   return (
     <div className={classes.root}>
@@ -67,6 +72,10 @@ export default function Menu(props) {
               <Button color="inherit" onClick={login}>Login</Button>
             </Grid>
           </Grid>
+          
+          {/* <Button color="inherit" onClick={onHelpClickHandler}>
+            Help
+          </Button> */}
         </Toolbar>
       </AppBar>
     </div>

@@ -1,0 +1,18 @@
+.help-container {
+  min-height: 85vh;
+  padding: 1.5rem;
+
+  .cards {
+    display: flex;
+    flex-direction: column;
+
+    .card {
+      padding: 12px;
+      margin: 4px;
+
+      .desc {
+        color: grey;
+      }
+    }
+  }
+}
