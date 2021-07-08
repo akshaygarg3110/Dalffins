@@ -10,8 +10,10 @@ import Layout from "./components/Kitchen/Layout";
 import Main from "./components/Kitchen/Main";
 import SummaryAndPayment from "./pages/SummaryAndPayment/SummaryAndPayment";
 import Login from './pages/login/Login';
-import ForgotPassword from "./pages/forgotPassword/ForgotPassword";
 import HomePage from "./pages/homePage/HomePage";
+import ForgotPasswordGetCode from './pages/forgotPassword/ForgotPasswordGetCode';
+import ForgotPasswordEnterCode from "./pages/forgotPassword/forgotPasswordEnterCode";
+import ResetPassword from "./pages/forgotPassword/ResetPassword";
 
 function App() {
   const [orderedItems, setOrderedItems] = useState(new Map());
@@ -48,14 +50,18 @@ function App() {
         </Route>
 
         <Route exact path="/signup" component={SignUp} />
-        
+
         <Route exact path="/" component={HomePage} />
 
         <Route exact path="/home" component={HomePage} />
 
         <Route exact path="/login" component={Login} />
 
-        <Route exact path="/forgotPassword" component={ForgotPassword} />
+        <Route exact path="/forgotPassword" component={ForgotPasswordGetCode} />
+
+        <Route exact path="/forgotPasswordEnterCode" component={ForgotPasswordEnterCode} />
+
+        <Route exact path="/resetPassword" component={ResetPassword} />
 
       </Switch>
       <footer>

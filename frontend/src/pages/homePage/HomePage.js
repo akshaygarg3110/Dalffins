@@ -14,6 +14,7 @@ function HomePage() {
                             style={{ height: '449px', width: '590px' }}
                         />
                     </Card>
+                   
             </Container>
         </section>
     )
