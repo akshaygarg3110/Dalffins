@@ -13,6 +13,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "bootstrap": "^4.6.0",
+    "emailjs-com": "^3.1.0",
     "material-ui-dropzone": "^3.5.0",
     "material-ui-phone-number": "^2.2.6",
     "node-sass": "^6.0.1",

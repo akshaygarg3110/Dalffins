@@ -148,10 +148,10 @@ function SignUp() {
     }
 
     return (
-        <section>
+        <section style={{paddingTop: '5%'}}>
 
             <Container component="main" maxWidth="md" className="mainContainer">
-                <Paper elevation={3} className="inside" >
+                <Paper elevation={2} className="inside" >
                     <Card style={{ margin: '3%', height: '100%' }} md={6}>
                         <CardMedia
                             image="images/image.jpg"
@@ -159,8 +159,8 @@ function SignUp() {
                             style={{ height: '649px', width: '1020px' }}
                         />
                     </Card>
+                    
                     <form onSubmit={handleClickOnSubmit}>
-
                         <Grid item xs={12} sm={12}>
                             <PersonAddIcon color="primary" style={{ height: '30%', width: '30%', marginLeft: '30%' }} />
                             <Typography variant="h5" style={{ textAlign: 'center', marginBottom: '3%' }}>
