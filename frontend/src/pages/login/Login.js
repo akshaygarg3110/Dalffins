@@ -166,7 +166,7 @@ function Login() {
                     </form>
                     <Card style={{ margin: '3%', height: '100%' }} md={2}>
                         <CardMedia
-                            image="images/image.jpg"
+                            image="images/tiffinsImage.jpg"
                             title="Tiffins image"
                             style={{ height: '449px', width: '590px' }}
                         />
