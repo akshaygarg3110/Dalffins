@@ -154,7 +154,7 @@ function SignUp() {
                 <Paper elevation={2} className="inside" >
                     <Card style={{ margin: '3%', height: '100%' }} md={6}>
                         <CardMedia
-                            image="images/image.jpg"
+                            image="images/tiffinsImage.jpg"
                             title="Tiffins image"
                             style={{ height: '649px', width: '1020px' }}
                         />

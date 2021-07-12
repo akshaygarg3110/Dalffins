@@ -10,7 +10,6 @@ import { IconButton, Paper } from '@material-ui/core';
 import { TextField, InputAdornment } from '@material-ui/core';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
-import Snackbar from '@material-ui/core/Snackbar';
 import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
@@ -188,7 +187,7 @@ function ResetPassword() {
                     </form>
                     <Card style={{ margin: '3%', height: '100%' }} md={2}>
                         <CardMedia
-                            image="images/image.jpg"
+                            image="images/tiffinsImage.jpg"
                             title="Tiffins image"
                             style={{ height: '449px', width: '590px' }}
                         />
