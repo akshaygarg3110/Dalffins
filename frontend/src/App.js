@@ -3,7 +3,7 @@ import "./App.css";
 import Food_Selection from "./pages/food_selection/food_selection";
 import MyKitchen from "./pages/Kitchen/MyKitchen";
 import { Switch, Route } from "react-router-dom";
-import DalffinsMenu from "./components/menu/Menu";
+import DalffinsMenu from "./components/menu/menu";
 import Footer from "./components/footer/footer";
 import SignUp from "./pages/SignUp/SignUp";
 import Layout from "./components/Kitchen/Layout";
