@@ -1,13 +1,26 @@
 const express = require("express");
-const path = require("path");
 
-const app = express();
+const http = require('http')
+
+const app = require('./app');
+
+const port = process.env.PORT || 8080;
+
+const server = http.createServer(app);
+
+var path = require("path");
+
+const cors = require("cors");
 
 app.use(express.static('./frontend/build'));
 
-app.get('/*', function(req, res) {
-	res.sendFile(path.join(__dirname, '/frontend/build/index.html'));
-	res.send("Welcome to Dalffins!")
+app.use(cors());
+
+app.get("/*", function (req, res) {
+    res.sendFile(path.join(__dirname, '/frontend/build/index.html'));
 });
 
-app.listen(process.env.PORT || 8080);
+server.listen(port, () => {
+    console.log("server listening at http://localhost:" + port);
+});
+
