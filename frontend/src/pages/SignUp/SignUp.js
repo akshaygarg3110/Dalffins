@@ -18,7 +18,8 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import Checkbox from '@material-ui/core/Checkbox';
-import { useHistory,Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
+import axios from 'axios';
 
 function SignUp() {
     const [password, setPassword] = useState("");
@@ -40,7 +41,8 @@ function SignUp() {
         email: '',
         phoneNumber: '',
         snackbar: false,
-        checkbox: false
+        checkbox: false,
+        password: ''
     });
 
     const handleClickOnSubmit = (e) => {
@@ -54,10 +56,26 @@ function SignUp() {
             setError(pre => ({ ...pre, checkedBox: true }))
             return
         }
-        
+
+
+        axios.post('http://localhost:8080/user/signUp', {
+            email: detail.email,
+            password: detail.password,
+            firstName: detail.firstName,
+            lastName: detail.lastName,
+            phoneNumber: detail.phoneNumber
+        }, {
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then((response) => {
+                if (response.status === 200) {
+                    history.push("/home")
+                }
+            })
+
         setDetail(pre => ({ ...pre, snackbar: true }))
+
         setDetail(pre => ({ ...pre, phoneNumber: '' }))
-        history.push("/home")
 
     }
 
@@ -116,6 +134,7 @@ function SignUp() {
             }
         }
         setPassword(value)
+        setDetail(pre => ({ ...pre, [name]: value }))
     }
 
     const handleConfirmPasswordChange = (e) => {
@@ -148,7 +167,7 @@ function SignUp() {
     }
 
     return (
-        <section style={{paddingTop: '5%'}}>
+        <section style={{ paddingTop: '5%' }}>
 
             <Container component="main" maxWidth="md" className="mainContainer">
                 <Paper elevation={2} className="inside" >
@@ -159,7 +178,7 @@ function SignUp() {
                             style={{ height: '649px', width: '1020px' }}
                         />
                     </Card>
-                    
+
                     <form onSubmit={handleClickOnSubmit}>
                         <Grid item xs={12} sm={12}>
                             <PersonAddIcon color="primary" style={{ height: '30%', width: '30%', marginLeft: '30%' }} />
@@ -167,11 +186,11 @@ function SignUp() {
                                 Dalffins Registration form!
                             </Typography>
 
-                            <Typography variant="h6" style={{ fontSize:'15px',textAlign: 'center', marginLeft: '2%',paddingBottom:'3%'}}>
-                            <Grid item xs={12}>
-                                Already have an account?<Link to ="/login"> Login</Link>
-                            </Grid>
-                             </Typography>
+                            <Typography variant="h6" style={{ fontSize: '15px', textAlign: 'center', marginLeft: '2%', paddingBottom: '3%' }}>
+                                <Grid item xs={12}>
+                                    Already have an account?<Link to="/login"> Login</Link>
+                                </Grid>
+                            </Typography>
 
                         </Grid>
 
@@ -334,16 +353,16 @@ function SignUp() {
                                     style={{ textTransform: 'none', float: 'right', width: '200px', margin: '2%' }}
                                     OnClick={handleClickOnSubmit}>
                                     Register
-                            </Button>
+                                </Button>
                                 <Snackbar open={detail.snackbar} autoHideDuration={6000} onClose={handleSnackBar}>
                                     <MuiAlert elevation={6} variant="filled" onClose={handleSnackBar} severity="success">
-                                        Registered Successfully!!
-                                </MuiAlert>
+                                        Registered Successfully!
+                                    </MuiAlert>
                                 </Snackbar>
                                 <Snackbar open={error.checkedBox} autoHideDuration={6000} onClose={handleCheckedSnackBar}>
                                     <MuiAlert elevation={6} variant="filled" onClose={handleCheckedSnackBar} severity="error">
-                                        Please Agree to terms and conditions
-                                </MuiAlert>
+                                        Please Agree to terms and conditions!
+                                    </MuiAlert>
                                 </Snackbar>
                             </Grid>
 

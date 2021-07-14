@@ -132,7 +132,7 @@ function MyAccount() {
         const { name, value } = e.target;
 
         if ((value.match(/^[ 0-9a-zA-Z]+$/) && name.includes('Name')) ||
-            (value.match(/^\S+@\S+\.\S{2,}$/) && name == "email") || (name == 'phoneNumber')) {
+            (value.match(/^\S+@\S+\.\S{2,}$/) && name === "email") || (name === 'phoneNumber')) {
             setError(false)
             seteditDetail(pre => ({ ...pre, [name]: value }))
         }
@@ -142,7 +142,7 @@ function MyAccount() {
     }
 
     const editTextFieldChange = (textField) => {
-        if (textField == 'phoneNumber') {
+        if (textField === 'phoneNumber') {
             return (
                 <MuiPhoneNumber
                     name="phoneNumber"

@@ -15,6 +15,7 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import EmailIcon from '@material-ui/icons/Email';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
+import axios from 'axios';
 
 function Login() {
 
@@ -36,7 +37,7 @@ function Login() {
 
     const handleEmailChange = (e) => {
         const { name, value } = e.target;
-        if (value.match(/^divyabs@gmail.com$/)) {
+        if (value.match(/^\S+@\S+\.\S{2,}$/)) {
             setError(pre => ({ ...pre, [name]: false }))
             setDetails(pre => ({ ...pre, [name]: value }))
         }
@@ -48,12 +49,7 @@ function Login() {
     const handlePasswordChange = (e) => {
         e.preventDefault()
         const { name, value } = e.target;
-        if (value.match('abc@123$')) {
-            setError(pre => ({ ...pre, [name]: false }))
-        }
-        else {
-            setError(pre => ({ ...pre, [name]: true }))
-        }
+        setDetails(pre => ({ ...pre, [name]: value }))
     }
 
     const handleClickOnSubmit = (e) => {
@@ -63,7 +59,20 @@ function Login() {
                 return
             }
         }
-        history.push("/home")
+
+        axios.post('http://localhost:8080/user/login', {
+            email: details.email,
+            password: details.password
+        }, {
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then((response) => {
+                if (response.status === 200) {
+                    history.push("/home")
+                }
+            }, (error)=>{
+                setErrorSnakeBar(true)
+            });
     }
 
     const handleCheckedSnackBar = () => {
