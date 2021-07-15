@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
+import { saveTicketApi } from "../../../utils/Api";
 
 const NewSupportTicketModal = ({ show, onClose }) => {
   const [showModal, setShowModal] = React.useState(show);
   const [reason, setReason] = React.useState("NA");
   const [description, setDescription] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
 
   useEffect(() => {
     if (show !== showModal) {
@@ -16,21 +18,36 @@ const NewSupportTicketModal = ({ show, onClose }) => {
     setReason("NA");
     setDescription("");
     setShowModal(false);
+    setLoading(false);
     onClose();
   };
   const handleDescriptionOnChange = (e) => setDescription(e.target.value);
   const handleReasonOnChange = (e) => setReason(e.target.value);
   const hasValidValues = () => {
-    if (reason !== "NA" && description.length > 0) {
+    if (reason !== "NA" && description.length > 0 && !loading) {
       return true;
     }
     return false;
   };
   const createTicket = () => {
-    alert(
-      `Ticket created for your ${reason}. You will hear back from the concerned team soon.`
-    );
-    hideModal();
+    const data = {
+      reason,
+      messages: [
+        {
+          text: description,
+          date: new Date(),
+        },
+      ],
+      email: "Jp9573@gmail.com",
+    };
+    saveTicketApi(data)
+      .then((res) => {
+        hideModal();
+      })
+      .catch((err) => {
+        console.error(err.message);
+        setLoading(false);
+      });
   };
 
   return (

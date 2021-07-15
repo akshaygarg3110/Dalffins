@@ -40,6 +40,7 @@ class Help extends Component {
   };
 
   handleOnModalClose = () => {
+    this.fetchTickets();
     this.setState({ newSupportTicketModalVisibility: false });
   };
 

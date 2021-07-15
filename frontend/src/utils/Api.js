@@ -9,3 +9,7 @@ const axiosInstance = axios.create({
 export function fetchTicketsApi(data) {
   return axiosInstance.get(`/help/tickets`, data);
 }
+
+export function saveTicketApi(data) {
+  return axiosInstance.post(`/help/tickets`, data);
+}
