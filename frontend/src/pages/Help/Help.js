@@ -3,33 +3,36 @@ import "./Help.scss";
 import { Button, Col, Row } from "react-bootstrap";
 import AddIcon from "@material-ui/icons/Add";
 import NewSupportTicketModal from "../../components/Help/NewSupportTicketModal/NewSupportTicketModal";
+import { fetchTicketsApi } from "../../utils/Api";
 
 class Help extends Component {
   state = {
     newSupportTicketModalVisibility: false,
-    tickets: [
-      {
-        reason: "Technical Issue",
-        description:
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora ut consequuntur deleniti alias, ea ratione unde excepturi soluta perspiciatis eligendi distinctio error exercitationem, sint consequatur labore quidem omnis! Autem, incidunt.",
-        createdAt: "12th Jun 2021, 5:42 PM",
-        status: "OPEN",
+    tickets: [],
+    isLoading: true,
+  };
+
+  componentDidMount() {
+    this.fetchTickets();
+  }
+
+  fetchTickets = () => {
+    const data = {
+      params: {
+        email: "Jp9573@gmail.com",
       },
-      {
-        reason: "Customer Complaint",
-        description:
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora ut consequuntur deleniti alias, ea ratione unde excepturi soluta perspiciatis eligendi distinctio error exercitationem, sint consequatur labore quidem omnis! Autem, incidunt.",
-        createdAt: "11th Jun 2021, 1:12 PM",
-        status: "CLOSED",
-      },
-      {
-        reason: "Payment Issue",
-        description:
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora ut consequuntur deleniti alias, ea ratione unde excepturi soluta perspiciatis eligendi distinctio error exercitationem, sint consequatur labore quidem omnis! Autem, incidunt.",
-        createdAt: "9th Jun 2021, 3:11 PM",
-        status: "RESOLVED",
-      },
-    ],
+    };
+    fetchTicketsApi(data)
+      .then((res) => {
+        let tickets = res.data.map((item) => {
+          return { ...item, description: item.messages[0].text };
+        });
+        this.setState({ tickets, isLoading: false });
+      })
+      .catch((err) => {
+        console.error(err.message);
+        this.setState({ isLoading: false });
+      });
   };
 
   openNewSupportTicketModal = () => {
