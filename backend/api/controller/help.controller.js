@@ -1,6 +1,11 @@
 function helpController(HelpTicket) {
   function getTickets(req, res) {
-    HelpTicket.find({}, (err, tickets) => {
+    if (!req.query.email) {
+      res.status(400);
+      return res.send("User email is required");
+    }
+
+    HelpTicket.find({ email: req.query.email }, (err, tickets) => {
       if (err) {
         return res.send(err);
       }
