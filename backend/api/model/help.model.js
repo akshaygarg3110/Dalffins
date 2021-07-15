@@ -1,0 +1,22 @@
+const mongoose = require("mongoose");
+
+const HelpTicketSchema = mongoose.Schema({
+  reason: {
+    type: String,
+    required: true,
+  },
+  messages: {
+    type: Array,
+    default: [],
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  status: {
+    type: String,
+    default: "Open",
+  },
+});
+
+module.exports = mongoose.model("HelpTicket", HelpTicketSchema);
