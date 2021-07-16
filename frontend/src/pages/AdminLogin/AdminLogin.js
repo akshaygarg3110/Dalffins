@@ -60,6 +60,8 @@ class AdminLogin extends Component {
     ) {
       localStorage.setItem("isAdmin", true);
       this.props.history.push("/admin/help");
+    } else {
+      this.setState({ errorSnackbar: true });
     }
   };
 
