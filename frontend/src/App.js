@@ -17,6 +17,7 @@ import ForgotPasswordEnterCode from "./pages/forgotPassword/forgotPasswordEnterC
 import ResetPassword from "./pages/forgotPassword/ResetPassword";
 import MyAccount from "./pages/myAccount/MyAccount";
 import AdminSupport from "./pages/AdminSupport/AdminSupport";
+import AdminLogin from "./pages/AdminLogin/AdminLogin";
 
 function App() {
   const [orderedItems, setOrderedItems] = useState(new Map());
@@ -81,6 +82,7 @@ function App() {
 
         <Route exact path="/help" component={Help} />
         <Route exact path="/admin/help" component={AdminSupport} />
+        <Route exact path="/admin/login" component={AdminLogin} />
 
         <Route exact path="/myAccount">
           <MyAccount userId={id} />
