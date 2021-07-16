@@ -13,6 +13,15 @@ function helpController(HelpTicket) {
     });
   }
 
+  function getAllTickets(req, res) {
+    HelpTicket.find((err, tickets) => {
+      if (err) {
+        return res.send(err);
+      }
+      return res.json(tickets);
+    });
+  }
+
   function saveTicket(req, res) {
     const ticket = new HelpTicket(req.body);
 
@@ -34,7 +43,7 @@ function helpController(HelpTicket) {
     return res.json(ticket);
   }
 
-  return { getTickets, saveTicket };
+  return { getTickets, saveTicket, getAllTickets };
 }
 
 module.exports = helpController;
