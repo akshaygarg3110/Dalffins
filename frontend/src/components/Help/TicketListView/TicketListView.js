@@ -18,16 +18,20 @@ class TicketListView extends Component {
     return (
       <div className="ticket-list-view-content container mt-3">
         <Row className="cards">
-          {tickets.map((item, index) => (
-            <div className="card">
-              <h5>{`${index + 1}. ${item.reason}`}</h5>
-              <span className="desc">{item.description}</span>
-              <div className="d-flex mt-2 justify-content-between">
-                <span className="s">{item.status}</span>
-                <span className="c">{item.createdAt}</span>
+          {tickets.length > 0 ? (
+            tickets.map((item, index) => (
+              <div className="card">
+                <h5>{`${index + 1}. ${item.reason}`}</h5>
+                <span className="desc">{item.description}</span>
+                <div className="d-flex mt-2 justify-content-between">
+                  <span className="s">{item.status}</span>
+                  <span className="c">{item.createdAt}</span>
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <p className="text-center">No support tickets found.</p>
+          )}
         </Row>
       </div>
     );

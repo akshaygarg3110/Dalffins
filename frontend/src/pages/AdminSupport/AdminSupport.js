@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./AdminSupport.scss";
-import { Button, Col, Row } from "react-bootstrap";
-import { fetchTicketsApi } from "../../utils/Api";
+import { Col, Row } from "react-bootstrap";
+import { fetchAllTicketsApi } from "../../utils/Api";
 import { Redirect } from "react-router-dom";
 import TicketListView from "../../components/Help/TicketListView/TicketListView";
 
@@ -16,12 +16,7 @@ class AdminSupport extends Component {
   }
 
   fetchTickets = () => {
-    const data = {
-      params: {
-        email: "Jp9573@gmail.com",
-      },
-    };
-    fetchTicketsApi(data)
+    fetchAllTicketsApi()
       .then((res) => {
         let tickets = res.data.map((item) => {
           return { ...item, description: item.messages[0].text };
