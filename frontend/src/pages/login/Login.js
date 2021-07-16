@@ -1,3 +1,4 @@
+//Author: Divyashree Bangalore Subbaraya (B00875916)
 import { React, useState } from 'react';
 import { TextField, InputAdornment } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
@@ -6,7 +7,6 @@ import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import { useHistory, Link } from 'react-router-dom';
 import { IconButton, Paper } from '@material-ui/core';
-import './Login.css';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import Card from '@material-ui/core/Card';
@@ -16,8 +16,37 @@ import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import EmailIcon from '@material-ui/icons/Email';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
 import axios from 'axios';
+import { makeStyles } from '@material-ui/core/styles';
 
-function Login() {
+const useStyles = makeStyles((theme) => ({
+    paper: {
+        padding: '30px',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+        marginTop: '1%',
+        marginRight: '7%',
+        marginBottom: '0',
+        marginLeft: 'auto'
+    },
+
+    mainContainer: {
+        padding: '4%',
+        paddingBottom: '12%',
+        display: 'flex',
+        justifyContent: 'center',
+        height: '80%',
+        alignItems: 'center',
+        position: 'relative',
+        flexDirection: 'column'
+    }
+
+}));
+
+
+function Login(props) {
+
+    const classes = useStyles();
 
     const [error, setError] = useState({
         email: false,
@@ -68,9 +97,10 @@ function Login() {
         })
             .then((response) => {
                 if (response.status === 200) {
+                    props.setUserId(response.data.id)
                     history.push("/home")
                 }
-            }, (error)=>{
+            }, (error) => {
                 setErrorSnakeBar(true)
             });
     }
@@ -86,8 +116,8 @@ function Login() {
 
     return (
         <section style={{ paddingTop: '5%' }}>
-            <Container component="main" maxWidth="sm" className="mainContainer">
-                <Paper elevation={5} className="inside">
+            <Container component="main" maxWidth="sm" className={classes.mainContainer}>
+                <Paper elevation={5} className={classes.paper}>
                     <form onSubmit={handleClickOnSubmit}>
                         <Grid item xs={12} sm={12}>
                             <PersonPinIcon color="primary" style={{ height: '40%', width: '40%', marginLeft: '30%' }} />
@@ -164,7 +194,6 @@ function Login() {
                                 </Grid>
                             </Typography>
 
-
                             <Typography variant="h6" style={{ fontSize: '15px', textAlign: 'center', marginLeft: '12%', padding: '2%' }}>
                                 <Grid item xs={12}>
                                     New to Dalffins?<Link to="/"> Register here</Link>
@@ -192,3 +221,4 @@ function Login() {
 }
 
 export default Login;
+

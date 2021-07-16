@@ -1,3 +1,4 @@
+//Author: Divyashree Bangalore Subbaraya (B00875916)
 const SALT_HASH_ROUNDS = 10;
 
 const mongoose = require('mongoose')

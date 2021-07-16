@@ -28,13 +28,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
 export default function DalffinsMenu(props) {
 
   const [profileMenu, setProfileMenu] = React.useState(null);
+
   const classes = useStyles();
+
   const history = useHistory();
+  
   const open = Boolean(profileMenu);
 
   const handleClick = (event) => {
@@ -90,7 +91,7 @@ export default function DalffinsMenu(props) {
               <Button color="inherit" onClick={signUp}>Register</Button>
               <Button color="inherit" onClick={login}>Login</Button>
               <Button color="inherit" onClick={handleClick}>
-                <PersonPinIcon color="white" fontSize="large" />
+                <PersonPinIcon fontSize="large" style={{ color: "white" }}/>
               </Button>
 
               <Menu

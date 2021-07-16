@@ -1,3 +1,4 @@
+//Author: Divyashree Bangalore Subbaraya (B00875916)
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -6,8 +7,7 @@ import Container from '@material-ui/core/Container';
 import MuiPhoneNumber from 'material-ui-phone-number';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
-import 'react-phone-input-2/lib/bootstrap.css'
-import './SignUp.css';
+import 'react-phone-input-2/lib/bootstrap.css';
 import { IconButton, Paper } from '@material-ui/core';
 import { TextField, InputAdornment } from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -20,11 +20,43 @@ import MuiAlert from '@material-ui/lab/Alert';
 import Checkbox from '@material-ui/core/Checkbox';
 import { useHistory, Link } from "react-router-dom";
 import axios from 'axios';
+import { makeStyles } from '@material-ui/core/styles';
 
-function SignUp() {
+const useStyles = makeStyles((theme) => ({
+    paper: {
+        paddingRight: '13px',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+        marginTop: '0',
+        marginRight: 'auto',
+        marginBottom: '0',
+        marginLeft: 'auto'
+    },
+
+    mainContainer: {
+        padding: '2%',
+        display: 'flex',
+        justifyContent: 'center',
+        height: '80%',
+        alignItems: 'center',
+        position: 'relative',
+        flexDirection: 'column',
+        marginBottom: '5%'
+    }
+
+}));
+
+function SignUp(props) {
+
+    const classes = useStyles();
+
     const [password, setPassword] = useState("");
+
     const [displayPassword, setDisplayPassword] = useState(false)
+
     const [displayConfirmPassword, setDisplayConfirmPassword] = useState(false)
+
     const history = useHistory();
 
     const [error, setError] = useState({
@@ -33,8 +65,11 @@ function SignUp() {
         email: false,
         password: false,
         confirmPassword: false,
-        checkedBox: false
+        checkedBox: false,
+        phoneNumber: false,
+        errorSnackbar: false
     });
+
     const [detail, setDetail] = useState({
         firstName: '',
         lastName: '',
@@ -57,7 +92,6 @@ function SignUp() {
             return
         }
 
-
         axios.post('http://localhost:8080/user/signUp', {
             email: detail.email,
             password: detail.password,
@@ -69,22 +103,19 @@ function SignUp() {
         })
             .then((response) => {
                 if (response.status === 200) {
-                    history.push("/home")
+                    props.setUserId(response.data._id)
+                    history.push("/home", { register: true })
+                    setDetail(pre => ({ ...pre, snackbar: true }))
                 }
+            }).catch(function (error) {
+                setError(pre => ({ ...pre, errorSnackbar: true }))
             })
-
-        setDetail(pre => ({ ...pre, snackbar: true }))
-
-        setDetail(pre => ({ ...pre, phoneNumber: '' }))
-
     }
 
     const handleNameChange = (e) => {
         const { name, value } = e.target;
-
-        if (!value.match(/^[ 0-9a-zA-Z]+$/)) {
+        if (!value.match(/^[a-zA-Z0-9]+(?:[\s.]+[a-zA-Z0-9]+)*$/)) {
             setError(pre => ({ ...pre, [name]: true }))
-
         }
         else {
             setError(pre => ({ ...pre, [name]: false }))
@@ -94,13 +125,17 @@ function SignUp() {
 
     const handlePhoneNumberChange = (e) => {
         const { name, value } = e.target;
-
+        if (!value.match(/^\s*(?:\+?([1]))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/)) {
+            setError(pre => ({ ...pre, [name]: true }))
+        }
+        else {
+            setError(pre => ({ ...pre, [name]: false }))
+        }
         setDetail(pre => ({ ...pre, [name]: value }))
     }
 
     const handleEmailChange = (e) => {
         const { name, value } = e.target;
-
         if (value.match(/^\S+@\S+\.\S+$/)) {
             setError(pre => ({ ...pre, [name]: false }))
         }
@@ -145,7 +180,6 @@ function SignUp() {
         else {
             setError(pre => ({ ...pre, [name]: true }))
         }
-
     }
 
     const handlePasswordClickChange = () => {
@@ -155,11 +189,17 @@ function SignUp() {
     const handleConfirmPasswordClickChange = () => {
         setDisplayConfirmPassword(!displayConfirmPassword)
     }
+
     const handleSnackBar = () => {
         setDetail(pre => ({ ...pre, snackbar: false }))
     }
+
     const handleCheckedSnackBar = () => {
         setError(pre => ({ ...pre, checkedBox: false }))
+    }
+
+    const handleErrorSnackBar = () => {
+        setError(pre => ({ ...pre, errorSnackbar: false }))
     }
 
     const handleCheckedBoxChange = (e) => {
@@ -169,8 +209,8 @@ function SignUp() {
     return (
         <section style={{ paddingTop: '5%' }}>
 
-            <Container component="main" maxWidth="md" className="mainContainer">
-                <Paper elevation={2} className="inside" >
+            <Container component="main" maxWidth="md" className={classes.mainContainer}>
+                <Paper elevation={2} className={classes.paper}>
                     <Card style={{ margin: '3%', height: '100%' }} md={6}>
                         <CardMedia
                             image="images/tiffinsImage.jpg"
@@ -274,6 +314,8 @@ function SignUp() {
                                     fullWidth
                                     required
                                     onChange={phone => handlePhoneNumberChange({ target: { value: phone, name: 'phoneNumber' } })}
+                                    error={error.phoneNumber}
+                                    helperText={error.phoneNumber ? 'Example: +1 (902) 333-4444' : ''}
                                 />
                             </Grid>
 
@@ -354,18 +396,17 @@ function SignUp() {
                                     OnClick={handleClickOnSubmit}>
                                     Register
                                 </Button>
-                                <Snackbar open={detail.snackbar} autoHideDuration={6000} onClose={handleSnackBar}>
-                                    <MuiAlert elevation={6} variant="filled" onClose={handleSnackBar} severity="success">
-                                        Registered Successfully!
-                                    </MuiAlert>
-                                </Snackbar>
                                 <Snackbar open={error.checkedBox} autoHideDuration={6000} onClose={handleCheckedSnackBar}>
                                     <MuiAlert elevation={6} variant="filled" onClose={handleCheckedSnackBar} severity="error">
                                         Please Agree to terms and conditions!
                                     </MuiAlert>
                                 </Snackbar>
+                                <Snackbar open={error.errorSnackbar} autoHideDuration={6000} onClose={handleErrorSnackBar}>
+                                    <MuiAlert elevation={6} variant="filled" onClose={handleErrorSnackBar} severity="error">
+                                        Already registered emailID!
+                                    </MuiAlert>
+                                </Snackbar>
                             </Grid>
-
                         </Grid>
                     </form>
                 </Paper>
