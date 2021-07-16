@@ -3,6 +3,7 @@ import "./AdminSupport.scss";
 import { Button, Col, Row } from "react-bootstrap";
 import { fetchTicketsApi } from "../../utils/Api";
 import { Redirect } from "react-router-dom";
+import TicketListView from "../../components/Help/TicketListView/TicketListView";
 
 class AdminSupport extends Component {
   state = {
@@ -38,7 +39,7 @@ class AdminSupport extends Component {
       return <Redirect to="/admin/login" />;
     }
 
-    const { tickets } = this.state;
+    const { tickets, isLoading } = this.state;
 
     return (
       <div className="admin-support-container container">
@@ -48,20 +49,7 @@ class AdminSupport extends Component {
           </Col>
         </Row>
 
-        <div className="container mt-3">
-          <Row className="cards">
-            {tickets.map((item, index) => (
-              <div className="card">
-                <h5>{`${index + 1}. ${item.reason}`}</h5>
-                <span className="desc">{item.description}</span>
-                <div className="d-flex mt-2 justify-content-between">
-                  <span className="s">{item.status}</span>
-                  <span className="c">{item.createdAt}</span>
-                </div>
-              </div>
-            ))}
-          </Row>
-        </div>
+        <TicketListView isLoading={isLoading} tickets={tickets} />
       </div>
     );
   }
