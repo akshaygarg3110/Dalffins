@@ -36,6 +36,7 @@ const NewSupportTicketModal = ({ show, onClose }) => {
         {
           text: description,
           date: new Date(),
+          author: "Jp9573@gmail.com",
         },
       ],
       email: "Jp9573@gmail.com",
