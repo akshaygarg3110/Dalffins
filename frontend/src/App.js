@@ -10,17 +10,18 @@ import Layout from "./components/Kitchen/Layout";
 import Main from "./components/Kitchen/Main";
 import SummaryAndPayment from "./pages/SummaryAndPayment/SummaryAndPayment";
 import Help from "./pages/Help/Help";
-import Login from './pages/login/Login';
+import Login from "./pages/login/Login";
 import HomePage from "./pages/homePage/HomePage";
-import ForgotPasswordGetCode from './pages/forgotPassword/ForgotPasswordGetCode';
+import ForgotPasswordGetCode from "./pages/forgotPassword/ForgotPasswordGetCode";
 import ForgotPasswordEnterCode from "./pages/forgotPassword/forgotPasswordEnterCode";
 import ResetPassword from "./pages/forgotPassword/ResetPassword";
 import MyAccount from "./pages/myAccount/MyAccount";
+import AdminSupport from "./pages/AdminSupport/AdminSupport";
 
 function App() {
   const [orderedItems, setOrderedItems] = useState(new Map());
   const [orderedItemsSize, setOrderedItemsSize] = useState(0);
-  const [id,setId] = useState('');
+  const [id, setId] = useState("");
 
   const orderItemHandler = (orderedItemsInput) => {
     console.log(orderedItemsInput);
@@ -53,32 +54,37 @@ function App() {
         </Route>
 
         <Route exact path="/signUp">
-          <SignUp setUserId={setId}/>
-          </Route>
+          <SignUp setUserId={setId} />
+        </Route>
 
         <Route exact path="/" component={HomePage} />
 
         <Route exact path="/home" component={HomePage} />
 
         <Route exact path="/login">
-          <Login setUserId={setId}/>
+          <Login setUserId={setId} />
         </Route>
 
         <Route exact path="/forgotPassword">
-          <ForgotPasswordGetCode setUserId={setId}/>
+          <ForgotPasswordGetCode setUserId={setId} />
         </Route>
 
-        <Route exact path="/forgotPasswordEnterCode" component={ForgotPasswordEnterCode} />
-        
+        <Route
+          exact
+          path="/forgotPasswordEnterCode"
+          component={ForgotPasswordEnterCode}
+        />
+
         <Route exact path="/resetPassword">
-          <ResetPassword setUserId={setId}/>
+          <ResetPassword setUserId={setId} />
         </Route>
 
         <Route exact path="/help" component={Help} />
+        <Route exact path="/admin/help" component={AdminSupport} />
 
         <Route exact path="/myAccount">
-          <MyAccount userId={id}/>
-          </Route>
+          <MyAccount userId={id} />
+        </Route>
       </Switch>
       <footer>
         <Footer />
