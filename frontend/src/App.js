@@ -20,6 +20,7 @@ import MyAccount from "./pages/myAccount/MyAccount";
 function App() {
   const [orderedItems, setOrderedItems] = useState(new Map());
   const [orderedItemsSize, setOrderedItemsSize] = useState(0);
+  const [id,setId] = useState('');
 
   const orderItemHandler = (orderedItemsInput) => {
     console.log(orderedItemsInput);
@@ -51,23 +52,33 @@ function App() {
           <SummaryAndPayment orderItems={orderedItems} />
         </Route>
 
-        <Route exact path="/signup" component={SignUp}/>
+        <Route exact path="/signUp">
+          <SignUp setUserId={setId}/>
+          </Route>
 
         <Route exact path="/" component={HomePage} />
 
         <Route exact path="/home" component={HomePage} />
 
-        <Route exact path="/login" component={Login} />
+        <Route exact path="/login">
+          <Login setUserId={setId}/>
+        </Route>
 
-        <Route exact path="/forgotPassword" component={ForgotPasswordGetCode} />
+        <Route exact path="/forgotPassword">
+          <ForgotPasswordGetCode setUserId={setId}/>
+        </Route>
 
         <Route exact path="/forgotPasswordEnterCode" component={ForgotPasswordEnterCode} />
-
-        <Route exact path="/resetPassword" component={ResetPassword} />
+        
+        <Route exact path="/resetPassword">
+          <ResetPassword setUserId={setId}/>
+        </Route>
 
         <Route exact path="/help" component={Help} />
 
-        <Route exact path="/myAccount" component={MyAccount} />
+        <Route exact path="/myAccount">
+          <MyAccount userId={id}/>
+          </Route>
       </Switch>
       <footer>
         <Footer />

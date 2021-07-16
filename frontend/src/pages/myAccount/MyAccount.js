@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+//Author: Divyashree Bangalore Subbaraya (B00875916)
+import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
@@ -20,6 +21,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -48,26 +50,53 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function MyAccount() {
+function MyAccount(props) {
 
     const classes = useStyles();
 
     const history = useHistory();
 
+    const api_profile_url = `http://localhost:8080/user/userProfile/${props.userId}`;
+
+    const api_update_profile_url = `http://localhost:8080/user/updateProfile/${props.userId}`;
+
+    const api_delete_url = `http://localhost:8080/user/deleteProfile/${props.userId}`;
+    
+    useEffect(() => {
+        async function userData() {
+            await axios.get(api_profile_url).then((res) => {
+                setDetail({
+                    firstName: res.data.firstName,
+                    lastName: res.data.lastName,
+                    email: res.data.email,
+                    phoneNumber: res.data.phoneNumber
+                })
+                setEditDetail({
+                    firstName: res.data.firstName,
+                    lastName: res.data.lastName,
+                    email: res.data.email,
+                    phoneNumber: res.data.phoneNumber
+                })
+            })
+        };
+        userData();
+
+    }, [api_profile_url]);
+
     const [error, setError] = useState(false);
 
-    const [disabled,setDisabled]=useState(true);
+    const [disabled, setDisabled] = useState(true);
 
     const [detail, setDetail] = useState({
-        firstName: 'Divya',
-        lastName: 'Check',
-        email: 'abc.def@gmail.com',
-        phoneNumber: '12345678901',
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
         snackbar: false,
         checkbox: false
     });
 
-    const [editDetail, seteditDetail] = useState({
+    const [editDetail, setEditDetail] = useState({
         firstName: '',
         lastName: '',
         email: '',
@@ -75,7 +104,9 @@ function MyAccount() {
     });
 
     const [open, setOpen] = React.useState(false);
+
     const [editPopUpName, setEditPopUpName] = React.useState('First Name');
+
     const [editPopUpLabelName, setEditPopUpLabelName] = React.useState('firstName');
 
     const handleClose = () => {
@@ -85,17 +116,36 @@ function MyAccount() {
     const handleSave = () => {
         if (!error) {
             setOpen(false);
-            setDetail(pre => ({ ...pre, [editPopUpLabelName]: editDetail[editPopUpLabelName] }))
-        }
+            axios.put(api_update_profile_url, {
+                email: editDetail.email,
+                firstName: editDetail.firstName,
+                lastName: editDetail.lastName,
+                phoneNumber: editDetail.phoneNumber
+            }, {
+                headers: { 'Content-Type': 'application/json' }
+            })
+                .then((response) => {
+                    if (response.status === 200) {
+                        setDetail(pre => ({ ...pre, [editPopUpLabelName]: editDetail[editPopUpLabelName] }))
+                    }
+                })
+        };
     };
 
+    const handleDeleteClick = ()=>{
+        axios.delete(api_delete_url).then((res)=>{
+            if(res.status===200){
+                history.push("/home")
+            }
+        })
+    }
     const handleCheckedBoxChange = () => {
         setDetail(pre => ({ ...pre, checkbox: !detail.checkbox }))
         setDisabled(detail.checkbox)
     }
 
     const handlePhoneNumberChange = (e) => {
-        const { name, value } = e.target;
+        const { value } = e.target;
         setDetail(pre => ({ ...pre, phoneNumber: value }))
     }
 
@@ -134,7 +184,7 @@ function MyAccount() {
         if ((value.match(/^[ 0-9a-zA-Z]+$/) && name.includes('Name')) ||
             (value.match(/^\S+@\S+\.\S{2,}$/) && name === "email") || (name === 'phoneNumber')) {
             setError(false)
-            seteditDetail(pre => ({ ...pre, [name]: value }))
+            setEditDetail(pre => ({ ...pre, [name]: value }))
         }
         else {
             setError(true)
@@ -163,6 +213,7 @@ function MyAccount() {
                 <TextField
                     autoFocus
                     error={error}
+                    defaultValue={detail[textField]}
                     margin="dense"
                     id={editPopUpName}
                     name={textField}
@@ -355,11 +406,11 @@ function MyAccount() {
 
 
                         <Grid item xs={12}>
-                            <Typography variant="h6" style={{ justifyContent: 'flex-start', marginLeft: '2%', fontSize:'20px'}}>
+                            <Typography variant="h6" style={{ justifyContent: 'flex-start', marginLeft: '2%', fontSize: '20px' }}>
                                 Delete Account
-                                <DeleteIcon color="black" style={{marginLeft:'1%'}}/>
+                                <DeleteIcon color="black" style={{ marginLeft: '1%' }} />
                             </Typography>
-                            
+
                             <Checkbox
                                 name="checkbox"
                                 checked={detail.checkbox}
@@ -371,12 +422,13 @@ function MyAccount() {
                             <Typography variant='caption' style={{ fontSize: '14px' }}>
                                 Yes, I agree to delete my Dalffins account and its associated data
                             </Typography>
-                            
+
                             <Button type="submit"
                                 color="primary"
                                 variant="contained"
                                 disabled={disabled}
-                                style={{ width: '30%',marginLeft:'1.5%' }}
+                                onClick={handleDeleteClick}
+                                style={{ width: '30%', marginLeft: '1.5%' }}
                             >
                                 Delete Account
                             </Button>

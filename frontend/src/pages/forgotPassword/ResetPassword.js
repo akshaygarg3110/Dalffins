@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+//Author: Divyashree Bangalore Subbaraya (B00875916)
+import React, { useState,useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -10,9 +11,12 @@ import { IconButton, Paper } from '@material-ui/core';
 import { TextField, InputAdornment } from '@material-ui/core';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
-import { useHistory } from "react-router-dom";
+import { useHistory,useLocation } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
+import axios from 'axios';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -42,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function ResetPassword() {
+function ResetPassword(props) {
 
     const classes = useStyles();
 
@@ -50,9 +54,25 @@ function ResetPassword() {
 
     const [displayPassword, setDisplayPassword] = useState(false)
 
+    const [email, setEmail]=useState("")
+
     const [displayConfirmPassword, setDisplayConfirmPassword] = useState(false)
 
     const history = useHistory();
+
+    const location = useLocation();
+
+    useEffect(() => {
+        const reset = () => {
+            if (location.state) {
+                setEmail(location.state.Email);
+                history.replace('/resetPassword', {})
+            }
+        }
+        reset();
+    }, []);
+
+    const api_reset_password_url = 'http://localhost:8080/user/resetPassword';
 
     const [error, setError] = useState({
         password: false,
@@ -66,6 +86,22 @@ function ResetPassword() {
                 return
             }
         }
+        console.log(email)
+
+        axios.put(api_reset_password_url, {
+            email: email,
+            password: password
+        }, {
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then((response) => {
+                if (response.status === 200) {
+                    props.setUserId(response.data.id)
+                    history.push("/home")
+                }
+            }, (error) => {
+               // setErrorSnakeBar(true)
+            });
         history.push("/home")
     }
 
@@ -179,7 +215,7 @@ function ResetPassword() {
                                     color="primary"
                                     variant="contained"
                                     style={{ textTransform: 'none', marginLeft:'25%'}}
-                                    OnClick={handleClickOnSubmit}>
+                                    onClick={handleClickOnSubmit}>
                                     Reset Password
                                 </Button>
                             </Grid>

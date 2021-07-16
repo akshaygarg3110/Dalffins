@@ -1,3 +1,4 @@
+//Author: Divyashree Bangalore Subbaraya (B00875916)
 const passport = require("passport");
 
 const localStrategy = require("passport-local").Strategy;

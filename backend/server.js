@@ -1,3 +1,4 @@
+//Author: Divyashree Bangalore Subbaraya (B00875916)
 const express = require("express");
 
 const http = require('http')
@@ -17,7 +18,7 @@ app.use(express.static('./frontend/build'));
 app.use(cors());
 
 app.get("/*", function (req, res) {
-    res.sendFile(path.join(__dirname, '/frontend/build/index.html'));
+    res.sendFile(path.join('/frontend/build/index.html'));
 });
 
 server.listen(port, () => {

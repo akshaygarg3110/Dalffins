@@ -1,3 +1,4 @@
+//Author: Divyashree Bangalore Subbaraya (B00875916)
 const bodyParser = require('body-parser');
 
 const express = require('express')
@@ -32,7 +33,7 @@ app.use(express.static("public"))
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(dbConfig.url, { useNewUrlParser: true, useUnifiedTopology: true , useFindAndModify: true, useCreateIndex: true})
+mongoose.connect(dbConfig.url, { useNewUrlParser: true, useUnifiedTopology: true , useFindAndModify: false, useCreateIndex: true})
     .then(async () => {
         console.log("Successfully connected to dalffins mongoDb database!");
     }).catch(err => {
