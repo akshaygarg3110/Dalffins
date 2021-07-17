@@ -9,16 +9,18 @@ const port = process.env.PORT || 8080;
 
 const server = http.createServer(app);
 
-var path = require("path");
+const path = require("path");
 
 const cors = require("cors");
 
-app.use(express.static('./frontend/build'));
-
 app.use(cors());
 
+app.use(express.static('../.frontend/public'));
+
 app.get("/*", function (req, res) {
-    res.sendFile(path.join('/frontend/build/index.html'));
+    res.sendFile('./frontend/public/index.html' , { root : __dirname});
+    res.send("hello")
+
 });
 
 server.listen(port, () => {

@@ -13,7 +13,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import LockIcon from '@material-ui/icons/Lock';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({
 
@@ -37,21 +37,52 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "center",
         position: "relative",
         flexDirection: "column"
+    },
+    personPin: {
+        height: '40%',
+        width: '40%',
+        marginLeft: '30%'
+    },
+    typoText: {
+        textAlign: 'center',
+        marginBottom: '7%'
+    },
+    typo: {
+        fontSize: "15px",
+        textAlign: 'center',
+        marginBottom: '7%'
+    },
+    continueButton: {
+        textTransform: 'none',
+        float: 'center',
+        padding: "2%",
+        width: '100px',
+        marginLeft: '30%'
+    },
+    card: {
+        margin: '3%',
+        height: '100%'
+    },
+    cardMedia: {
+        height: '449px',
+        width: '590px'
+    },
+    section: {
+        paddingTop: '5%'
     }
-
-}));
+}))
 
 function ForgotPasswordEnterCode() {
 
-    const classes = useStyles();
+    const classes = useStyles()
 
-    const [enteredOtp, setEnteredOTP] = useState(0);
+    const [enteredOtp, setEnteredOTP] = useState(0)
 
-    const [actualOtp, setActualOTP] = useState(0);
+    const [actualOtp, setActualOTP] = useState(0)
 
     const [email, setEmail] = useState('')
 
-    const [errorSnackbar, setErrorSnackBar] = useState(false);
+    const [errorSnackbar, setErrorSnackBar] = useState(false)
 
     const [snackBar, setSnackBar] = useState(false)
 
@@ -59,21 +90,21 @@ function ForgotPasswordEnterCode() {
         setSnackBar(false)
     }
 
-    const history = useHistory();
+    const history = useHistory()
 
-    const location = useLocation();
+    const location = useLocation()
 
     useEffect(() => {
         const enterCode = () => {
             if (location.state) {
-                setActualOTP(location.state.ActualOTP);
+                setActualOTP(location.state.ActualOTP)
                 setEmail(location.state.Email)
-                setSnackBar(location.state.passwordEntry);
+                setSnackBar(location.state.passwordEntry)
                 history.replace('/forgotPasswordEnterCode', {})
             }
         }
-        enterCode();
-    }, []);
+        enterCode()
+    }, [])
 
     const handleOTPChange = (e) => {
         setEnteredOTP(e.target.value)
@@ -84,11 +115,11 @@ function ForgotPasswordEnterCode() {
     }
 
     const handleClickOnCheckOTP = (e) => {
-        e.preventDefault();
+        e.preventDefault()
         if (actualOtp === parseInt(enteredOtp)) {
             console.log("ENter")
             console.log(email)
-            history.push("/resetPassword", {'Email':email})
+            history.push("/resetPassword", { 'Email': email })
         }
         else {
             setErrorSnackBar(true)
@@ -96,18 +127,17 @@ function ForgotPasswordEnterCode() {
     }
 
     return (
-        <section style={{ paddingTop: '5%' }}>
+        <section className={classes.section}>
             <Container component="main" maxWidth="md" className={classes.mainContainer}>
-
                 <Paper elevation={5} className={classes.inside}>
 
                     <form onSubmit={handleClickOnCheckOTP}>
                         <Grid item xs={12} sm={12}>
-                            <PersonPinIcon color="primary" style={{ height: '40%', width: '40%', marginLeft: '30%' }} />
-                            <Typography variant="h5" style={{ textAlign: 'center', marginBottom: '7%' }}>
+                            <PersonPinIcon color="primary" className={classes.personPin} />
+                            <Typography variant="h5" className={classes.typoText} >
                                 Forgot Password?
                             </Typography>
-                            <Typography variant="h6" style={{ fontSize: "15px", textAlign: 'center', marginBottom: '7%' }}>
+                            <Typography variant="h6" className={classes.typo}>
                                 Enter the authentication code received on your registered email ID to reset your password.
                             </Typography>
                         </Grid>
@@ -137,18 +167,18 @@ function ForgotPasswordEnterCode() {
                                 <Button type="submit"
                                     color="primary"
                                     variant="contained"
-                                    style={{ textTransform: 'none', float: 'center', padding: "2%", width: '100px', marginLeft: '30%' }}
+                                    className={classes.continueButton}
                                 >
                                     Continue
                                 </Button>
                             </Grid>
                         </Grid>
                     </form>
-                    <Card style={{ margin: '3%', height: '100%' }} md={2}>
+                    <Card className={classes.card} md={2}>
                         <CardMedia
                             image="images/tiffinsImage.jpg"
                             title="Tiffins image"
-                            style={{ height: '449px', width: '590px' }}
+                            className={classes.cardMedia}
                         />
                     </Card>
                     <Snackbar open={snackBar} autoHideDuration={6000} onClose={handleSuccessSnackBar}>
@@ -164,7 +194,7 @@ function ForgotPasswordEnterCode() {
                 </Paper>
             </Container>
         </section>
-    );
+    )
 }
 
-export default ForgotPasswordEnterCode;
+export default ForgotPasswordEnterCode

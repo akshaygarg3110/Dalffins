@@ -91,13 +91,18 @@ function Login(props) {
 
         axios.post('http://localhost:8080/user/login', {
             email: details.email,
-            password: details.password
+            password: details.password,
+            
         }, {
             headers: { 'Content-Type': 'application/json' }
         })
             .then((response) => {
                 if (response.status === 200) {
                     props.setUserId(response.data.id)
+                    localStorage.setItem('token', response.data.token); 
+                    props.setUserToken(response.data.token);
+                    props.setFirstName(response.data.firstName)
+                    props.setEmail(response.data.email)
                     history.push("/home")
                 }
             }, (error) => {

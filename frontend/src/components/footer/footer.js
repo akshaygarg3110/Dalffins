@@ -23,9 +23,17 @@ const useStyles = makeStyles((theme) => ({
     bottom: 0,
     width: "100%",
   },
+  typoText: {
+    fontSize: '14px',
+    color: "white"
+  },
+  footerButtons: {
+    marginLeft: '66%'
+  },
 }));
 
 export default function Menu() {
+
   const classes = useStyles();
 
   const history = useHistory();
@@ -38,18 +46,16 @@ export default function Menu() {
     <div className={classes.root}>
       <AppBar position="static" className={classes.sticky}>
         <Toolbar>
-          <Typography variant='caption' style={{ fontSize: '14px', color: "white" }}>
+          <Typography variant='caption' className={classes.typoText}>
             Copyright © 2021 Dalffins.
             All rights reserved.
           </Typography>
           <Grid container spacing={6}>
-            <Grid item xs={12} style={{ marginLeft: '66%' }}>
+            <Grid item xs={12} classNam={classes.footerButtons}>
               <Button color="inherit">FAQs</Button>
               <Button color="inherit">About Us</Button>
               <Button color="inherit">Contact Us</Button>
-              <Button color="inherit" onClick={onHelpClickHandler}>
-                Help
-              </Button>
+              <Button color="inherit" onClick={onHelpClickHandler}>Help</Button>
             </Grid>
           </Grid>
         </Toolbar>

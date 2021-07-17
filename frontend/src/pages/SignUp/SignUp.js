@@ -22,6 +22,8 @@ import { useHistory, Link } from "react-router-dom";
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 
+console.log(localStorage.getItem('token'))
+
 const useStyles = makeStyles((theme) => ({
     paper: {
         paddingRight: '13px',
@@ -104,10 +106,14 @@ function SignUp(props) {
             .then((response) => {
                 if (response.status === 200) {
                     props.setUserId(response.data._id)
-                    history.push("/home", { register: true })
+                    props.setFirstName(response.data.firstName)
+                    props.setEmail(response.data.email)
+                    props.setUserToken(localStorage.getItem('token'))
                     setDetail(pre => ({ ...pre, snackbar: true }))
+                    history.push("/home", { register: true })
                 }
             }).catch(function (error) {
+                console.log(error)
                 setError(pre => ({ ...pre, errorSnackbar: true }))
             })
     }
@@ -188,11 +194,7 @@ function SignUp(props) {
 
     const handleConfirmPasswordClickChange = () => {
         setDisplayConfirmPassword(!displayConfirmPassword)
-    }
-
-    const handleSnackBar = () => {
-        setDetail(pre => ({ ...pre, snackbar: false }))
-    }
+    }  
 
     const handleCheckedSnackBar = () => {
         setError(pre => ({ ...pre, checkedBox: false }))
@@ -393,7 +395,7 @@ function SignUp(props) {
                                     color="primary"
                                     variant="contained"
                                     style={{ textTransform: 'none', float: 'right', width: '200px', margin: '2%' }}
-                                    OnClick={handleClickOnSubmit}>
+                                    onClick={handleClickOnSubmit}>
                                     Register
                                 </Button>
                                 <Snackbar open={error.checkedBox} autoHideDuration={6000} onClose={handleCheckedSnackBar}>

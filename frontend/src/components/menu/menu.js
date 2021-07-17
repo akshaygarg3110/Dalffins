@@ -26,6 +26,17 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "20",
     fontFamily: "cursive"
   },
+  dalffinsButton: {
+    fontSize: '23px',
+    color: "#ffc107"
+  },
+  container: {
+    paddingLeft: '65%'
+  },
+  personPin: {
+    color: "white",
+    fontSize:"large"
+  },
 }));
 
 export default function DalffinsMenu(props) {
@@ -35,7 +46,7 @@ export default function DalffinsMenu(props) {
   const classes = useStyles();
 
   const history = useHistory();
-  
+
   const open = Boolean(profileMenu);
 
   const handleClick = (event) => {
@@ -49,6 +60,8 @@ export default function DalffinsMenu(props) {
 
   const handleCloseLogOut = () => {
     history.push("/login")
+    localStorage.removeItem('token')
+    props.setUserToken('')
     setProfileMenu(null);
   };
 
@@ -79,35 +92,47 @@ export default function DalffinsMenu(props) {
     history.push("/login")
   }
 
+  const conNavBar = () => {
+
+    if (props.userToken) {
+
+      return (<>
+
+        <Button color="inherit" onClick={handleClick}>
+          <PersonPinIcon className={classes.personPin} />
+          Hey, {props.firstName}
+        </Button>
+
+        <Menu
+          anchorEl={profileMenu}
+          open={open}
+          onClose={handleClose}
+
+        >
+          <MenuItem onClick={handleCloseAccount} >My Account</MenuItem>
+          <MenuItem onClick={handleCloseLogOut}>Logout</MenuItem>
+        </Menu>
+      </>);
+    }
+    return (<>
+      <Button color="inherit" onClick={signUp}>Register</Button>
+      <Button color="inherit" onClick={login}>Login</Button>
+    </>);
+  }
+
   return (
     <div className={classes.root}>
+
       <AppBar position="fixed" className={classes.sticky}>
         <Toolbar>
-          <Button type="button" className={classes.title} style={{ fontSize: '23px', color: "#ffc107" }} onClick={pageRefresh}>Dalffins</Button>
-          <Grid container spacing={6} style={{ paddingLeft: '65%' }}>
+          <Button type="button" className={classes.title} className={classes.dalffinsButton} onClick={pageRefresh}>Dalffins</Button>
+          <Grid container spacing={6} className={classes.container}>
             <Grid item xs={12}>
               <Button color="inherit" onClick={update}>Kitchen</Button>
               {noOfOrderItems > 0 ? <Button color="inherit" style={{ color: "#ffc107" }} onClick={summary}><b>Cart({noOfOrderItems})</b></Button> : <Button color="inherit" onClick={summary}>Cart</Button>}
-              <Button color="inherit" onClick={signUp}>Register</Button>
-              <Button color="inherit" onClick={login}>Login</Button>
-              <Button color="inherit" onClick={handleClick}>
-                <PersonPinIcon fontSize="large" style={{ color: "white" }}/>
-              </Button>
-
-              <Menu
-                anchorEl={profileMenu}
-                open={open}
-                onClose={handleClose}
-                
-              >
-                <MenuItem onClick={handleCloseAccount} >My Account</MenuItem>
-                <MenuItem onClick={handleCloseLogOut}>Logout</MenuItem>
-
-              </Menu>
-
+              {conNavBar()}
             </Grid>
           </Grid>
-
         </Toolbar>
       </AppBar>
     </div>

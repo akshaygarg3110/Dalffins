@@ -40,7 +40,37 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "center",
         position: "relative",
         flexDirection: "column"
-    }
+    },
+    personPin: {
+        height: '40%', 
+        width: '40%', 
+        marginLeft: '30%' 
+    },
+    typoText: {
+         textAlign: 'center', 
+         marginBottom: '7%' 
+    },
+    typo:{
+        fontSize: "15px", 
+        textAlign: 'center', 
+        marginBottom: '7%' 
+    },
+    getCode:{
+        textTransform: 'none', 
+        float: 'center', 
+        padding: "2%", 
+        width: '100px', 
+        marginLeft: '30%'                            
+    },
+    card: {
+        margin: '3%',
+        height: '100%'
+    },
+    cardMedia: {
+        height: '449px',
+        width: '590px'
+    },
+
 
 }));
 
@@ -74,15 +104,12 @@ function ForgotPasswordGetCode(props) {
                 if (response.status === 200) {
                     props.setUserId(response.data.id)
                     const randomNumber = Math.floor(1000 + Math.random() * 9000);
-                    console.log(randomNumber)
                     emailjs.send(emailJSDetails.serviceId, emailJSDetails.templateID, {
                         to_name: response.data.firstName,
                         otp: randomNumber,
                         to_email: response.data.email,
                         reply_to: "otpdalffins@gmail.com",
                     }, emailJSDetails.userId).then((result) => {
-                        console.log("get")
-                        console.log(response.data.email)
                         history.push("/forgotPasswordEnterCode", {'ActualOTP': randomNumber, passwordEntry: true, 'Email':  response.data.email})
                     },
                         (error) => {
@@ -107,11 +134,11 @@ function ForgotPasswordGetCode(props) {
                 <Paper elevation={6} className={classes.inside}>
                     <form onSubmit={handleClickOnGetCode}>
                         <Grid item xs={12} sm={12}>
-                            <PersonPinIcon color="primary" style={{ height: '40%', width: '40%', marginLeft: '30%' }} />
-                            <Typography variant="h5" style={{ textAlign: 'center', marginBottom: '7%' }}>
+                            <PersonPinIcon color="primary" className={classes.personPin} />
+                            <Typography variant="h5" className={classes.typoText}>
                                 Forgot Password?
                             </Typography>
-                            <Typography variant="h6" style={{ fontSize: "15px", textAlign: 'center', marginBottom: '7%' }}>
+                            <Typography variant="h6" className={classes.typo}>
                                 Enter the email ID associated with Dalffins account and we will send an email notification to reste your password.
                             </Typography>
                         </Grid>
@@ -142,8 +169,8 @@ function ForgotPasswordGetCode(props) {
                                 <Button type="submit"
                                     color="primary"
                                     variant="contained"
-                                    style={{ textTransform: 'none', float: 'center', padding: "2%", width: '100px', marginLeft: '30%' }}
-                                >
+                                    className={classes.getCode}
+                                  >
                                     Get Code
                                 </Button>
                                 <Snackbar open={error.errorSnackbar} autoHideDuration={6000} onClose={handleErrorSnackBar}>
@@ -155,14 +182,13 @@ function ForgotPasswordGetCode(props) {
                         </Grid>
                     </form>
 
-                    <Card style={{ margin: '3%', height: '100%' }} md={2}>
+                    <Card className={classes.card} md={2}>
                         <CardMedia
                             image="images/tiffinsImage.jpg"
                             title="Tiffins image"
-                            style={{ height: '449px', width: '590px' }}
+                            className={classes.cardMedia}
                         />
                     </Card>
-
                 </Paper>
             </Container>
         </section>
