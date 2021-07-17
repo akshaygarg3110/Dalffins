@@ -70,7 +70,9 @@ const useStyles = makeStyles((theme) => ({
         height: '449px',
         width: '590px'
     },
-
+    section: {
+        paddingTop: '5%'
+    }
 
 }));
 
@@ -127,7 +129,7 @@ function ForgotPasswordGetCode(props) {
     }
 
     return (
-        <section style={{ paddingTop: '5%' }}>
+        <section className={classes.section}>
 
             <Container component="main" maxWidth="lg" className={classes.mainContainer}>
 
