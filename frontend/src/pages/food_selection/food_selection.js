@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import noimage from "../../images/noimage.png";
 
 const Food_Selection = (props) => {
   const [kitchenName, setKitchenName] = useState("");
@@ -130,7 +131,13 @@ const Food_Selection = (props) => {
             </Carousel.Item>
           ))
         ) : (
-          <b> No images available for this Vendor.</b>
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src={noimage}
+              style={{ height: "50vh" }}
+            />
+          </Carousel.Item>
         )}
       </Carousel>
       <br />
