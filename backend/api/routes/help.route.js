@@ -6,6 +6,8 @@ function routes() {
   const helpRoute = express.Router();
   const controller = helpController(HelpTicket);
 
+  helpRoute.route("/admin/tickets").get(controller.getAllTickets);
+
   helpRoute
     .route("/tickets")
     .get(controller.getTickets)

@@ -4,6 +4,7 @@ import { Button, Col, Row } from "react-bootstrap";
 import AddIcon from "@material-ui/icons/Add";
 import NewSupportTicketModal from "../../components/Help/NewSupportTicketModal/NewSupportTicketModal";
 import { fetchTicketsApi } from "../../utils/Api";
+import TicketListView from "../../components/Help/TicketListView/TicketListView";
 
 class Help extends Component {
   state = {
@@ -45,7 +46,7 @@ class Help extends Component {
   };
 
   render() {
-    const { tickets, newSupportTicketModalVisibility } = this.state;
+    const { tickets, newSupportTicketModalVisibility, isLoading } = this.state;
 
     return (
       <div className="help-container container">
@@ -63,20 +64,7 @@ class Help extends Component {
           </Col>
         </Row>
 
-        <div className="container mt-3">
-          <Row className="cards">
-            {tickets.map((item, index) => (
-              <div className="card">
-                <h5>{`${index + 1}. ${item.reason}`}</h5>
-                <span className="desc">{item.description}</span>
-                <div className="d-flex mt-2 justify-content-between">
-                  <span className="s">{item.status}</span>
-                  <span className="c">{item.createdAt}</span>
-                </div>
-              </div>
-            ))}
-          </Row>
-        </div>
+        <TicketListView isLoading={isLoading} tickets={tickets} />
 
         <NewSupportTicketModal
           show={newSupportTicketModalVisibility}

@@ -1,12 +1,12 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
-import { useHistory } from 'react-router-dom';
-import { Grid, MenuItem } from '@material-ui/core';
-import PersonPinIcon from '@material-ui/icons/PersonPin';
-import Menu from '@material-ui/core/Menu';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Button from "@material-ui/core/Button";
+import { useHistory } from "react-router-dom";
+import { Grid, MenuItem } from "@material-ui/core";
+import PersonPinIcon from "@material-ui/icons/PersonPin";
+import Menu from "@material-ui/core/Menu";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,14 +17,14 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    fontFamily: "Times New Roman"
+    fontFamily: "Times New Roman",
   },
   sticky: {
     position: "fixed",
     top: 0,
     width: "100%",
     marginLeft: "20",
-    fontFamily: "cursive"
+    fontFamily: "cursive",
   },
   dalffinsButton: {
     fontSize: '23px',
@@ -40,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function DalffinsMenu(props) {
-
   const [profileMenu, setProfileMenu] = React.useState(null);
 
   const classes = useStyles();
@@ -54,7 +53,7 @@ export default function DalffinsMenu(props) {
   };
 
   const handleCloseAccount = () => {
-    history.push("/myAccount")
+    history.push("/myAccount");
     setProfileMenu(null);
   };
 
@@ -74,23 +73,23 @@ export default function DalffinsMenu(props) {
 
   const update = () => {
     history.push("/kitchen");
-  }
+  };
 
   const summary = () => {
     history.push("/summaryAndPayment");
-  }
+  };
 
   const pageRefresh = () => {
-    history.push("/")
-  }
+    history.push("/");
+  };
 
   const signUp = () => {
-    history.push("/signup")
-  }
+    history.push("/signup");
+  };
 
   const login = () => {
-    history.push("/login")
-  }
+    history.push("/login");
+  };
 
   const conNavBar = () => {
 

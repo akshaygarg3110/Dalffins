@@ -1,0 +1,28 @@
+.admin-support-login-container {
+  min-height: 85vh;
+  padding: 1.5rem;
+  padding-top: 5%;
+  padding-bottom: 5%;
+
+  .mainContainer {
+    height: 80%;
+    display: flex;
+    padding: 4%;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 12%;
+    justify-content: center;
+  }
+
+  .paper {
+    width: 100%;
+    display: flex;
+    padding: 30px;
+    margin-top: 1%;
+    margin-left: auto;
+    margin-right: 7%;
+    margin-bottom: 0;
+    flex-direction: row;
+  }
+}

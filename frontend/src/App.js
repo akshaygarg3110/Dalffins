@@ -10,12 +10,14 @@ import Layout from "./components/Kitchen/Layout";
 import Main from "./components/Kitchen/Main";
 import SummaryAndPayment from "./pages/SummaryAndPayment/SummaryAndPayment";
 import Help from "./pages/Help/Help";
-import Login from './pages/login/Login';
+import Login from "./pages/login/Login";
 import HomePage from "./pages/homePage/HomePage";
-import ForgotPasswordGetCode from './pages/forgotPassword/ForgotPasswordGetCode';
+import ForgotPasswordGetCode from "./pages/forgotPassword/ForgotPasswordGetCode";
 import ForgotPasswordEnterCode from "./pages/forgotPassword/forgotPasswordEnterCode";
 import ResetPassword from "./pages/forgotPassword/ResetPassword";
 import MyAccount from "./pages/myAccount/MyAccount";
+import AdminSupport from "./pages/AdminSupport/AdminSupport";
+import AdminLogin from "./pages/AdminLogin/AdminLogin";
 
 function App() {
 
@@ -85,11 +87,12 @@ function App() {
         </Route>
 
         <Route exact path="/help" component={Help} />
+        <Route exact path="/admin/help" component={AdminSupport} />
+        <Route exact path="/admin/login" component={AdminLogin} />
 
         <Route exact path="/myAccount">
           <MyAccount userId={id} />
         </Route>
-
       </Switch>
 
       <footer>

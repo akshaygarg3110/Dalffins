@@ -1,9 +1,4 @@
-.help-container {
-  min-height: 85vh;
-  padding: 1.5rem;
-  padding-top: 5%;
-  padding-bottom: 5%;
-
+.ticket-list-view-content {
   .cards {
     display: flex;
     flex-direction: column;
@@ -11,6 +6,11 @@
     .card {
       padding: 12px;
       margin: 4px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+      }
 
       .desc {
         color: grey;
