@@ -15,7 +15,7 @@ const Food_Selection = (props) => {
 
   const param = useParams();
 
-  const api_url = "http://localhost:8080/foodSelection/" + param.id;
+  const api_url = "https://dalffins.herokuapp.com/foodSelection/" + param.id;
 
   useEffect(() => {
     async function fetchFooditems() {
