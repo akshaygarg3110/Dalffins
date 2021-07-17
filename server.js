@@ -3,7 +3,7 @@ const express = require("express");
 
 const http = require('http')
 
-const app = require('./app');
+const app = require('./backend/app');
 
 const port = process.env.PORT || 8080;
 
@@ -15,12 +15,10 @@ const cors = require("cors");
 
 app.use(cors());
 
-app.use(express.static('../.frontend/public'));
+app.use(express.static('./frontend/build'));
 
-app.get("/*", function (req, res) {
-    res.sendFile('./frontend/public/index.html' , { root : __dirname});
-    res.send("hello")
-
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, '/frontend/build/index.html'));
 });
 
 server.listen(port, () => {
