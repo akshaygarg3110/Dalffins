@@ -1,5 +1,5 @@
 //Author: Divyashree Bangalore Subbaraya (B00875916)
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -11,7 +11,7 @@ import { IconButton, Paper } from '@material-ui/core';
 import { TextField, InputAdornment } from '@material-ui/core';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
-import { useHistory,useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
 import axios from 'axios';
@@ -23,8 +23,8 @@ const useStyles = makeStyles((theme) => ({
     inside: {
         paddingRight: "10px",
         paddingLeft: "17px",
-        paddingBottom:'10px',
-        paddingTop:'5px',
+        paddingBottom: '10px',
+        paddingTop: '5px',
         width: "50%",
         display: "flex",
         flexDirection: "row",
@@ -42,7 +42,38 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "center",
         position: "relative",
         flexDirection: "column"
+    },
+
+    personPin: {
+        height: '40%',
+        width: '40%',
+        marginLeft: '30%'
+    },
+
+    typoText: {
+        textAlign: 'center',
+        marginBottom: '20%'
+    },
+
+    button: {
+        textTransform: 'none',
+        marginLeft: '25%'
+    },
+
+    card: {
+        margin: '3%',
+        height: '100%'
+    },
+
+    cardMedia: {
+        height: '449px',
+        width: '590px'
+    },
+
+    section: {
+        paddingTop: '5%'
     }
+
 }));
 
 function ResetPassword(props) {
@@ -53,7 +84,7 @@ function ResetPassword(props) {
 
     const [displayPassword, setDisplayPassword] = useState(false)
 
-    const [email, setEmail]=useState("")
+    const [email, setEmail] = useState("")
 
     const [displayConfirmPassword, setDisplayConfirmPassword] = useState(false)
 
@@ -99,7 +130,7 @@ function ResetPassword(props) {
                     history.push("/home")
                 }
             }, (error) => {
-               // setErrorSnakeBar(true)
+                // setErrorSnakeBar(true)
             });
         history.push("/home")
     }
@@ -138,7 +169,7 @@ function ResetPassword(props) {
     }
 
     return (
-        <section style={{ paddingTop: '5%' }}>
+        <section className={classes.section}>
 
             <Container component="main" maxWidth="lg" className={classes.mainContainer}>
                 <Paper elevation={6} className={classes.inside}>
@@ -146,8 +177,8 @@ function ResetPassword(props) {
                     <form onSubmit={handleClickOnSubmit}>
 
                         <Grid item xs={12} sm={12}>
-                            <PersonPinIcon color="primary" style={{ height: '40%', width: '40%', marginLeft: '30%' }} />
-                            <Typography variant="h6" style={{ textAlign: 'center', marginBottom: '20%' }}>
+                            <PersonPinIcon color="primary" className={classes.personPin} />
+                            <Typography variant="h6" className={classes.typoText}>
                                 Reset Password
                             </Typography>
                         </Grid>
@@ -213,24 +244,24 @@ function ResetPassword(props) {
                                 <Button type="submit"
                                     color="primary"
                                     variant="contained"
-                                    style={{ textTransform: 'none', marginLeft:'25%'}}
+                                    className={classes.button}
                                     onClick={handleClickOnSubmit}>
                                     Reset Password
                                 </Button>
                             </Grid>
                         </Grid>
                     </form>
-                    <Card style={{ margin: '3%', height: '100%' }} md={2}>
+                    <Card className={classes.card} md={2}>
                         <CardMedia
                             image="images/tiffinsImage.jpg"
                             title="Tiffins image"
-                            style={{ height: '449px', width: '590px' }}
+                            className={classes.cardMedia}
                         />
                     </Card>
                 </Paper>
             </Container>
-
         </section>
     )
 }
+
 export default ResetPassword;

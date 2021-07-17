@@ -22,8 +22,6 @@ import { useHistory, Link } from "react-router-dom";
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 
-console.log(localStorage.getItem('token'))
-
 const useStyles = makeStyles((theme) => ({
     paper: {
         paddingRight: '13px',
@@ -45,8 +43,51 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         flexDirection: 'column',
         marginBottom: '5%'
-    }
+    },
 
+    card: {
+        margin: '3%',
+        height: '100%'
+    },
+
+    cardMedia: {
+        height: '649px',
+        width: '1020px'
+    },
+
+    section: {
+        paddingTop: '5%'
+    },
+
+    personPin: {
+        height: '30%',
+        width: '30%',
+        marginLeft: '30%'
+    },
+
+    typoText: {
+        textAlign: 'center',
+        marginBottom: '3%'
+    },
+
+    typoTextAccount: {
+        fontSize: '15px',
+        textAlign: 'center',
+        marginLeft: '2%',
+        paddingBottom: '3%'
+    },
+
+    typoCaption: {
+        fontSize: '14px'
+    },
+
+    registerButton: {
+        textTransform: 'none',
+        float: 'right',
+        width: '200px',
+        margin: '2%'
+    }
+    
 }));
 
 function SignUp(props) {
@@ -60,6 +101,8 @@ function SignUp(props) {
     const [displayConfirmPassword, setDisplayConfirmPassword] = useState(false)
 
     const history = useHistory();
+
+    const api_signUp_url = 'http://localhost:8080/user/signUp';
 
     const [error, setError] = useState({
         firstName: false,
@@ -94,7 +137,7 @@ function SignUp(props) {
             return
         }
 
-        axios.post('http://localhost:8080/user/signUp', {
+        axios.post(api_signUp_url, {
             email: detail.email,
             password: detail.password,
             firstName: detail.firstName,
@@ -194,7 +237,7 @@ function SignUp(props) {
 
     const handleConfirmPasswordClickChange = () => {
         setDisplayConfirmPassword(!displayConfirmPassword)
-    }  
+    }
 
     const handleCheckedSnackBar = () => {
         setError(pre => ({ ...pre, checkedBox: false }))
@@ -209,26 +252,26 @@ function SignUp(props) {
     }
 
     return (
-        <section style={{ paddingTop: '5%' }}>
+        <section className={classes.section}>
 
             <Container component="main" maxWidth="md" className={classes.mainContainer}>
                 <Paper elevation={2} className={classes.paper}>
-                    <Card style={{ margin: '3%', height: '100%' }} md={6}>
+                    <Card className={classes.card} md={6}>
                         <CardMedia
                             image="images/tiffinsImage.jpg"
                             title="Tiffins image"
-                            style={{ height: '649px', width: '1020px' }}
+                            className={classes.cardMedia}
                         />
                     </Card>
 
                     <form onSubmit={handleClickOnSubmit}>
                         <Grid item xs={12} sm={12}>
-                            <PersonAddIcon color="primary" style={{ height: '30%', width: '30%', marginLeft: '30%' }} />
-                            <Typography variant="h5" style={{ textAlign: 'center', marginBottom: '3%' }}>
+                            <PersonAddIcon color="primary" className={classes.personPin} />
+                            <Typography variant="h5" className={classes.typoText} >
                                 Dalffins Registration form!
                             </Typography>
 
-                            <Typography variant="h6" style={{ fontSize: '15px', textAlign: 'center', marginLeft: '2%', paddingBottom: '3%' }}>
+                            <Typography variant="h6" className={classes.typoTextAccount}>
                                 <Grid item xs={12}>
                                     Already have an account?<Link to="/login"> Login</Link>
                                 </Grid>
@@ -385,7 +428,7 @@ function SignUp(props) {
                                     inputProps={{ 'aria-label': 'secondary checkbox' }}
                                     onChange={handleCheckedBoxChange}
                                 />
-                                <Typography variant='caption' style={{ fontSize: '14px' }}>
+                                <Typography variant='caption' className={classes.typoCaption}>
                                     Yes, I agree to the terms and conditions of Dalffins!
                                 </Typography>
                             </Grid>
@@ -394,7 +437,7 @@ function SignUp(props) {
                                 <Button type="submit"
                                     color="primary"
                                     variant="contained"
-                                    style={{ textTransform: 'none', float: 'right', width: '200px', margin: '2%' }}
+                                    className={classes.registerButton}
                                     onClick={handleClickOnSubmit}>
                                     Register
                                 </Button>

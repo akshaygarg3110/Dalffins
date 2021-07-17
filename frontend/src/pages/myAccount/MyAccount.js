@@ -42,11 +42,68 @@ const useStyles = makeStyles((theme) => ({
         padding: "4%",
         display: "flex",
         justifyContent: "center",
+        marginBottom: '25px',
         height: "80%",
         alignItems: "center",
         position: "relative",
         flexDirection: "column"
+    },
+    card: {
+        margin: '3%',
+        height: '100%'
+    },
+
+    cardMedia: {
+        height: '100%',
+        width: '400px'
+    },
+
+    section: {
+        paddingTop: '5%'
+    },
+
+    personPin: {
+        height: '20%',
+        width: '40%',
+        marginLeft: '30%'
+    },
+
+    typo: {
+        textAlign: 'center'
+    },
+
+    EmailNameGrid: {
+        marginLeft: '10%'
+    },
+
+    done: {
+        textTransform: 'none',
+        float: 'center',
+        padding: "2%",
+        width: '100px',
+        marginLeft: '40%'
+    },
+
+    deleteTypoText: {
+        justifyContent: 'flex-start',
+        marginLeft: '2%',
+        fontSize: '20px'
+    },
+
+    deleteIcon: {
+        marginLeft: '1%'
+    },
+
+    typoCaption: {
+        fontSize: '14px'
+    },
+
+    deleteButton: {
+        width: '30%',
+        marginLeft: '1.5%'
     }
+
+
 
 }));
 
@@ -64,7 +121,7 @@ function MyAccount(props) {
 
     useEffect(() => {
         async function userData() {
-           
+
             await axios.get(api_profile_url,
                 {
                     headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
@@ -254,18 +311,15 @@ function MyAccount(props) {
     </div>)
 
     return (
-        <section style={{ paddingTop: '5%' }}>
-            <Container component="main" maxWidth="lg" className={classes.mainContainer}
-                style={{ marginBottom: '25px' }}>
-
+        <section className={classes.section}>
+            <Container component="main" maxWidth="lg" className={classes.mainContainer}>
                 {editPopUp()}
-
                 <Paper elevation={3} className={classes.inside}>
-                    <Card style={{ margin: '3%' }} md={6}>
+                    <Card className={classes.card} md={6}>
                         <CardMedia
                             image="images/tiffinsImage.jpg"
                             title="Tiffins image"
-                            style={{ height: '100%', width: '400px' }}
+                            className={classes.cardMedia}
                         />
                     </Card>
                     <Grid container spacing={3}
@@ -274,13 +328,13 @@ function MyAccount(props) {
                         justifyContent="flex-start"
                     >
                         <Grid item xs={12}>
-                            <PersonPinIcon color="primary" style={{ height: '20%', width: '40%', marginLeft: '30%' }} />
-                            <Typography variant="h5" style={{ textAlign: 'center' }}>
+                            <PersonPinIcon color="primary" className={classes.personPin} />
+                            <Typography variant="h5" className={classes.typo}>
                                 My Account
                             </Typography>
                         </Grid>
 
-                        <Grid item md={8} xs={12} style={{ marginLeft: '10%' }}>
+                        <Grid item md={8} xs={12} className={classes.EmailNameGrid}>
                             <TextField
                                 name="firstName"
                                 variant="outlined"
@@ -311,7 +365,7 @@ function MyAccount(props) {
                         </Grid>
 
 
-                        <Grid item md={8} xs={12} style={{ marginLeft: '10%' }}>
+                        <Grid item md={8} xs={12} className={classes.EmailNameGrid}>
                             <TextField
                                 name="lastName"
                                 variant="outlined"
@@ -342,7 +396,7 @@ function MyAccount(props) {
                         </Grid>
 
 
-                        <Grid item md={8} xs={12} style={{ marginLeft: '10%' }}>
+                        <Grid item md={8} xs={12} className={classes.EmailNameGrid}>
                             <TextField
                                 variant="outlined"
                                 name="email"
@@ -373,7 +427,7 @@ function MyAccount(props) {
 
                         </Grid>
 
-                        <Grid item xs={12} md={8} style={{ marginLeft: '10%' }}>
+                        <Grid item xs={12} md={8} className={classes.EmailNameGrid}>
                             <MuiPhoneNumber
                                 name="phoneNumber"
                                 id="phoneNumber"
@@ -403,7 +457,7 @@ function MyAccount(props) {
                                 color="primary"
                                 variant="contained"
                                 onClick={handleDone}
-                                style={{ textTransform: 'none', float: 'center', padding: "2%", width: '100px', marginLeft: '40%' }}
+                                className={classes.done}
                             >
                                 Done
                             </Button>
@@ -411,9 +465,9 @@ function MyAccount(props) {
 
 
                         <Grid item xs={12}>
-                            <Typography variant="h6" style={{ justifyContent: 'flex-start', marginLeft: '2%', fontSize: '20px' }}>
+                            <Typography variant="h6" className={classes.deleteTypoText}>
                                 Delete Account
-                                <DeleteIcon color="black" style={{ marginLeft: '1%' }} />
+                                <DeleteIcon color="black" className={classes.deleteIcon} />
                             </Typography>
 
                             <Checkbox
@@ -424,7 +478,7 @@ function MyAccount(props) {
                                 inputProps={{ 'aria-label': 'secondary checkbox' }}
                                 onChange={handleCheckedBoxChange}
                             />
-                            <Typography variant='caption' style={{ fontSize: '14px' }}>
+                            <Typography variant='caption' className={classes.typoCaption}>
                                 Yes, I agree to delete my Dalffins account and its associated data
                             </Typography>
 
@@ -433,7 +487,7 @@ function MyAccount(props) {
                                 variant="contained"
                                 disabled={disabled}
                                 onClick={handleDeleteClick}
-                                style={{ width: '30%', marginLeft: '1.5%' }}
+                                className={classes.deleteButton}
                             >
                                 Delete Account
                             </Button>

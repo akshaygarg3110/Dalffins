@@ -39,10 +39,56 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         position: 'relative',
         flexDirection: 'column'
+    },
+
+    card: {
+        margin: '3%',
+        height: '100%'
+    },
+
+    cardMedia: {
+        height: '449px',
+        width: '590px'
+    },
+
+    section: {
+        paddingTop: '5%'
+    },
+
+    personPin: {
+        height: '40%',
+        width: '40%',
+        marginLeft: '30%'
+    },
+
+    typo: {
+        textAlign: 'center',
+        marginBottom: '20%'
+    },
+
+    button: {
+        textTransform: 'none',
+        float: 'center',
+        padding: "2%",
+        width: '100px',
+        marginLeft: '30%'
+    },
+
+    typoText: {
+        fontSize: '14px',
+        textAlign: 'center',
+        marginLeft: '25%',
+        padding: '4%'
+    },
+
+    registerText: {
+        fontSize: '15px',
+        textAlign: 'center',
+        marginLeft: '12%',
+        padding: '2%'
     }
 
 }));
-
 
 function Login(props) {
 
@@ -63,6 +109,8 @@ function Login(props) {
     const history = useHistory();
 
     const [displayPassword, setDisplayPassword] = useState(false)
+
+    const api_login_url = 'http://localhost:8080/user/login';
 
     const handleEmailChange = (e) => {
         const { name, value } = e.target;
@@ -89,17 +137,17 @@ function Login(props) {
             }
         }
 
-        axios.post('http://localhost:8080/user/login', {
+        axios.post(api_login_url, {
             email: details.email,
             password: details.password,
-            
+
         }, {
             headers: { 'Content-Type': 'application/json' }
         })
             .then((response) => {
                 if (response.status === 200) {
                     props.setUserId(response.data.id)
-                    localStorage.setItem('token', response.data.token); 
+                    localStorage.setItem('token', response.data.token);
                     props.setUserToken(response.data.token);
                     props.setFirstName(response.data.firstName)
                     props.setEmail(response.data.email)
@@ -120,13 +168,13 @@ function Login(props) {
 
 
     return (
-        <section style={{ paddingTop: '5%' }}>
+        <section className={classes.section}>
             <Container component="main" maxWidth="sm" className={classes.mainContainer}>
                 <Paper elevation={5} className={classes.paper}>
                     <form onSubmit={handleClickOnSubmit}>
                         <Grid item xs={12} sm={12}>
-                            <PersonPinIcon color="primary" style={{ height: '40%', width: '40%', marginLeft: '30%' }} />
-                            <Typography variant="h5" style={{ textAlign: 'center', marginBottom: '20%' }}>
+                            <PersonPinIcon color="primary" className={classes.personPin} />
+                            <Typography variant="h5" className={classes.typo}>
                                 Login
                             </Typography>
                         </Grid>
@@ -187,19 +235,19 @@ function Login(props) {
                                 <Button type="submit"
                                     color="primary"
                                     variant="contained"
-                                    style={{ textTransform: 'none', float: 'center', padding: "2%", width: '100px', marginLeft: '30%' }}
+                                    className={classes.button}
                                 >
                                     Login
                                 </Button>
                             </Grid>
 
-                            <Typography variant="h6" style={{ fontSize: '14px', textAlign: 'center', marginLeft: '25%', padding: '4%' }}>
+                            <Typography variant="h6" className={classes.typoText} >
                                 <Grid item xs={12}>
                                     <Link to="/forgotPassword"> Forgot Password?</Link>
                                 </Grid>
                             </Typography>
 
-                            <Typography variant="h6" style={{ fontSize: '15px', textAlign: 'center', marginLeft: '12%', padding: '2%' }}>
+                            <Typography variant="h6" className={classes.registerText}>
                                 <Grid item xs={12}>
                                     New to Dalffins?<Link to="/"> Register here</Link>
                                 </Grid>
@@ -207,11 +255,11 @@ function Login(props) {
 
                         </Grid>
                     </form>
-                    <Card style={{ margin: '3%', height: '100%' }} md={2}>
+                    <Card className={classes.card} md={2}>
                         <CardMedia
                             image="images/tiffinsImage.jpg"
                             title="Tiffins image"
-                            style={{ height: '449px', width: '590px' }}
+                            className={classes.cardMedia}
                         />
                     </Card>
                     <Snackbar open={errorSnakebar} autoHideDuration={6000} onClose={handleCheckedSnackBar}>

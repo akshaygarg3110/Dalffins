@@ -13,7 +13,7 @@ import Help from "./pages/Help/Help";
 import Login from "./pages/login/Login";
 import HomePage from "./pages/homePage/HomePage";
 import ForgotPasswordGetCode from "./pages/forgotPassword/ForgotPasswordGetCode";
-import ForgotPasswordEnterCode from "./pages/forgotPassword/forgotPasswordEnterCode";
+import ForgotPasswordEnterCode from "./pages/forgotPassword/ForgotPasswordEnterCode";
 import ResetPassword from "./pages/forgotPassword/ResetPassword";
 import MyAccount from "./pages/myAccount/MyAccount";
 import AdminSupport from "./pages/AdminSupport/AdminSupport";
