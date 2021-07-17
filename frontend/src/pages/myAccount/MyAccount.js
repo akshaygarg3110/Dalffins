@@ -61,23 +61,28 @@ function MyAccount(props) {
     const api_update_profile_url = `http://localhost:8080/user/updateProfile/${props.userId}`;
 
     const api_delete_url = `http://localhost:8080/user/deleteProfile/${props.userId}`;
-    
+
     useEffect(() => {
         async function userData() {
-            await axios.get(api_profile_url).then((res) => {
-                setDetail({
-                    firstName: res.data.firstName,
-                    lastName: res.data.lastName,
-                    email: res.data.email,
-                    phoneNumber: res.data.phoneNumber
+           
+            await axios.get(api_profile_url,
+                {
+                    headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
                 })
-                setEditDetail({
-                    firstName: res.data.firstName,
-                    lastName: res.data.lastName,
-                    email: res.data.email,
-                    phoneNumber: res.data.phoneNumber
+                .then((res) => {
+                    setDetail({
+                        firstName: res.data.firstName,
+                        lastName: res.data.lastName,
+                        email: res.data.email,
+                        phoneNumber: res.data.phoneNumber
+                    })
+                    setEditDetail({
+                        firstName: res.data.firstName,
+                        lastName: res.data.lastName,
+                        email: res.data.email,
+                        phoneNumber: res.data.phoneNumber
+                    })
                 })
-            })
         };
         userData();
 
@@ -132,9 +137,9 @@ function MyAccount(props) {
         };
     };
 
-    const handleDeleteClick = ()=>{
-        axios.delete(api_delete_url).then((res)=>{
-            if(res.status===200){
+    const handleDeleteClick = () => {
+        axios.delete(api_delete_url).then((res) => {
+            if (res.status === 200) {
                 history.push("/home")
             }
         })

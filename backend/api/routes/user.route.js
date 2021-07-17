@@ -5,11 +5,13 @@ const router = express.Router();
 
 const userController = require('../controller/user.controller')
 
+const jwtAuth = require('../config/jwt.config')
+
 router.post('/signUp', userController.signUp);
 
 router.post('/login', userController.login);
 
-router.get('/userProfile/:id', userController.userProfile);
+router.get('/userProfile/:id', jwtAuth.jwtAuthenticate, userController.userProfile);
 
 router.put('/resetPassword/:id', userController.updateUserPassword);
 

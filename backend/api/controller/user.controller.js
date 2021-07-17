@@ -5,6 +5,10 @@ const User = require('../model/user.model')
 
 const bcrypt = require("bcryptjs");
 
+const jwt = require('jsonwebtoken');
+
+const secret = require('../config/token.config')
+
 module.exports.signUp = (req, res, next) => {
 
     const user = new User({
@@ -43,8 +47,10 @@ module.exports.login = (req, res, next) => {
                 res.status(200).json({
                     success: "true",
                     message: "Validation success",
+                    token: jwt.sign({ id: user._id },secret.ACCESS_TOKEN_SECRET, { expiresIn: '1d' }),
                     email: user.email,
                     id: user._id,
+                    firstName: user.firstName
                 })
             )
         }

@@ -33,9 +33,14 @@ app.use(passport.session());
 
 app.use(express.static("public"));
 
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Headers', 'Content-type,Authorization');
+    next();
+})
+
 mongoose.Promise = global.Promise;
 
-mongoose.connect(dbConfig.url, { useNewUrlParser: true, useUnifiedTopology: true , useFindAndModify: false, useCreateIndex: true})
+mongoose.connect(dbConfig.url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
     .then(async () => {
         console.log("Successfully connected to dalffins mongoDb database!");
     }).catch(err => {

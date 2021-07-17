@@ -43,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
         position: "relative",
         flexDirection: "column"
     }
-
 }));
 
 function ResetPassword(props) {
