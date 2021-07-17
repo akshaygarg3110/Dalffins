@@ -20,18 +20,17 @@ import AdminSupport from "./pages/AdminSupport/AdminSupport";
 import AdminLogin from "./pages/AdminLogin/AdminLogin";
 
 function App() {
-
   const [orderedItems, setOrderedItems] = useState(new Map());
 
   const [orderedItemsSize, setOrderedItemsSize] = useState(0);
 
-  const [id, setId] = useState('');
+  const [id, setId] = useState("");
 
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState("");
 
-  const [firstName, setFirstName] = useState('');
+  const [firstName, setFirstName] = useState("");
 
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
 
   const orderItemHandler = (orderedItemsInput) => {
     console.log(orderedItemsInput);
@@ -44,11 +43,16 @@ function App() {
     <>
       <header>
         {console.log("orderedItems " + orderedItems)}
-        <DalffinsMenu orderedItems={orderedItems} userToken={token} setUserToken={setToken} firstName={firstName} />
+        <DalffinsMenu
+          orderedItems={orderedItems}
+          userToken={token}
+          setUserToken={setToken}
+          firstName={firstName}
+        />
       </header>
 
       <Switch>
-        <Route exact path="/foodSelection">
+        <Route exact path="/foodSelection/:id">
           <Food_Selection onOrderItemClick={orderItemHandler} />
         </Route>
 
@@ -65,7 +69,12 @@ function App() {
         </Route>
 
         <Route exact path="/signUp">
-          <SignUp setUserId={setId} token={token} setFirstName={setFirstName} setEmail={setEmail}/>
+          <SignUp
+            setUserId={setId}
+            token={token}
+            setFirstName={setFirstName}
+            setEmail={setEmail}
+          />
         </Route>
 
         <Route exact path="/" component={HomePage} />
@@ -73,14 +82,23 @@ function App() {
         <Route exact path="/home" component={HomePage} />
 
         <Route exact path="/login">
-          <Login setUserId={setId} setUserToken={setToken} setFirstName={setFirstName} setEmail={setEmail} />
+          <Login
+            setUserId={setId}
+            setUserToken={setToken}
+            setFirstName={setFirstName}
+            setEmail={setEmail}
+          />
         </Route>
 
         <Route exact path="/forgotPassword">
           <ForgotPasswordGetCode setUserId={setId} />
         </Route>
 
-        <Route exact path="/forgotPasswordEnterCode" component={ForgotPasswordEnterCode} />
+        <Route
+          exact
+          path="/forgotPasswordEnterCode"
+          component={ForgotPasswordEnterCode}
+        />
 
         <Route exact path="/resetPassword">
           <ResetPassword setUserId={setId} />
