@@ -1,3 +1,5 @@
+/* Author - Akshay Garg */
+
 import React, { Component, useState, useEffect } from "react";
 import "./food_selection.css";
 import Food_Item from "../../components/food_item/food_item";
