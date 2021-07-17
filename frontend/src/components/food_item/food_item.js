@@ -1,5 +1,4 @@
 import React, { Component, useState } from "react";
-import Image from "react-bootstrap/Image";
 import "./food_item.css";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
@@ -27,19 +26,22 @@ const Food_Item = (props) => {
   return (
     <Card style={{ height: "350px", marginBottom: "50px" }}>
       <Card.Body>
-        <Card.Img src={props.foodItem.image} style={{ height: "150px" }} />
+        <Card.Img src={props.foodItem.img} style={{ height: "150px" }} />
         {/* <Image src="images/Dal-Makhani.jpg" rounded fluid /> */}
         <Card.Title style={{ marginTop: "4%", fontSize: "16px" }}>
-          {props.foodItem.item}
+          {props.foodItem.title}
         </Card.Title>
         <Card.Subtitle className="mb-2 text-muted" style={{ fontSize: "12px" }}>
-          {props.foodItem.description}
+          Meal Type: {props.foodItem.mealType}
+        </Card.Subtitle>
+        <Card.Subtitle className="mb-2 text-muted" style={{ fontSize: "12px" }}>
+          Rating: {props.foodItem.rating}
         </Card.Subtitle>
         {/* <Card.Text>
         Dal Makhani, 4 roti, salad, 1 glass of lassi(700-900 Cal.)
       </Card.Text> */}
         <Card.Text style={{ fontSize: "16px", fontWeight: "bold" }}>
-          {props.foodItem.price}
+          {props.foodItem.cost}
         </Card.Text>
         <div style={{ marginTop: "10%" }}>
           <Button onClick={removeItem}>-</Button>

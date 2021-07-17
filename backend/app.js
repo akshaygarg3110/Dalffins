@@ -15,9 +15,12 @@ const dbConfig = require("../backend/api/config/mongodb.config");
 
 const routeUser = require("../backend/api/routes/user.route");
 
-const helpRoute = require("../backend/api/routes/help.route")();
+const helpRoute = require("../backend/api/routes/help.route");
+
+const foodSelectionRoute = require("../backend/api/routes/food.selection.route");
 
 const passportConfig = require("../backend/api/config/passport.config");
+const { foodSelection } = require("./api/controller/food.selection.controller");
 
 app.use(cors());
 
@@ -53,5 +56,8 @@ app.use("/user", routeUser);
 
 //Route help
 app.use("/help", helpRoute);
+
+//Route help
+app.use("/foodSelection", foodSelectionRoute);
 
 module.exports = app;
