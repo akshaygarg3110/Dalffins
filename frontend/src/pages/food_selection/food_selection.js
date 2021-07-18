@@ -1,3 +1,5 @@
+/* Author - Akshay Garg */
+
 import React, { Component, useState, useEffect } from "react";
 import "./food_selection.css";
 import Food_Item from "../../components/food_item/food_item";
@@ -7,6 +9,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import noimage from "../../images/noimage.png";
 
 const Food_Selection = (props) => {
   const [kitchenName, setKitchenName] = useState("");
@@ -15,7 +18,7 @@ const Food_Selection = (props) => {
 
   const param = useParams();
 
-  const api_url = "http://localhost:8080/foodSelection/" + param.id;
+  const api_url = "https://dalffins.herokuapp.com/foodSelection/" + param.id;
 
   useEffect(() => {
     async function fetchFooditems() {
@@ -130,7 +133,13 @@ const Food_Selection = (props) => {
             </Carousel.Item>
           ))
         ) : (
-          <b> No images available for this Vendor.</b>
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src={noimage}
+              style={{ height: "50vh" }}
+            />
+          </Carousel.Item>
         )}
       </Carousel>
       <br />

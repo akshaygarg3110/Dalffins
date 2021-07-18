@@ -1,3 +1,5 @@
+/* Author - Akshay Garg */
+
 import React, { Component, useState } from "react";
 import "./food_item.css";
 import Card from "react-bootstrap/Card";

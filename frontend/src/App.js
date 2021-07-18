@@ -51,7 +51,7 @@ function App() {
       
 
       <Switch>
-        <Route exact path="/foodSelection/:id">
+        <Route exact path="/foodSelectionUI/:id">
           <Food_Selection onOrderItemClick={orderItemHandler} />
         </Route>
 

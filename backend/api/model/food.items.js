@@ -1,3 +1,5 @@
+/* Author - Akshay Garg */
+
 const SALT_HASH_ROUNDS = 10;
 
 const mongoose = require("mongoose");
