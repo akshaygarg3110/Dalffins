@@ -16,17 +16,30 @@ module.exports.signUp = (req, res, next) => {
         lastName: req.body.lastName,
         email: req.body.email,
         phoneNumber: req.body.phoneNumber,
-        password: req.body.password
+        password: req.body.password,
     });
 
     user.save().then(data => {
-        res.status(200).json(data);
-    }).catch(err => {
-        res.status(500).json({
-            success: 'false',
-            message: "Failure to save the data in db!",
-            error: err.message
+        res.status(200).json({
+            ...data['_doc'],
+            token: jwt.sign({ id: user._id }, secret.ACCESS_TOKEN_SECRET, { expiresIn: '178009' })
         });
+    }).catch(err => {
+        if (err['code'] === 11000) {
+            return (
+                res.status(400).json({
+                    success: 'false',
+                    message: `${Object.keys(err['keyValue'])} already registered!! Try again`
+                })
+            )
+        }
+        else {
+            res.status(500).json({
+                success: 'false',
+                message: "Failure to save the data in db!",
+                error: err.message
+            });
+        }
     });
 };
 
@@ -47,7 +60,7 @@ module.exports.login = (req, res, next) => {
                 res.status(200).json({
                     success: "true",
                     message: "Validation success",
-                    token: jwt.sign({ id: user._id },secret.ACCESS_TOKEN_SECRET, { expiresIn: '178009' }),
+                    token: jwt.sign({ id: user._id }, secret.ACCESS_TOKEN_SECRET, { expiresIn: '178009' }),
                     email: user.email,
                     id: user._id,
                     firstName: user.firstName
@@ -128,7 +141,7 @@ module.exports.updateUserPassword = async (req, res, next) => {
             })
     }
     catch (error) {
-        res.status(400).json({ error })
+        console.log(error)
     } (req, res, next);
 };
 
@@ -147,6 +160,16 @@ module.exports.updateUserProfile = async (req, res, next) => {
             { returnOriginal: false }, function (err, userProfile) {
 
                 if (err) {
+                    if (err['codeName'] === 'DuplicateKey') {
+
+                        return (
+                            res.status(400).json({
+                                success: 'false',
+                                message: `${Object.keys(err['keyValue'])} already registered!! Try again`
+                            })
+                        )
+
+                    }
                     return (
                         res.status(400).json({
                             success: 'false',
@@ -173,7 +196,7 @@ module.exports.updateUserProfile = async (req, res, next) => {
             })
     }
     catch (error) {
-        res.status(400).json({ error })
+        console.log(error)
     } (req, res, next);
 };
 
@@ -202,7 +225,7 @@ module.exports.deleteUserProfile = async (req, res, next) => {
         })
     }
     catch (error) {
-        res.status(400).json({ error })
+        console.log(error)
     } (req, res, next);
 };
 
@@ -246,7 +269,7 @@ module.exports.resetPassword = async (req, res, next) => {
             })
     }
     catch (error) {
-        res.status(400).json({ error })
+        console.log(error)
     } (req, res, next);
 };
 
@@ -286,6 +309,6 @@ module.exports.emailCheck = async (req, res, next) => {
             })
     }
     catch (error) {
-        res.status(400).json({ error })
+        console.log(error)
     } (req, res, next);
 };

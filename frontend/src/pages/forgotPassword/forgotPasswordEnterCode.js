@@ -183,7 +183,7 @@ function ForgotPasswordEnterCode() {
                     </Card>
                     <Snackbar open={snackBar} autoHideDuration={6000} onClose={handleSuccessSnackBar}>
                         <MuiAlert elevation={6} variant="filled" onClose={handleSuccessSnackBar} severity="success">
-                            An OTP has been sent to your registered emailID!
+                            An OTP has been sent to your registered email ID!
                         </MuiAlert>
                     </Snackbar>
                     <Snackbar open={errorSnackbar} autoHideDuration={6000} onClose={handleSnackBar}>

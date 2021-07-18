@@ -19,8 +19,8 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import Checkbox from '@material-ui/core/Checkbox';
 import { useHistory, Link } from "react-router-dom";
-import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
+import { saveUser } from "../../utils/Api";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -98,11 +98,11 @@ function SignUp(props) {
 
     const [displayPassword, setDisplayPassword] = useState(false)
 
+    const [errorSnackMessage, setErrorSnackMessage] = useState('Invalid !! Try again');
+
     const [displayConfirmPassword, setDisplayConfirmPassword] = useState(false)
 
     const history = useHistory();
-
-    const api_signUp_url = 'http://localhost:8080/user/signUp';
 
     const [error, setError] = useState({
         firstName: false,
@@ -137,7 +137,7 @@ function SignUp(props) {
             return
         }
 
-        axios.post(api_signUp_url, {
+        saveUser({
             email: detail.email,
             password: detail.password,
             firstName: detail.firstName,
@@ -148,6 +148,7 @@ function SignUp(props) {
         })
             .then((response) => {
                 if (response.status === 200) {
+                    localStorage.setItem('token', response.data.token);
                     props.setUserId(response.data._id)
                     props.setFirstName(response.data.firstName)
                     props.setEmail(response.data.email)
@@ -157,6 +158,7 @@ function SignUp(props) {
                 }
             }).catch(function (error) {
                 console.log(error)
+                setErrorSnackMessage(error.response.data.message)
                 setError(pre => ({ ...pre, errorSnackbar: true }))
             })
     }
@@ -448,7 +450,7 @@ function SignUp(props) {
                                 </Snackbar>
                                 <Snackbar open={error.errorSnackbar} autoHideDuration={6000} onClose={handleErrorSnackBar}>
                                     <MuiAlert elevation={6} variant="filled" onClose={handleErrorSnackBar} severity="error">
-                                        Already registered emailID!
+                                    {errorSnackMessage}
                                     </MuiAlert>
                                 </Snackbar>
                             </Grid>

@@ -21,7 +21,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import { fetchUserProfile, updateUserProfile, deleteUserProfile } from "../../utils/Api";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -29,12 +31,11 @@ const useStyles = makeStyles((theme) => ({
         paddingRight: "26px",
         paddingLeft: "17px",
         paddingBottom: "25px",
-        width: "80%",
         display: "flex",
         flexDirection: "row",
-        marginTop: "0",
+        marginTop: "11px",
         marginRight: "auto",
-        marginBottom: "0",
+        marginBottom: "11px",
         marginLeft: "auto"
     },
 
@@ -42,20 +43,20 @@ const useStyles = makeStyles((theme) => ({
         padding: "4%",
         display: "flex",
         justifyContent: "center",
-        marginBottom: '25px',
         height: "80%",
         alignItems: "center",
         position: "relative",
-        flexDirection: "column"
+        flexDirection: "column",
+        marginBottom: "50px"
     },
-    card: {
-        margin: '3%',
-        height: '100%'
+
+    cardStyle: {
+        margin: '3%'
     },
 
     cardMedia: {
         height: '100%',
-        width: '400px'
+        width: '350px'
     },
 
     section: {
@@ -81,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
         float: 'center',
         padding: "2%",
         width: '100px',
-        marginLeft: '40%'
+        marginLeft: '60%'
     },
 
     deleteTypoText: {
@@ -91,7 +92,8 @@ const useStyles = makeStyles((theme) => ({
     },
 
     deleteIcon: {
-        marginLeft: '1%'
+        marginLeft: '1%',
+        color: "black"
     },
 
     typoCaption: {
@@ -99,11 +101,14 @@ const useStyles = makeStyles((theme) => ({
     },
 
     deleteButton: {
-        width: '30%',
-        marginLeft: '1.5%'
+        width: '40%',
+        marginLeft: '30%'
+    },
+
+    style: {
+        alignItems: "center",
+        justifyContent: "flex-start"
     }
-
-
 
 }));
 
@@ -113,16 +118,13 @@ function MyAccount(props) {
 
     const history = useHistory();
 
-    const api_profile_url = `http://localhost:8080/user/userProfile/${props.userId}`;
-
-    const api_update_profile_url = `http://localhost:8080/user/updateProfile/${props.userId}`;
-
-    const api_delete_url = `http://localhost:8080/user/deleteProfile/${props.userId}`;
-
     useEffect(() => {
+        if (props.userId === "") {
+            history.push('/login', {})
+        }
         async function userData() {
 
-            await axios.get(api_profile_url,
+            await fetchUserProfile((props.userId),
                 {
                     headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
                 })
@@ -143,9 +145,11 @@ function MyAccount(props) {
         };
         userData();
 
-    }, [api_profile_url]);
+    }, []);
 
     const [error, setError] = useState(false);
+
+    const [errorSnackMessage, setErrorSnackMessage] = useState('Invalid !! Try again');
 
     const [disabled, setDisabled] = useState(true);
 
@@ -171,14 +175,20 @@ function MyAccount(props) {
 
     const [editPopUpLabelName, setEditPopUpLabelName] = React.useState('firstName');
 
+    const [errorSnakebar, setErrorSnakeBar] = useState(false);
+
+
     const handleClose = () => {
         setOpen(false);
     };
+    const handleCheckedSnackBar = () => {
+        setErrorSnakeBar(false)
+    }
 
     const handleSave = () => {
         if (!error) {
             setOpen(false);
-            axios.put(api_update_profile_url, {
+            updateUserProfile((props.userId), {
                 email: editDetail.email,
                 firstName: editDetail.firstName,
                 lastName: editDetail.lastName,
@@ -190,14 +200,23 @@ function MyAccount(props) {
                     if (response.status === 200) {
                         setDetail(pre => ({ ...pre, [editPopUpLabelName]: editDetail[editPopUpLabelName] }))
                     }
+
+
+                }).catch(function (error) {
+                    if (error.response.status === 400) {
+                        setErrorSnakeBar(true);
+                        setErrorSnackMessage(error.response.data.message)
+                    }
                 })
         };
     };
 
     const handleDeleteClick = () => {
-        axios.delete(api_delete_url).then((res) => {
+        deleteUserProfile(props.userId).then((res) => {
             if (res.status === 200) {
-                history.push("/home")
+                localStorage.removeItem('token')
+                props.setUserToken('')
+                history.push("/home", { delete: true })
             }
         })
     }
@@ -312,10 +331,11 @@ function MyAccount(props) {
 
     return (
         <section className={classes.section}>
-            <Container component="main" maxWidth="lg" className={classes.mainContainer}>
+            <Container component="main" maxWidth="md" className={classes.mainContainer}>
+
                 {editPopUp()}
-                <Paper elevation={3} className={classes.inside}>
-                    <Card className={classes.card} md={6}>
+                <Paper elevation={2} className={classes.inside}>
+                    <Card className={classes.cardStyle}>
                         <CardMedia
                             image="images/tiffinsImage.jpg"
                             title="Tiffins image"
@@ -324,17 +344,16 @@ function MyAccount(props) {
                     </Card>
                     <Grid container spacing={3}
                         mx="auto"
-                        alignItems="center"
-                        justifyContent="flex-start"
+                        className={classes.style}
                     >
-                        <Grid item xs={12}>
+                        <Grid item xs={12} md={12}>
                             <PersonPinIcon color="primary" className={classes.personPin} />
                             <Typography variant="h5" className={classes.typo}>
                                 My Account
                             </Typography>
                         </Grid>
 
-                        <Grid item md={8} xs={12} className={classes.EmailNameGrid}>
+                        <Grid item md={8} xs={8} className={classes.EmailNameGrid}>
                             <TextField
                                 name="firstName"
                                 variant="outlined"
@@ -354,7 +373,7 @@ function MyAccount(props) {
                             />
 
                         </Grid>
-                        <Grid item md={2} xs={12}>
+                        <Grid item md={2} xs={2}>
 
                             <Button
                                 color="primary"
@@ -365,7 +384,7 @@ function MyAccount(props) {
                         </Grid>
 
 
-                        <Grid item md={8} xs={12} className={classes.EmailNameGrid}>
+                        <Grid item md={8} xs={8} className={classes.EmailNameGrid}>
                             <TextField
                                 name="lastName"
                                 variant="outlined"
@@ -385,7 +404,7 @@ function MyAccount(props) {
                                 }}
                             />
                         </Grid>
-                        <Grid item md={2} xs={12}>
+                        <Grid item md={2} xs={2}>
 
                             <Button
                                 color="primary"
@@ -396,7 +415,7 @@ function MyAccount(props) {
                         </Grid>
 
 
-                        <Grid item md={8} xs={12} className={classes.EmailNameGrid}>
+                        <Grid item md={8} xs={8} className={classes.EmailNameGrid}>
                             <TextField
                                 variant="outlined"
                                 name="email"
@@ -417,7 +436,7 @@ function MyAccount(props) {
                                 }}
                             />
                         </Grid>
-                        <Grid item md={2} xs={12}>
+                        <Grid item md={2} xs={2}>
 
                             <Button
                                 color="primary"
@@ -427,7 +446,7 @@ function MyAccount(props) {
 
                         </Grid>
 
-                        <Grid item xs={12} md={8} className={classes.EmailNameGrid}>
+                        <Grid item xs={8} md={8} className={classes.EmailNameGrid}>
                             <MuiPhoneNumber
                                 name="phoneNumber"
                                 id="phoneNumber"
@@ -442,7 +461,7 @@ function MyAccount(props) {
                                 onChange={phone => handlePhoneNumberChange({ target: { value: phone, name: 'phoneNumber' } })}
                             />
                         </Grid>
-                        <Grid item md={2} xs={12}>
+                        <Grid item md={2} xs={2}>
 
                             <Button
                                 color="primary"
@@ -452,7 +471,7 @@ function MyAccount(props) {
 
                         </Grid>
 
-                        <Grid item xs={12}>
+                        <Grid item xs={8}>
                             <Button type="submit"
                                 color="primary"
                                 variant="contained"
@@ -464,12 +483,13 @@ function MyAccount(props) {
                         </Grid>
 
 
-                        <Grid item xs={12}>
+                        <Grid item md={12} xs={12}>
                             <Typography variant="h6" className={classes.deleteTypoText}>
                                 Delete Account
-                                <DeleteIcon color="black" className={classes.deleteIcon} />
+                                <DeleteIcon className={classes.deleteIcon} />
                             </Typography>
-
+                        </Grid>
+                        <Grid item md={12} xs={12}>
                             <Checkbox
                                 name="checkbox"
                                 checked={detail.checkbox}
@@ -481,7 +501,8 @@ function MyAccount(props) {
                             <Typography variant='caption' className={classes.typoCaption}>
                                 Yes, I agree to delete my Dalffins account and its associated data
                             </Typography>
-
+                        </Grid>
+                        <Grid item md={12} xs={12} >
                             <Button type="submit"
                                 color="primary"
                                 variant="contained"
@@ -493,6 +514,12 @@ function MyAccount(props) {
                             </Button>
                         </Grid>
                     </Grid>
+                    <Snackbar open={errorSnakebar} autoHideDuration={6000} onClose={handleCheckedSnackBar}>
+                        <MuiAlert elevation={6} variant="filled" onClose={handleCheckedSnackBar} severity="error">
+                            {errorSnackMessage}
+                        </MuiAlert>
+                    </Snackbar>
+
                 </Paper>
             </Container>
         </section>

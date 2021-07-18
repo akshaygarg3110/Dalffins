@@ -55,7 +55,13 @@ const useStyles = makeStyles((theme) => ({
 
 function HomePage() {
 
-    const [snackBar, setSnackBar] = useState(false)
+    const [registerSnackBar, setRegisterSnackBar] = useState(false)
+
+    const [loginSnackBar, setLoginSnackBar] = useState(false)
+
+    const [resetSnackBar, setResetSnackBar] = useState(false)
+
+    const [deleteSnackBar, setDeleteSnackBar] = useState(false);
 
     const location = useLocation();
 
@@ -63,14 +69,29 @@ function HomePage() {
 
     const classes = useStyles();
 
-    const handleSnackBar = () => {
-        setSnackBar(false)
+    const handleRegisterSnackBar = () => {
+        setRegisterSnackBar(false)
+    }
+
+    const handleLoginSnackBar = () => {
+        setLoginSnackBar(false)
+    }
+
+    const handleResetSnackBar = () => {
+        setResetSnackBar(false)
+    }
+
+    const handleDeleteSnackBar = () => {
+        setDeleteSnackBar(false)
     }
 
     useEffect(() => {
         const home = () => {
             if (location.state) {
-                setSnackBar(location.state.register);
+                setRegisterSnackBar(location.state.register ? true : false);
+                setLoginSnackBar(location.state.login ? true : false);
+                setResetSnackBar(location.state.reset ? true : false);
+                setDeleteSnackBar(location.state.delete ? true : false);
                 history.replace('/home', {})
             }
         }
@@ -81,7 +102,7 @@ function HomePage() {
         <section className={classes.section}>
             <Container component="main" maxWidth="sm" className={classes.mainContainer}>
                 <Paper elevation={6} className={classes.inside}>
-                    <Card className={classes.card} md={2}>
+                    <Card className={classes.card} md={6}>
                         <CardMedia
                             image="images/tiffinsImage.jpg"
                             title="Tiffins image"
@@ -89,9 +110,26 @@ function HomePage() {
                         />
                     </Card>
 
-                    <Snackbar open={snackBar} autoHideDuration={6000} onClose={handleSnackBar}>
-                        <MuiAlert elevation={6} variant="filled" onClose={handleSnackBar} severity="success">
+                    <Snackbar open={registerSnackBar} autoHideDuration={6000} onClose={handleRegisterSnackBar}>
+                        <MuiAlert elevation={6} variant="filled" onClose={handleRegisterSnackBar} severity="success">
                             Registered Successfully!
+                        </MuiAlert>
+                    </Snackbar>
+
+                    <Snackbar open={loginSnackBar} autoHideDuration={6000} onClose={handleLoginSnackBar}>
+                        <MuiAlert elevation={6} variant="filled" onClose={handleLoginSnackBar} severity="success">
+                            Logged In Successfully!
+                        </MuiAlert>
+                    </Snackbar>
+
+                    <Snackbar open={resetSnackBar} autoHideDuration={6000} onClose={handleResetSnackBar}>
+                        <MuiAlert elevation={6} variant="filled" onClose={handleResetSnackBar} severity="success">
+                            Updated password Successfully!
+                        </MuiAlert>
+                    </Snackbar>
+                    <Snackbar open={deleteSnackBar} autoHideDuration={6000} onClose={handleDeleteSnackBar}>
+                        <MuiAlert elevation={6} variant="filled" onClose={handleDeleteSnackBar} severity="success">
+                            Deleted Successfully!
                         </MuiAlert>
                     </Snackbar>
                 </Paper>

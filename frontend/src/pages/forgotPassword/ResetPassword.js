@@ -14,9 +14,7 @@ import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import { useHistory, useLocation } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
-import axios from 'axios';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
+import { resetPassword } from "../../utils/Api";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -102,8 +100,6 @@ function ResetPassword(props) {
         reset();
     }, []);
 
-    const api_reset_password_url = 'http://localhost:8080/user/resetPassword';
-
     const [error, setError] = useState({
         password: false,
         confirmPassword: false,
@@ -116,9 +112,7 @@ function ResetPassword(props) {
                 return
             }
         }
-        console.log(email)
-
-        axios.put(api_reset_password_url, {
+        resetPassword({
             email: email,
             password: password
         }, {
@@ -127,12 +121,9 @@ function ResetPassword(props) {
             .then((response) => {
                 if (response.status === 200) {
                     props.setUserId(response.data.id)
-                    history.push("/home")
+                    history.push("/home", { reset: true })
                 }
-            }, (error) => {
-                // setErrorSnakeBar(true)
             });
-        history.push("/home")
     }
 
     const handlePasswordChange = (e) => {

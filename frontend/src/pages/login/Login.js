@@ -15,8 +15,8 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import EmailIcon from '@material-ui/icons/Email';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
-import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
+import { validateLogin } from "../../utils/Api";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -110,8 +110,6 @@ function Login(props) {
 
     const [displayPassword, setDisplayPassword] = useState(false)
 
-    const api_login_url = 'http://localhost:8080/user/login';
-
     const handleEmailChange = (e) => {
         const { name, value } = e.target;
         if (value.match(/^\S+@\S+\.\S{2,}$/)) {
@@ -137,7 +135,7 @@ function Login(props) {
             }
         }
 
-        axios.post(api_login_url, {
+        validateLogin({
             email: details.email,
             password: details.password,
 
@@ -151,7 +149,7 @@ function Login(props) {
                     props.setUserToken(response.data.token);
                     props.setFirstName(response.data.firstName)
                     props.setEmail(response.data.email)
-                    history.push("/home")
+                    history.push("/home", { login: true })
                 }
             }, (error) => {
                 setErrorSnakeBar(true)

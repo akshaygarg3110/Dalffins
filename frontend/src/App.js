@@ -41,7 +41,6 @@ function App() {
 
   return (
     <>
-      <header>
         {console.log("orderedItems " + orderedItems)}
         <DalffinsMenu
           orderedItems={orderedItems}
@@ -49,7 +48,7 @@ function App() {
           setUserToken={setToken}
           firstName={firstName}
         />
-      </header>
+      
 
       <Switch>
         <Route exact path="/foodSelection/:id">
@@ -71,7 +70,7 @@ function App() {
         <Route exact path="/signUp">
           <SignUp
             setUserId={setId}
-            token={token}
+            setUserToken={setToken}
             setFirstName={setFirstName}
             setEmail={setEmail}
           />
@@ -109,13 +108,13 @@ function App() {
         <Route exact path="/admin/login" component={AdminLogin} />
 
         <Route exact path="/myAccount">
-          <MyAccount userId={id} />
+          <MyAccount userId={id}
+          setUserToken={setToken} />
         </Route>
       </Switch>
 
-      <footer>
-        <Footer />
-      </footer>
+      <Footer />
+
     </>
   );
 }

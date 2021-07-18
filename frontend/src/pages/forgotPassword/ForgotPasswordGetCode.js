@@ -14,9 +14,9 @@ import emailJSDetails from '../../utils/email';
 import * as emailjs from 'emailjs-com';
 import { useHistory, Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import axios from 'axios';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import { emailCheck } from "../../utils/Api";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -88,16 +88,13 @@ function ForgotPasswordGetCode(props) {
         errorSnackbar: false
     });
 
-
-    const api_emailCheck_url = 'http://localhost:8080/user/emailCheck';
-
     const handleEmailChange = (e) => {
         setEmail(e.target.value)
     }
 
     const handleClickOnGetCode = (e) => {
         e.preventDefault();
-        axios.post(api_emailCheck_url, {
+        emailCheck({
             email: email
         }, {
             headers: { 'Content-Type': 'application/json' }
