@@ -7,6 +7,8 @@ const app = require('./backend/app');
 
 const port = process.env.PORT || 8080;
 
+const backEndUrl = process.env.BACKEND_HOSTNAME || 'localhost';
+
 const server = http.createServer(app);
 
 const path = require("path");
@@ -22,7 +24,7 @@ app.get('/*', function(req, res) {
 });
 
 server.listen(port, () => {
-    console.log("server listening at http://localhost:" + port);
+    console.log(`server listening at http://${backEndUrl}:${port}`);
 });
 
 

@@ -3,8 +3,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import { useHistory } from "react-router-dom";
-import { Grid, MenuItem } from "@material-ui/core";
+import { MenuItem } from "@material-ui/core";
 import PersonPinIcon from "@material-ui/icons/PersonPin";
 import Menu from "@material-ui/core/Menu";
 
@@ -17,37 +19,33 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    fontFamily: "Times New Roman",
   },
-  sticky: {
-    position: "fixed",
-    top: 0,
-    width: "100%",
-    marginLeft: "20",
-    fontFamily: "cursive",
-  },
+
   dalffinsButton: {
     fontSize: '23px',
     color: "#ffc107"
   },
-  container: {
-    paddingLeft: '65%'
-  },
-  personPin: {
-    color: "white",
-    fontSize:"large"
-  },
 }));
 
 export default function DalffinsMenu(props) {
-  const [profileMenu, setProfileMenu] = React.useState(null);
-
   const classes = useStyles();
+  const [profileMenu, setProfileMenu] = React.useState(null);
 
   const history = useHistory();
 
   const open = Boolean(profileMenu);
 
+  const signUp = () => {
+    history.push("/signup");
+  };
+
+  const login = () => {
+    history.push("/login");
+  };
+
+  const pageRefresh = () => {
+    history.push("/");
+  };
   const handleClick = (event) => {
     setProfileMenu(event.currentTarget);
   };
@@ -79,18 +77,6 @@ export default function DalffinsMenu(props) {
     history.push("/summaryAndPayment");
   };
 
-  const pageRefresh = () => {
-    history.push("/");
-  };
-
-  const signUp = () => {
-    history.push("/signup");
-  };
-
-  const login = () => {
-    history.push("/login");
-  };
-
   const conNavBar = () => {
 
     if (props.userToken) {
@@ -106,7 +92,6 @@ export default function DalffinsMenu(props) {
           anchorEl={profileMenu}
           open={open}
           onClose={handleClose}
-
         >
           <MenuItem onClick={handleCloseAccount} >My Account</MenuItem>
           <MenuItem onClick={handleCloseLogOut}>Logout</MenuItem>
@@ -116,22 +101,23 @@ export default function DalffinsMenu(props) {
     return (<>
       <Button color="inherit" onClick={signUp}>Register</Button>
       <Button color="inherit" onClick={login}>Login</Button>
+
     </>);
   }
 
   return (
     <div className={classes.root}>
-
-      <AppBar position="fixed" className={classes.sticky}>
+      <AppBar position="fixed">
         <Toolbar>
-          <Button type="button" className={classes.title} className={classes.dalffinsButton} onClick={pageRefresh}>Dalffins</Button>
-          <Grid container spacing={6} className={classes.container}>
-            <Grid item xs={12}>
-              <Button color="inherit" onClick={update}>Kitchen</Button>
-              {noOfOrderItems > 0 ? <Button color="inherit" style={{ color: "#ffc107" }} onClick={summary}><b>Cart({noOfOrderItems})</b></Button> : <Button color="inherit" onClick={summary}>Cart</Button>}
-              {conNavBar()}
-            </Grid>
-          </Grid>
+          <Button className={classes.dalffinsButton} onClick={pageRefresh}>
+            <Typography variant="h6" >
+              Dalffins
+            </Typography>
+          </Button>
+          <Box className={classes.title} />
+          <Button color="inherit" onClick={update}>Kitchen</Button>
+          {noOfOrderItems > 0 ? <Button color="inherit" style={{ color: "#ffc107" }} onClick={summary}><b>Cart({noOfOrderItems})</b></Button> : <Button color="inherit" onClick={summary}>Cart</Button>}
+          {conNavBar()}
         </Toolbar>
       </AppBar>
     </div>
