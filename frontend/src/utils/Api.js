@@ -47,5 +47,5 @@ export function emailCheck(data,header) {
 }
 
 export function resetPassword(data,header){
-  return axiosInstance.put(data,header)
+  return axiosInstance.put(`/user/resetPassword`,data,header)
 }

@@ -118,35 +118,6 @@ function MyAccount(props) {
 
     const history = useHistory();
 
-    useEffect(() => {
-        if (props.userId === "") {
-            history.push('/login', {})
-        }
-        async function userData() {
-
-            await fetchUserProfile((props.userId),
-                {
-                    headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
-                })
-                .then((res) => {
-                    setDetail({
-                        firstName: res.data.firstName,
-                        lastName: res.data.lastName,
-                        email: res.data.email,
-                        phoneNumber: res.data.phoneNumber
-                    })
-                    setEditDetail({
-                        firstName: res.data.firstName,
-                        lastName: res.data.lastName,
-                        email: res.data.email,
-                        phoneNumber: res.data.phoneNumber
-                    })
-                })
-        };
-        userData();
-
-    }, []);
-
     const [error, setError] = useState(false);
 
     const [errorSnackMessage, setErrorSnackMessage] = useState('Invalid !! Try again');
@@ -178,6 +149,35 @@ function MyAccount(props) {
     const [errorSnakebar, setErrorSnakeBar] = useState(false);
 
 
+    useEffect(() => {
+        if (props.userId === "") {
+            history.push('/login', {})
+        }
+        async function userData() {
+
+            await fetchUserProfile((props.userId),
+                {
+                    headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
+                })
+                .then((res) => {
+                    setDetail({
+                        firstName: res.data.firstName,
+                        lastName: res.data.lastName,
+                        email: res.data.email,
+                        phoneNumber: res.data.phoneNumber
+                    })
+                    setEditDetail({
+                        firstName: res.data.firstName,
+                        lastName: res.data.lastName,
+                        email: res.data.email,
+                        phoneNumber: res.data.phoneNumber
+                    })
+                })
+        };
+        userData();
+
+    }, []);
+
     const handleClose = () => {
         setOpen(false);
     };
@@ -200,12 +200,11 @@ function MyAccount(props) {
                     if (response.status === 200) {
                         setDetail(pre => ({ ...pre, [editPopUpLabelName]: editDetail[editPopUpLabelName] }))
                     }
-
-
                 }).catch(function (error) {
                     if (error.response.status === 400) {
                         setErrorSnakeBar(true);
                         setErrorSnackMessage(error.response.data.message)
+                        setEditDetail(detail)
                     }
                 })
         };
