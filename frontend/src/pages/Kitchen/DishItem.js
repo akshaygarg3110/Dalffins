@@ -40,7 +40,7 @@ function DishItem({ removeItemFromList, foodItem, updateItem ,UserID}) {
   };
 
   const handleConfirmRemove = () => {
-    Axios.delete("http://localhost:8080/dish/removedish/" + foodItem._id, {
+    Axios.delete("https://dalffins.herokuapp.com/dish/removedish/" + foodItem._id, {
       data: {
         UserID: foodItem.UserID,
       },
