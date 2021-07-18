@@ -1,3 +1,4 @@
+//Author: Jay Patel (B00881906)
 import React, { useEffect, useRef } from "react";
 import "./TicketDetailModal.scss";
 import { Button, Form, Modal } from "react-bootstrap";

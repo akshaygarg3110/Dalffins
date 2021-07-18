@@ -1,3 +1,4 @@
+//Author: Jay Patel (B00881906)
 import React, { Component } from "react";
 import "./TicketListView.scss";
 import { Row } from "react-bootstrap";
