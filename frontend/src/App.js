@@ -100,7 +100,7 @@ function App() {
         />
 
         <Route exact path="/resetPassword">
-          <ResetPassword setUserId={setId} />
+          <ResetPassword setUserId={setId}/>
         </Route>
 
         <Route exact path="/help" component={Help} />

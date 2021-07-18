@@ -10,98 +10,111 @@ const jwt = require('jsonwebtoken');
 const secret = require('../config/token.config')
 
 module.exports.signUp = (req, res, next) => {
-
-    const user = new User({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        phoneNumber: req.body.phoneNumber,
-        password: req.body.password,
-    });
-
-    user.save().then(data => {
-        res.status(200).json({
-            ...data['_doc'],
-            token: jwt.sign({ id: user._id }, secret.ACCESS_TOKEN_SECRET, { expiresIn: '178009' })
+    try {
+        const user = new User({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            phoneNumber: req.body.phoneNumber,
+            password: req.body.password,
         });
-    }).catch(err => {
-        if (err['code'] === 11000) {
-            return (
-                res.status(400).json({
-                    success: 'false',
-                    message: `${Object.keys(err['keyValue'])} already registered!! Try again`
-                })
-            )
-        }
-        else {
-            res.status(500).json({
-                success: 'false',
-                message: "Failure to save the data in db!",
-                error: err.message
+
+        user.save().then(data => {
+            res.status(200).json({
+                ...data['_doc'],
+                token: jwt.sign({ id: user._id }, secret.ACCESS_TOKEN_SECRET, { expiresIn: '178009' })
             });
-        }
-    });
+        }).catch(err => {
+            if (err['code'] === 11000) {
+                return (
+                    res.status(400).json({
+                        success: 'false',
+                        message: `${Object.keys(err['keyValue'])} already registered!! Try again`
+                    })
+                )
+            }
+            else {
+                res.status(500).json({
+                    success: 'false',
+                    message: "Failure to save the data in db!",
+                    error: err.message
+                });
+            }
+        });
+    }
+    catch (error) {
+        console.log(error)
+    } (req, res, next);
 };
 
 module.exports.login = (req, res, next) => {
-
-    passport.authenticate('local', function (err, user, info) {
-        if (err) {
-            return (
-                res.status(400).json({
-                    success: 'false',
-                    message: "Bad Request",
-                    error: err.message
-                })
-            )
-        }
-        else if (user) {
-            return (
-                res.status(200).json({
-                    success: "true",
-                    message: "Validation success",
-                    token: jwt.sign({ id: user._id }, secret.ACCESS_TOKEN_SECRET, { expiresIn: '178009' }),
-                    email: user.email,
-                    id: user._id,
-                    firstName: user.firstName
-                })
-            )
-        }
-        else {
-            return (
-                res.status(404).json({
-                    success: 'false',
-                    message: info
-                })
-            )
-        }
-    })(req, res, next);
+    try {
+        passport.authenticate('local', function (err, user, info) {
+            if (err) {
+                return (
+                    res.status(400).json({
+                        success: 'false',
+                        message: "Bad Request",
+                        error: err.message
+                    })
+                )
+            }
+            else if (user) {
+                return (
+                    res.status(200).json({
+                        success: "true",
+                        message: "Validation success",
+                        token: jwt.sign({ id: user._id }, secret.ACCESS_TOKEN_SECRET, { expiresIn: '178009' }),
+                        email: user.email,
+                        id: user._id,
+                        firstName: user.firstName
+                    })
+                )
+            }
+            else {
+                return (
+                    res.status(404).json({
+                        success: 'false',
+                        message: info
+                    })
+                )
+            }
+        });
+    }
+    catch (error) {
+        console.log(error)
+    } (req, res, next);
 };
 
 module.exports.userProfile = (req, res, next) => {
-    User.findById({ _id: req.params.id }, function (err, user) {
+    try {
+        User.findById({ _id: req.params.id }, function (err, user) {
 
-        if (!user) {
-            return (
-                res.status(404).json({
-                    success: 'false',
-                    message: "user not found!",
+            if (!user) {
+                return (
+                    res.status(404).json({
+                        success: 'false',
+                        message: "user not found!",
+                    })
+                )
+            }
+
+            else return (
+                res.status(200).json({
+                    success: "true",
+                    message: "User found!",
+                    id: user._id,
+                    email: user.email,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    phoneNumber: user.phoneNumber
                 })
             )
-        }
-
-        else return (
-            res.status(200).json({
-                success: "true",
-                message: "User found!",
-                id: user._id,
-                email: user.email,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                phoneNumber: user.phoneNumber
-            })
-        )
-    });
+        });
+    }
+    catch (error) {
+        console.log(error)
+    } (req, res, next);
 };
 
 module.exports.updateUserPassword = async (req, res, next) => {
