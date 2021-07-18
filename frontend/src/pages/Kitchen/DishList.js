@@ -55,7 +55,7 @@ function DishList(props) {
     };
     fetchDishList();
   } else {
-    window.alert("Please login for using the dallfins . Thank you  !!!");
+    window.alert("Please login in to dalffins. Thank you  !!!");
     history.push("/login");
   }
   
