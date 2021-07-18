@@ -4,7 +4,7 @@ const port = process.env.PORT || 8080;
 
 const backEndUrl = process.env.BACKEND_HOSTNAME || 'dalffins.herokuapp.com';
 
-const domain = `http://${backEndUrl}:${port}`;
+const domain = `https://${backEndUrl}`;
 
 const axiosInstance = axios.create({
   baseURL: domain,
