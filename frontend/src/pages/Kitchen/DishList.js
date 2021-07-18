@@ -49,7 +49,7 @@ function DishList(props) {
     if (props.userID) {
     const fetchDishList = async () => {
         const res = await axios.get(
-        `http://localhost:8080/dish/getUserDish?UserID=${props.userID}`
+        `https://dalffins.herokuapp.com/getUserDish?UserID=${props.userID}`
       );
       setFoodItems(res.data);
     };
