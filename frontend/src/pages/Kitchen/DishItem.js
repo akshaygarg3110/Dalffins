@@ -66,7 +66,7 @@ function DishItem({ removeItemFromList, foodItem, updateItem ,UserID}) {
 
   // API call for disabling the inactive dish
   const handleDisable = () => {
-    Axios.put("http://localhost:8080/dish/updatedish/"+ foodItem._id, {
+    Axios.put("https://dalffins.herokuapp.com/dish/updatedish/"+ foodItem._id, {
         UserID : foodItem.UserID,       
         dishstatus: "False" }).then(
       (response) => {
@@ -78,7 +78,7 @@ function DishItem({ removeItemFromList, foodItem, updateItem ,UserID}) {
  
   // API call for enabling the disabled dish
   const handleEnable = () => {
-    Axios.put("http://localhost:8080/dish/updatedish/"+ foodItem._id, {
+    Axios.put("https://dalffins.herokuapp.com/dish/updatedish/"+ foodItem._id, {
       UserID : foodItem.UserID, 
       dishstatus: "True" }).then(
       (response) => {

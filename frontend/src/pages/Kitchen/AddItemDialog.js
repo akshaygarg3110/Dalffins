@@ -58,7 +58,7 @@ function AddItemDialog({ addItem, nextId, open, handleClose, UserID }) {
     };
     // API call adding the dish into the backend system
     console.log(formData);
-    Axios.post("http://localhost:8080/dish/adddish", formData).then(
+    Axios.post("https://dalffins.herokuapp.com/dish/adddish", formData).then(
       (response) => {
         addItem(response.data);
       }

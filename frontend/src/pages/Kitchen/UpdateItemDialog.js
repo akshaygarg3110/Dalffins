@@ -58,7 +58,7 @@ function UpdateItemDialog({ foodItem, open, handleClose , UserID }) {
     };
     // API call for updating the details of the dish
     console.log(formData);
-    Axios.put("http://localhost:8080/dish/updatedish/"+ foodItem._id, formData).then(
+    Axios.put("https://dalffins.herokuapp.com/dish/updatedish/"+ foodItem._id, formData).then(
       (response) => {
         handleClose(formData);
       }
