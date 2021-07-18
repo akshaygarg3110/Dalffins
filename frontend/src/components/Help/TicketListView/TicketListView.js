@@ -3,11 +3,16 @@ import "./TicketListView.scss";
 import { Row } from "react-bootstrap";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import TicketDetailModal from "../TicketDetailModal/TicketDetailModal";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 
 class TicketListView extends Component {
   state = {
     openTicketDetailDialog: false,
     selectedTicket: undefined,
+    showSnackbar: false,
+    snackbarMessage: "",
+    snackbarType: "",
   };
 
   onTicketClickHandler = (ticket) => {
@@ -21,9 +26,23 @@ class TicketListView extends Component {
     this.setState({ openTicketDetailDialog: false, selectedTicket: undefined });
   };
 
+  showToastHandler = (message, type) => {
+    this.setState({
+      showSnackbar: true,
+      snackbarMessage: message,
+      snackbarType: type,
+    });
+  };
+
   render() {
     const { tickets, isLoading } = this.props;
-    const { openTicketDetailDialog, selectedTicket } = this.state;
+    const {
+      openTicketDetailDialog,
+      selectedTicket,
+      showSnackbar,
+      snackbarMessage,
+      snackbarType,
+    } = this.state;
 
     if (isLoading) {
       return (
@@ -59,7 +78,23 @@ class TicketListView extends Component {
           show={openTicketDetailDialog}
           ticket={selectedTicket}
           onClose={this.handleOnTicketDialogClose}
+          showToast={this.showToastHandler}
         />
+
+        <Snackbar
+          open={showSnackbar}
+          autoHideDuration={6000}
+          onClose={() => this.setState({ showSnackbar: false })}
+        >
+          <MuiAlert
+            elevation={6}
+            variant="filled"
+            onClose={() => this.setState({ showSnackbar: false })}
+            severity={snackbarType}
+          >
+            {snackbarMessage}
+          </MuiAlert>
+        </Snackbar>
       </div>
     );
   }

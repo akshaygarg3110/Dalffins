@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import "./TicketDetailModal.scss";
 import { Button, Form, Modal } from "react-bootstrap";
-import { saveTicketApi } from "../../../utils/Api";
+import { updateTicketApi } from "../../../utils/Api";
 
-const TicketDetailModal = ({ show, ticket, onClose }) => {
+const TicketDetailModal = ({ show, ticket, onClose, showToast }) => {
   const [showModal, setShowModal] = React.useState(show);
   const [description, setDescription] = React.useState("");
   const [loading, setLoading] = React.useState(false);
@@ -56,18 +56,32 @@ const TicketDetailModal = ({ show, ticket, onClose }) => {
     };
     setCurrentTicket(newTicket);
     setTimeout(scrollToBottom, 100);
-    setDescription("");
-    // const data = {
-    //   email: "Jp9573@gmail.com",
-    // };
-    // saveTicketApi(data)
-    //   .then((res) => {
-    //     hideModal();
-    //   })
-    //   .catch((err) => {
-    //     console.error(err.message);
-    //     setLoading(false);
-    //   });
+    updateTicketApi(newTicket)
+      .then((res) => {
+        setDescription("");
+        showToast("Data saved successfully", "success");
+      })
+      .catch((err) => {
+        console.error(err.message);
+        setLoading(false);
+      });
+  };
+
+  const markAsCloseHandler = () => {
+    const newTicket = {
+      ...currentTicket,
+      status: "Closed",
+    };
+    setCurrentTicket(newTicket);
+    updateTicketApi(newTicket)
+      .then((res) => {
+        showToast("Ticket marked as closed", "success");
+        hideModal();
+      })
+      .catch((err) => {
+        console.error(err.message);
+        setLoading(false);
+      });
   };
 
   if (!currentTicket) return <></>;
@@ -119,6 +133,9 @@ const TicketDetailModal = ({ show, ticket, onClose }) => {
       <Modal.Footer>
         <Button variant="secondary" onClick={hideModal}>
           Close
+        </Button>
+        <Button variant="danger" onClick={markAsCloseHandler}>
+          Mark as Close
         </Button>
         <Button
           variant="primary"

@@ -19,6 +19,10 @@ export function fetchAllTicketsApi() {
   return axiosInstance.get(`/help/admin/tickets`);
 }
 
+export function updateTicketApi(ticket) {
+  return axiosInstance.put(`/tickets/${ticket.id}`, ticket);
+}
+
 export function saveTicketApi(data) {
   return axiosInstance.post(`/help/tickets`, data);
 }
