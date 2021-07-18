@@ -2,7 +2,7 @@ const axios = require("axios");
 
 const port = process.env.PORT || 8080;
 
-const backEndUrl = process.env.BACKEND_HOSTNAME || 'localhost';
+const backEndUrl = process.env.BACKEND_HOSTNAME || 'dalffins.herokuapp.com';
 
 const domain = `http://${backEndUrl}:${port}`;
 
