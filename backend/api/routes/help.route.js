@@ -1,3 +1,4 @@
+//Author: Jay Patel (B00881906)
 const express = require("express");
 const HelpTicket = require("../model/help.model");
 const helpController = require("../controller/help.controller");

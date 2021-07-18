@@ -1,3 +1,4 @@
+//Author: Jay Patel (B00881906)
 function helpController(HelpTicket) {
   function getTickets(req, res) {
     if (!req.query.email) {

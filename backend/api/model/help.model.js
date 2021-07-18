@@ -1,3 +1,4 @@
+//Author: Jay Patel (B00881906)
 const mongoose = require("mongoose");
 
 const HelpTicketSchema = mongoose.Schema(
