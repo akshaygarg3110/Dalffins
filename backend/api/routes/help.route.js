@@ -2,10 +2,12 @@
 const express = require("express");
 const HelpTicket = require("../model/help.model");
 const helpController = require("../controller/help.controller");
+const helpMiddleware = require("../middleware/help.middleware");
 
 function routes() {
   const helpRoute = express.Router();
   const controller = helpController(HelpTicket);
+  const middleware = helpMiddleware(HelpTicket);
 
   helpRoute.route("/admin/tickets").get(controller.getAllTickets);
 
@@ -15,19 +17,7 @@ function routes() {
     .post(controller.saveTicket);
 
   // Middleware for /tickets/:ticketId API
-  helpRoute.use("/tickets/:ticketId", (req, res, next) => {
-    const { ticketId } = req.params;
-    HelpTicket.findById(ticketId, (err, ticket) => {
-      if (err) {
-        return res.send(err);
-      }
-      if (ticket) {
-        req.ticket = ticket;
-        return next();
-      }
-      return res.sendStatus(404);
-    });
-  });
+  helpRoute.use("/tickets/:ticketId", middleware.helpTicketFinderMiddleware);
 
   helpRoute.route("/tickets/:ticketId").put(controller.updateTicket);
 
