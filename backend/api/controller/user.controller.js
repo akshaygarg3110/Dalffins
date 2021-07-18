@@ -48,42 +48,38 @@ module.exports.signUp = (req, res, next) => {
 };
 
 module.exports.login = (req, res, next) => {
-    try {
-        passport.authenticate('local', function (err, user, info) {
-            if (err) {
-                return (
-                    res.status(400).json({
-                        success: 'false',
-                        message: "Bad Request",
-                        error: err.message
-                    })
-                )
-            }
-            else if (user) {
-                return (
-                    res.status(200).json({
-                        success: "true",
-                        message: "Validation success",
-                        token: jwt.sign({ id: user._id }, secret.ACCESS_TOKEN_SECRET, { expiresIn: '178009' }),
-                        email: user.email,
-                        id: user._id,
-                        firstName: user.firstName
-                    })
-                )
-            }
-            else {
-                return (
-                    res.status(404).json({
-                        success: 'false',
-                        message: info
-                    })
-                )
-            }
-        });
-    }
-    catch (error) {
-        console.log(error)
-    } (req, res, next);
+    passport.authenticate('local', function (err, user, info) {
+        if (err) {
+            console.log(err.message)
+            return (
+                res.status(400).json({
+                    success: 'false',
+                    message: "Bad Request",
+                    error: err.message
+                })
+            )
+        }
+        else if (user) {
+            return (
+                res.status(200).json({
+                    success: "true",
+                    message: "Validation success",
+                    token: jwt.sign({ id: user._id }, secret.ACCESS_TOKEN_SECRET, { expiresIn: '178009' }),
+                    email: user.email,
+                    id: user._id,
+                    firstName: user.firstName
+                })
+            )
+        }
+        else {
+            return (
+                res.status(404).json({
+                    success: 'false',
+                    message: info
+                })
+            )
+        }
+    })(req, res, next);
 };
 
 module.exports.userProfile = (req, res, next) => {
