@@ -1,0 +1,45 @@
+POST http://localhost:8080/dish/adddish
+Content-Type: application/json
+
+{ 
+        "UserID" : "60f384170db9a12e13bdc1d3",
+        "dishID" : "6",
+        "dishname"  : "Chilly Paneer",
+        "dishRating"  : "2",
+        "Image"  : "/assets/f6.jpg",
+        "dishcost"  : "6.5",
+        "mealtype"  : "Lunch",
+        "dishstatus": "True",
+        "delivery"  : "Free" 
+}
+
+###
+
+GET http://localhost:8080/dish/getUserDish?UserID=60f384170db9a12e13bdc1d3
+
+###
+
+GET http://localhost:8080/dish/getUserDishById/60f2f0dba658890c71939c7c
+
+
+###
+
+DELETE  http://localhost:8080/dish/removedish/60f2ed6307f3440b268362d8
+Content-Type: application/json
+
+{
+"dishID" : "1"
+}
+
+###
+
+PUT http://localhost:8080/dish/updatedish/60f2f0dba658890c71939c7c
+Content-Type: application/json
+
+{
+"dishID" : "6",
+"dishRating": "12"
+}
+
+
+

@@ -17,6 +17,8 @@ const routeUser = require("../backend/api/routes/user.route");
 
 const helpRoute = require("../backend/api/routes/help.route");
 
+const dishRoute = require("../backend/api/routes/dish.route");
+
 const foodSelectionRoute = require("../backend/api/routes/food.selection.route");
 
 const passportConfig = require("../backend/api/config/passport.config");
@@ -66,5 +68,8 @@ app.use("/help", helpRoute);
 
 //Route help
 app.use("/foodSelection", foodSelectionRoute);
+
+//Dish Items
+app.use("/dish", dishRoute);
 
 module.exports = app;

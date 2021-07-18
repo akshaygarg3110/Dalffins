@@ -1,3 +1,4 @@
+//Author: Tanuj Sobti (B00864990)
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -6,7 +7,8 @@ import Button from "@material-ui/core/Button";
 import Snackbar from "@material-ui/core/Snackbar";
 import { Alert } from "@material-ui/lab";
 import AddItemDialog from "./AddItemDialog";
-
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const responsive = {
   superLargeDesktop: {
@@ -31,84 +33,58 @@ const responsive = {
   },
 };
 
-const initialItems = [
-  {
-    id: 1,
-    title: "Veg Tacos",
-    rating: 4,
-    img: "/assets/f1.jpg",
-    cost: "$11.5",
-    mealType: "Snack",
-    delivery: "Free",
-  },
-  {
-    id: 2,
-    title: "Chilly Chicken",
-    rating: 3,
-    img: "/assets/f2.jpg",
-    cost: "$13.5",
-    mealType: "Dinner",
-    delivery: "Free",
-  },
-  {
-    id: 3,
-    title: "Prawn Noodles",
-    rating: 1,
-    img: "/assets/f3.jpg",
-    cost: "$9",
-    mealType: "Lunch",
-    delivery: "Free",
-  },
-  {
-    id: 4,
-    title: "Veg Thali",
-    rating: 3,
-    img: "/assets/f4.jpg",
-    cost: "$14",
-    mealType: "Lunch",
-    delivery: "Free",
-  },
-  {
-    id: 5,
-    title: "Veg Rice",
-    rating: 2,
-    img: "/assets/f5.jpeg",
-    cost: "$6",
-    mealType: "Snack",
-    delivery: "Free",
-  },
-  {
-    id: 6,
-    title: "Chilly Paneer",
-    rating: 3,
-    img: "/assets/f6.jpg",
-    cost: "$6",
-    mealType: "Snack",
-    delivery: "Free",
-  },
-];
-
-function DishList() {
-  const [items, setItems] = React.useState(initialItems);
+function DishList(props) {
+  const [foodItems, setFoodItems] = React.useState([]);
   const [open, setOpen] = React.useState(false);
   const [showSnackBar, setShowSnackBar] = React.useState(false);
+  const history = useHistory();
+  
 
   const handleClickOpen = () => {
     setOpen(true);
   };
+  
+  // Get all the dishes added by logged in user .
+  React.useEffect(() => {
+    if (props.userID) {
+    const fetchDishList = async () => {
+        const res = await axios.get(
+        `http://localhost:8080/dish/getUserDish?UserID=${props.userID}`
+      );
+      setFoodItems(res.data);
+    };
+    fetchDishList();
+  } else {
+    window.alert("Please login in to dalffins. Thank you  !!!");
+    history.push("/login");
+  }
+  
+  }, []);
+
+
 
   const addItem = (formData) => {
-    setItems([...items, formData]);
+    setFoodItems([...foodItems, formData]);
     setOpen(false);
     setShowSnackBar(true);
+  };
+
+  const updateItem = (formData) => {
+    let newFoodItems = [...foodItems];
+    newFoodItems = newFoodItems.map((foodItem) => {
+      if (foodItem._id === formData._id) return formData;
+      else return foodItem;
+    });
+    setFoodItems(newFoodItems);
   };
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  const removeItem = (itemId) =>
-    setItems(items.filter((item) => item.id !== itemId));
+  const removeItem = (itemId) => {
+    setFoodItems(foodItems.filter((item) => item._id !== itemId));
+  };
 
   const handleSnackBarClose = () => {
     setShowSnackBar(false);
@@ -122,17 +98,25 @@ function DishList() {
         </Button>
       </div>
       <Carousel responsive={responsive}>
-        {items.map((item) => (
-          <DishItem item={item} key={item.id} removeItemFromList={removeItem}  />
+        {foodItems.map((foodItem) => (
+          <DishItem
+            foodItem={foodItem}
+            key={foodItem._id}
+            removeItemFromList={removeItem}
+            updateItem={updateItem}
+            UserID={props.userID}
+          />
         ))}
       </Carousel>
       {open ? (
         <React.Suspense fallback={<p>loading</p>}>
+          // Adding dish to the kitchen 
           <AddItemDialog
             open={open}
             addItem={addItem}
             handleClose={handleClose}
-            nextId={initialItems[initialItems.length - 1].id}
+            nextId={foodItems[foodItems.length - 1]._id}
+            UserID={props.userID}
           />
         </React.Suspense>
       ) : null}
@@ -142,7 +126,7 @@ function DishList() {
         onClose={handleSnackBarClose}
       >
         <Alert onClose={handleSnackBarClose} severity="success">
-          New Dish added Successfully
+          New dish added successfully !!
         </Alert>
       </Snackbar>
     </>

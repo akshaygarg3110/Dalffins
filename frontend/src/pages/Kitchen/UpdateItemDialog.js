@@ -20,11 +20,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function AddItemDialog({ addItem, nextId, open, handleClose, UserID }) {
+function UpdateItemDialog({ foodItem, open, handleClose , UserID }) {
   const classes = useStyles();
-  const [mealType, setMealType] = React.useState("");
+  const [mealType, setMealType] = React.useState(foodItem.mealtype);
   const [image, setImage] = React.useState("");
-
+  console.log(foodItem);
   const handleFileUpload = (files) => {
     const reader = new FileReader();
 
@@ -41,13 +41,13 @@ function AddItemDialog({ addItem, nextId, open, handleClose, UserID }) {
     }
   };
 
-  console.log(UserID)
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const formData = {
+      _id: foodItem._id,
       UserID: UserID,
-      dishID: nextId,
+      dishID: foodItem.dishID,
       dishname: form.title.value,
       dishRating: 0,
       Image: image,
@@ -56,11 +56,11 @@ function AddItemDialog({ addItem, nextId, open, handleClose, UserID }) {
       dishstatus: "True",
       delivery: form.delivery.value,
     };
-    // API call adding the dish into the backend system
+    // API call for updating the details of the dish
     console.log(formData);
-    Axios.post("http://localhost:8080/dish/adddish", formData).then(
+    Axios.put("http://localhost:8080/dish/updatedish/"+ foodItem._id, formData).then(
       (response) => {
-        addItem(response.data);
+        handleClose(formData);
       }
     );
   };
@@ -78,6 +78,7 @@ function AddItemDialog({ addItem, nextId, open, handleClose, UserID }) {
             label="Dish Name"
             type="text"
             fullWidth
+            defaultValue={foodItem.dishname}
           />
           <TextField
             margin="dense"
@@ -85,6 +86,7 @@ function AddItemDialog({ addItem, nextId, open, handleClose, UserID }) {
             label="Cost"
             type="text"
             fullWidth
+            defaultValue={foodItem.dishcost}
           />
           <TextField
             margin="dense"
@@ -94,6 +96,7 @@ function AddItemDialog({ addItem, nextId, open, handleClose, UserID }) {
             value={mealType}
             onChange={(event) => setMealType(event.target.value)}
             helperText="Please select meal type"
+            defaultValue={foodItem.mealtype}
           >
             {mealTypes.map((option) => (
               <MenuItem key={option} value={option}>
@@ -101,9 +104,16 @@ function AddItemDialog({ addItem, nextId, open, handleClose, UserID }) {
               </MenuItem>
             ))}
           </TextField>
-          <TextField id="delivery" label="Delivery" type="text" fullWidth />
+          <TextField
+            id="delivery"
+            label="Delivery"
+            type="text"
+            fullWidth
+            defaultValue={foodItem.delivery}
+          />
           <FormControl fullWidth>
             <DropzoneArea
+              initialFiles={[foodItem.Image]}
               filesLimit={1}
               dropzoneClass={classes.dropZoneArea}
               dropzoneText={"Drag and drop a dish image here or click"}
@@ -121,4 +131,4 @@ function AddItemDialog({ addItem, nextId, open, handleClose, UserID }) {
   );
 }
 
-export default AddItemDialog;
+export default UpdateItemDialog;

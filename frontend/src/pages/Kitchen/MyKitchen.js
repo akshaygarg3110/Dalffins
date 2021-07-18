@@ -1,6 +1,9 @@
-import React from "react";
+//Author: Tanuj Sobti (B00864990)
+import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import DishList from "./DishList";
+import Carousel from "react-bootstrap/Carousel";
+
 
 const TitleSection = styled.div`
   height: 40vh;
@@ -25,19 +28,31 @@ const KitchenImage = styled.img`
   object-fit: cover;
 `;
 
-function MyKitchen() {
+function MyKitchen(props) {
+  const [kitchenName, setKitchenName] = useState("Indian Kitchen");
+  const [kitchenImages, setKitchenImages] = useState([
+    "images/Kitchen1.jpg",
+    "images/Kitchen2.jpg",
+  ]);
   return (
     <>
-      <TitleSection>
-        <Title>
-          <h2>Hi Chef</h2>
-          <h2>Welcome to the kitchen</h2>
-        </Title>
-        <div style={{ height: "100%" }}>
-          <KitchenImage src="./assets/k12.jpg" alt="kitchen" />
-        </div>
-      </TitleSection>
-      <DishList />
+       
+       <Carousel style={{ height: "50vh" }}>
+        {kitchenImages.map((image) => (
+          <Carousel.Item>
+            <KitchenImage
+              className="d-block w-100"
+              src={image}
+              style={{ height: "50vh" }}
+            />
+          </Carousel.Item>
+        ))}
+      </Carousel>
+      
+      <br />
+      <DishList userID={props.userId} />
+      <br />
+      <br />
     </>
   );
 }
