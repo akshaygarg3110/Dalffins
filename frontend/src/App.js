@@ -39,6 +39,7 @@ function App() {
     console.log(orderedItemsSize);
   };
 
+  console.log(id)
   return (
     <>
       <header>
@@ -55,11 +56,11 @@ function App() {
         <Route exact path="/foodSelectionUI/:id">
           <Food_Selection onOrderItemClick={orderItemHandler} />
         </Route>
-
+       
         <Route exact path="/kitchen">
           <Layout>
             <Main>
-              <MyKitchen />
+              <MyKitchen userId={id} />
             </Main>
           </Layout>
         </Route>
