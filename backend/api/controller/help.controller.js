@@ -56,7 +56,6 @@ function helpController(HelpTicket) {
       }
       return res.json(ticket);
     });
-    l̥;
   }
 
   return { getTickets, saveTicket, getAllTickets, updateTicket };

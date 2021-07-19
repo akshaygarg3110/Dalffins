@@ -55,11 +55,11 @@ const TicketDetailModal = ({ show, ticket, onClose, showToast }) => {
         { text: description, author: "asd", date: "sdf" },
       ],
     };
+    setDescription("");
     setCurrentTicket(newTicket);
     setTimeout(scrollToBottom, 100);
     updateTicketApi(newTicket)
       .then((res) => {
-        setDescription("");
         showToast("Data saved successfully", "success");
       })
       .catch((err) => {

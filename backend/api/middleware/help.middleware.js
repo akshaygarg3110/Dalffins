@@ -2,7 +2,7 @@
 function helpMiddleware(HelpTicket) {
   function helpTicketFinderMiddleware(req, res, next) {
     const { ticketId } = req.params;
-    HelpTicket.findById(ticketId, (err, ticket) => {
+    HelpTicket.findById({ _id: ticketId }, (err, ticket) => {
       if (err) {
         return res.send(err);
       }

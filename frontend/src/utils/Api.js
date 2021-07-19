@@ -21,7 +21,7 @@ export function fetchAllTicketsApi() {
 }
 
 export function updateTicketApi(ticket) {
-  return axiosInstance.put(`/tickets/${ticket.id}`, ticket);
+  return axiosInstance.put(`/help/tickets/${ticket._id}`, ticket);
 }
 
 export function saveTicketApi(data) {
