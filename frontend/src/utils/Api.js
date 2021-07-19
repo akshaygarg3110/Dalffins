@@ -4,9 +4,9 @@ const axios = require("axios");
 const port = process.env.PORT || 8080;
 
 const backEndUrl =
-  process.env.REACT_APP_BACKEND_HOSTNAME || "dalffins.herokuapp.com";
+  process.env.REACT_APP_BACKEND_HOSTNAME || "https://dalffins.herokuapp.com";
 
-const domain = `https://${backEndUrl}`;
+const domain = `${backEndUrl}`;
 
 const axiosInstance = axios.create({
   baseURL: domain,
