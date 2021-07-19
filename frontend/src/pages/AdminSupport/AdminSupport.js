@@ -31,7 +31,7 @@ class AdminSupport extends Component {
   };
 
   render() {
-    if (!localStorage.getItem("isAdmin")) {
+    if (!localStorage.hasOwnProperty("isAdmin")) {
       return <Redirect to="/admin/login" />;
     }
 
@@ -45,7 +45,11 @@ class AdminSupport extends Component {
           </Col>
         </Row>
 
-        <TicketListView isLoading={isLoading} tickets={tickets} />
+        <TicketListView
+          isLoading={isLoading}
+          tickets={tickets}
+          fetchTickets={this.fetchTickets}
+        />
       </div>
     );
   }

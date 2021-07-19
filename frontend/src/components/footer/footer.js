@@ -41,7 +41,7 @@ export default function Footer({ userEmail }) {
           <Button color="inherit">FAQs</Button>
           <Button color="inherit">About Us</Button>
           <Button color="inherit">Contact Us</Button>
-          {userEmail && userEmail.length > 0 ? (
+          {userEmail && userEmail.length > 0 && !localStorage.getItem('isAdmin') ? (
             <Button color="inherit" onClick={onHelpClickHandler}>
               Help
             </Button>
