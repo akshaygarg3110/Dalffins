@@ -39,23 +39,22 @@ function App() {
     console.log(orderedItemsSize);
   };
 
-  console.log(id)
+  console.log(id);
   return (
     <>
-        {console.log("orderedItems " + orderedItems)}
-        <DalffinsMenu
-          orderedItems={orderedItems}
-          userToken={token}
-          setUserToken={setToken}
-          firstName={firstName}
-        />
-      
+      {console.log("orderedItems " + orderedItems)}
+      <DalffinsMenu
+        orderedItems={orderedItems}
+        userToken={token}
+        setUserToken={setToken}
+        firstName={firstName}
+      />
 
       <Switch>
         <Route exact path="/foodSelectionUI/:id">
           <Food_Selection onOrderItemClick={orderItemHandler} />
         </Route>
-       
+
         <Route exact path="/kitchen">
           <Layout>
             <Main>
@@ -101,21 +100,25 @@ function App() {
         />
 
         <Route exact path="/resetPassword">
-          <ResetPassword setUserId={setId}/>
+          <ResetPassword setUserId={setId} />
         </Route>
 
-        <Route exact path="/help" component={Help} />
+        <Route exact path="/help">
+          <Help userEmail={email} firstName={firstName} />
+        </Route>
+
         <Route exact path="/admin/help" component={AdminSupport} />
-        <Route exact path="/admin/login" component={AdminLogin} />
+
+        <Route exact path="/admin/login">
+          <AdminLogin setFirstName={setFirstName} setEmail={setEmail} />
+        </Route>
 
         <Route exact path="/myAccount">
-          <MyAccount userId={id}
-          setUserToken={setToken} />
+          <MyAccount userId={id} setUserToken={setToken} />
         </Route>
       </Switch>
 
-      <Footer />
-
+      <Footer userEmail={email} />
     </>
   );
 }

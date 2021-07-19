@@ -1,3 +1,4 @@
+//Author: Jay Patel (B00881906)
 function helpController(HelpTicket) {
   function getTickets(req, res) {
     if (!req.query.email) {
@@ -43,7 +44,21 @@ function helpController(HelpTicket) {
     return res.json(ticket);
   }
 
-  return { getTickets, saveTicket, getAllTickets };
+  function updateTicket(req, res) {
+    const { ticket } = req;
+    ticket.reason = req.body.reason;
+    ticket.messages = req.body.messages;
+    ticket.email = req.body.email;
+    ticket.status = req.body.status;
+    ticket.save((err) => {
+      if (err) {
+        return res.send(err);
+      }
+      return res.json(ticket);
+    });
+  }
+
+  return { getTickets, saveTicket, getAllTickets, updateTicket };
 }
 
 module.exports = helpController;

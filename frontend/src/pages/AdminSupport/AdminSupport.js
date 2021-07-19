@@ -1,3 +1,4 @@
+//Author: Jay Patel (B00881906)
 import React, { Component } from "react";
 import "./AdminSupport.scss";
 import { Col, Row } from "react-bootstrap";
@@ -30,7 +31,7 @@ class AdminSupport extends Component {
   };
 
   render() {
-    if (!localStorage.getItem("isAdmin")) {
+    if (!localStorage.hasOwnProperty("isAdmin")) {
       return <Redirect to="/admin/login" />;
     }
 
@@ -44,7 +45,11 @@ class AdminSupport extends Component {
           </Col>
         </Row>
 
-        <TicketListView isLoading={isLoading} tickets={tickets} />
+        <TicketListView
+          isLoading={isLoading}
+          tickets={tickets}
+          fetchTickets={this.fetchTickets}
+        />
       </div>
     );
   }

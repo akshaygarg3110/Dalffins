@@ -1,13 +1,20 @@
+//Author: Jay Patel (B00881906)
 import React, { Component } from "react";
 import "./TicketListView.scss";
 import { Row } from "react-bootstrap";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import TicketDetailModal from "../TicketDetailModal/TicketDetailModal";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+import { getDisplayDate } from "../../../utils/dateUtils";
 
 class TicketListView extends Component {
   state = {
     openTicketDetailDialog: false,
     selectedTicket: undefined,
+    showSnackbar: false,
+    snackbarMessage: "",
+    snackbarType: "",
   };
 
   onTicketClickHandler = (ticket) => {
@@ -18,12 +25,27 @@ class TicketListView extends Component {
   };
 
   handleOnTicketDialogClose = () => {
+    this.props.fetchTickets();
     this.setState({ openTicketDetailDialog: false, selectedTicket: undefined });
+  };
+
+  showToastHandler = (message, type) => {
+    this.setState({
+      showSnackbar: true,
+      snackbarMessage: message,
+      snackbarType: type,
+    });
   };
 
   render() {
     const { tickets, isLoading } = this.props;
-    const { openTicketDetailDialog, selectedTicket } = this.state;
+    const {
+      openTicketDetailDialog,
+      selectedTicket,
+      showSnackbar,
+      snackbarMessage,
+      snackbarType,
+    } = this.state;
 
     if (isLoading) {
       return (
@@ -46,7 +68,9 @@ class TicketListView extends Component {
                 <span className="desc">{item.description}</span>
                 <div className="d-flex mt-2 justify-content-between">
                   <span className="s">{item.status}</span>
-                  <span className="c">{item.createdAt}</span>
+                  <span className="c">
+                    {getDisplayDate(new Date(item.createdAt))}
+                  </span>
                 </div>
               </div>
             ))
@@ -59,7 +83,25 @@ class TicketListView extends Component {
           show={openTicketDetailDialog}
           ticket={selectedTicket}
           onClose={this.handleOnTicketDialogClose}
+          showToast={this.showToastHandler}
+          userEmail={this.props.userEmail}
+          firstName={this.props.firstName}
         />
+
+        <Snackbar
+          open={showSnackbar}
+          autoHideDuration={6000}
+          onClose={() => this.setState({ showSnackbar: false })}
+        >
+          <MuiAlert
+            elevation={6}
+            variant="filled"
+            onClose={() => this.setState({ showSnackbar: false })}
+            severity={snackbarType}
+          >
+            {snackbarMessage}
+          </MuiAlert>
+        </Snackbar>
       </div>
     );
   }

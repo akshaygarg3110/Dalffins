@@ -1,7 +1,8 @@
+//Author: Jay Patel (B00881906)
 import React, { Component } from "react";
 import "./AdminLogin.scss";
 import Button from "@material-ui/core/Button";
-import { Redirect } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 import { TextField, InputAdornment } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -59,6 +60,8 @@ class AdminLogin extends Component {
       details.password === "admin@dalffins"
     ) {
       localStorage.setItem("isAdmin", true);
+      this.props.setFirstName("Admin");
+      this.props.setEmail("admin@dalffins.com");
       this.props.history.push("/admin/help");
     } else {
       this.setState({ errorSnackbar: true });
@@ -70,10 +73,6 @@ class AdminLogin extends Component {
   };
 
   render() {
-    if (localStorage.getItem("isAdmin")) {
-      return <Redirect to="/admin/help" />;
-    }
-
     const { error, details, displayPassword, errorSnackbar } = this.state;
 
     return (
@@ -195,4 +194,4 @@ class AdminLogin extends Component {
   }
 }
 
-export default AdminLogin;
+export default withRouter( AdminLogin);
