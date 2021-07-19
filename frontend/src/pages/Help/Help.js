@@ -65,7 +65,11 @@ class Help extends Component {
           </Col>
         </Row>
 
-        <TicketListView isLoading={isLoading} tickets={tickets} />
+        <TicketListView
+          isLoading={isLoading}
+          tickets={tickets}
+          fetchTickets={this.fetchTickets}
+        />
 
         <NewSupportTicketModal
           show={newSupportTicketModalVisibility}

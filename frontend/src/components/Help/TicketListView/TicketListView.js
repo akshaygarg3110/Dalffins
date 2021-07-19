@@ -24,6 +24,7 @@ class TicketListView extends Component {
   };
 
   handleOnTicketDialogClose = () => {
+    this.props.fetchTickets();
     this.setState({ openTicketDetailDialog: false, selectedTicket: undefined });
   };
 
