@@ -152,16 +152,20 @@ const TicketDetailModal = ({
         <Button variant="secondary" onClick={hideModal}>
           Close
         </Button>
-        <Button variant="danger" onClick={markAsCloseHandler}>
-          Mark as Close
-        </Button>
-        <Button
-          variant="primary"
-          onClick={saveData}
-          disabled={!hasValidValues()}
-        >
-          Save
-        </Button>
+        {currentTicket.status.toLowerCase() === "open" ? (
+          <Button variant="danger" onClick={markAsCloseHandler}>
+            Mark as Close
+          </Button>
+        ) : null}
+        {currentTicket.status.toLowerCase() === "open" ? (
+          <Button
+            variant="primary"
+            onClick={saveData}
+            disabled={!hasValidValues()}
+          >
+            Save
+          </Button>
+        ) : null}
       </Modal.Footer>
     </Modal>
   );
