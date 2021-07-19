@@ -56,6 +56,7 @@ export default function DalffinsMenu(props) {
   };
 
   const handleCloseLogOut = () => {
+    localStorage.removeItem('isAdmin')
     history.push("/login")
     localStorage.removeItem('token')
     props.setUserToken('')
@@ -79,7 +80,7 @@ export default function DalffinsMenu(props) {
 
   const conNavBar = () => {
 
-    if (props.userToken) {
+    if (props.userToken || localStorage.getItem('isAdmin')) {
 
       return (<>
 
