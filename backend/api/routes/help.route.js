@@ -24,4 +24,4 @@ function routes() {
   return helpRoute;
 }
 
-module.exports = routes;
+module.exports = routes();
