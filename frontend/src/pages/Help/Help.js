@@ -6,6 +6,7 @@ import AddIcon from "@material-ui/icons/Add";
 import NewSupportTicketModal from "../../components/Help/NewSupportTicketModal/NewSupportTicketModal";
 import { fetchTicketsApi } from "../../utils/Api";
 import TicketListView from "../../components/Help/TicketListView/TicketListView";
+import { withRouter } from "react-router-dom";
 
 class Help extends Component {
   state = {
@@ -15,13 +16,17 @@ class Help extends Component {
   };
 
   componentDidMount() {
-    this.fetchTickets();
+    if (!this.props.userEmail) {
+      this.props.history.push("/");
+    } else {
+      this.fetchTickets();
+    }
   }
 
   fetchTickets = () => {
     const data = {
       params: {
-        email: "Jp9573@gmail.com",
+        email: this.props.userEmail,
       },
     };
     fetchTicketsApi(data)
@@ -69,15 +74,19 @@ class Help extends Component {
           isLoading={isLoading}
           tickets={tickets}
           fetchTickets={this.fetchTickets}
+          userEmail={this.props.userEmail}
+          firstName={this.props.firstName}
         />
 
         <NewSupportTicketModal
           show={newSupportTicketModalVisibility}
           onClose={this.handleOnModalClose}
+          userEmail={this.props.userEmail}
+          firstName={this.props.firstName}
         />
       </div>
     );
   }
 }
 
-export default Help;
+export default withRouter(Help);

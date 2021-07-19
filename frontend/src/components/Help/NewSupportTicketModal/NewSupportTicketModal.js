@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { saveTicketApi } from "../../../utils/Api";
 
-const NewSupportTicketModal = ({ show, onClose }) => {
+const NewSupportTicketModal = ({ show, onClose, userEmail, firstName }) => {
   const [showModal, setShowModal] = React.useState(show);
   const [reason, setReason] = React.useState("NA");
   const [description, setDescription] = React.useState("");
@@ -37,10 +37,11 @@ const NewSupportTicketModal = ({ show, onClose }) => {
         {
           text: description,
           date: new Date(),
-          author: "Jp9573@gmail.com",
+          author: userEmail,
+          name: firstName,
         },
       ],
-      email: "Jp9573@gmail.com",
+      email: userEmail,
     };
     saveTicketApi(data)
       .then((res) => {

@@ -6,6 +6,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import TicketDetailModal from "../TicketDetailModal/TicketDetailModal";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
+import { getDisplayDate } from "../../../utils/dateFunction";
 
 class TicketListView extends Component {
   state = {
@@ -67,7 +68,9 @@ class TicketListView extends Component {
                 <span className="desc">{item.description}</span>
                 <div className="d-flex mt-2 justify-content-between">
                   <span className="s">{item.status}</span>
-                  <span className="c">{item.createdAt}</span>
+                  <span className="c">
+                    {getDisplayDate(new Date(item.createdAt))}
+                  </span>
                 </div>
               </div>
             ))
@@ -81,6 +84,8 @@ class TicketListView extends Component {
           ticket={selectedTicket}
           onClose={this.handleOnTicketDialogClose}
           showToast={this.showToastHandler}
+          userEmail={this.props.userEmail}
+          firstName={this.props.firstName}
         />
 
         <Snackbar

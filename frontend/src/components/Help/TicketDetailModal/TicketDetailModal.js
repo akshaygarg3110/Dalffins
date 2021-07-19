@@ -3,8 +3,16 @@ import React, { useEffect, useRef } from "react";
 import "./TicketDetailModal.scss";
 import { Button, Form, Modal } from "react-bootstrap";
 import { updateTicketApi } from "../../../utils/Api";
+import { getDisplayDate } from "../../../utils/dateFunction";
 
-const TicketDetailModal = ({ show, ticket, onClose, showToast }) => {
+const TicketDetailModal = ({
+  show,
+  ticket,
+  onClose,
+  showToast,
+  userEmail,
+  firstName,
+}) => {
   const [showModal, setShowModal] = React.useState(show);
   const [description, setDescription] = React.useState("");
   const [loading, setLoading] = React.useState(false);
@@ -52,7 +60,12 @@ const TicketDetailModal = ({ show, ticket, onClose, showToast }) => {
       ...currentTicket,
       messages: [
         ...currentTicket.messages,
-        { text: description, author: "asd", date: "sdf" },
+        {
+          text: description,
+          author: userEmail,
+          name: firstName,
+          date: new Date().toString(),
+        },
       ],
     };
     setDescription("");
@@ -109,25 +122,29 @@ const TicketDetailModal = ({ show, ticket, onClose, showToast }) => {
               return (
                 <div className="slide" ref={messageRef} key={index}>
                   <div className="title">
-                    <div className="author">{msg.author}</div>
-                    <div className="date">{msg.date}</div>
+                    <div className="author">{msg.name}</div>
+                    <div className="date">
+                      {getDisplayDate(new Date(msg.date))}
+                    </div>
                   </div>
                   <div className="message">{msg.text}</div>
                 </div>
               );
             })}
           </div>
-          <Form>
-            <Form.Group className="mb-3">
-              <Form.Label>Add new message</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={2}
-                value={description}
-                onChange={handleDescriptionOnChange}
-              />
-            </Form.Group>
-          </Form>
+          {currentTicket.status.toLowerCase() === "open" ? (
+            <Form>
+              <Form.Group className="mb-3">
+                <Form.Label>Add new message</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={2}
+                  value={description}
+                  onChange={handleDescriptionOnChange}
+                />
+              </Form.Group>
+            </Form>
+          ) : null}
         </div>
       </Modal.Body>
 
