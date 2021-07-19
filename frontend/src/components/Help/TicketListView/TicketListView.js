@@ -6,7 +6,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import TicketDetailModal from "../TicketDetailModal/TicketDetailModal";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
-import { getDisplayDate } from "../../../utils/dateFunction";
+import { getDisplayDate } from "../../../utils/dateUtils";
 
 class TicketListView extends Component {
   state = {

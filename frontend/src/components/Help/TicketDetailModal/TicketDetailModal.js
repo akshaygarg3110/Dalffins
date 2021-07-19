@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 import "./TicketDetailModal.scss";
 import { Button, Form, Modal } from "react-bootstrap";
 import { updateTicketApi } from "../../../utils/Api";
-import { getDisplayDate } from "../../../utils/dateFunction";
+import { getDisplayDate } from "../../../utils/dateUtils";
 
 const TicketDetailModal = ({
   show,
