@@ -9,6 +9,7 @@ const jwt = require('jsonwebtoken');
 
 const secret = require('../config/token.config')
 
+//Function used for user registration POST call
 module.exports.signUp = (req, res, next) => {
     try {
         const user = new User({
@@ -47,6 +48,7 @@ module.exports.signUp = (req, res, next) => {
     } (req, res, next);
 };
 
+//Function used for user login POST call
 module.exports.login = (req, res, next) => {
     passport.authenticate('local', function (err, user, info) {
         if (err) {
@@ -82,6 +84,7 @@ module.exports.login = (req, res, next) => {
     })(req, res, next);
 };
 
+//Function used for displaying user details on profile page GET call
 module.exports.userProfile = (req, res, next) => {
     try {
         User.findById({ _id: req.params.id }, function (err, user) {
@@ -154,6 +157,7 @@ module.exports.updateUserPassword = async (req, res, next) => {
     } (req, res, next);
 };
 
+//Function used for updating user details PUT call
 module.exports.updateUserProfile = async (req, res, next) => {
     try {
         await User.findByIdAndUpdate({ _id: req.params.id },
@@ -209,6 +213,7 @@ module.exports.updateUserProfile = async (req, res, next) => {
     } (req, res, next);
 };
 
+//Function used for deletion of the user DELETE call
 module.exports.deleteUserProfile = async (req, res, next) => {
 
     try {
@@ -239,7 +244,7 @@ module.exports.deleteUserProfile = async (req, res, next) => {
 };
 
 
-
+//Function used for password reset PUT call
 module.exports.resetPassword = async (req, res, next) => {
     try {
         const salt = await bcrypt.genSalt(10)
@@ -282,6 +287,7 @@ module.exports.resetPassword = async (req, res, next) => {
     } (req, res, next);
 };
 
+//Function used for checking the user's email POST call for the purpose of updating password.
 module.exports.emailCheck = async (req, res, next) => {
 
     try {

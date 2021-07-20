@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     mainContainer: {
-        padding: "4%",
+        padding: "40px",
         display: "flex",
         justifyContent: "center",
         height: "80%",
@@ -97,10 +97,16 @@ function ForgotPasswordEnterCode() {
     useEffect(() => {
         const enterCode = () => {
             if (location.state) {
+                if (location.state.Email === "") {
+                    history.push('/forgotPassword', {})
+                }
                 setActualOTP(location.state.ActualOTP)
                 setEmail(location.state.Email)
                 setSnackBar(location.state.passwordEntry)
                 history.replace('/forgotPasswordEnterCode', {})
+            }
+            else {
+                history.push('/forgotPassword', {})
             }
         }
         enterCode()
@@ -117,8 +123,6 @@ function ForgotPasswordEnterCode() {
     const handleClickOnCheckOTP = (e) => {
         e.preventDefault()
         if (actualOtp === parseInt(enteredOtp)) {
-            console.log("ENter")
-            console.log(email)
             history.push("/resetPassword", { 'Email': email })
         }
         else {
@@ -197,4 +201,4 @@ function ForgotPasswordEnterCode() {
     )
 }
 
-export default ForgotPasswordEnterCode
+export default ForgotPasswordEnterCode;

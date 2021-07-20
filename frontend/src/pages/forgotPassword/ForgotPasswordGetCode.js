@@ -33,34 +33,36 @@ const useStyles = makeStyles((theme) => ({
     },
 
     mainContainer: {
-        padding: "4%",
+        padding: "40px",
         display: "flex",
         justifyContent: "center",
-        height: "80%",
+        height: "100%",
         alignItems: "center",
         position: "relative",
         flexDirection: "column"
     },
     personPin: {
-        height: '40%', 
-        width: '40%', 
-        marginLeft: '30%' 
+        height: '40%',
+        width: '40%',
+        marginLeft: '30%'
     },
     typoText: {
-         textAlign: 'center', 
-         marginBottom: '7%' 
+        textAlign: 'center',
+        marginBottom: '7%'
     },
-    typo:{
-        fontSize: "15px", 
-        textAlign: 'center', 
-        marginBottom: '7%' 
+    typo: {
+        fontSize: "15px",
+        textAlign: 'center',
+        marginBottom: '7%'
     },
-    getCode:{
-        textTransform: 'none', 
-        float: 'center', 
-        padding: "2%", 
-        width: '100px', 
-        marginLeft: '30%'                            
+    getCode: {
+        textTransform: 'none',
+        float: 'center',
+        padding: "2%",
+        width: '100px',
+        marginLeft: '35%',
+        alignItems: "center",
+        justifyContent: "center"
     },
     card: {
         margin: '3%',
@@ -94,6 +96,8 @@ function ForgotPasswordGetCode(props) {
 
     const handleClickOnGetCode = (e) => {
         e.preventDefault();
+
+        //POST API call to check if the email entered is registered one or not.
         emailCheck({
             email: email
         }, {
@@ -109,7 +113,7 @@ function ForgotPasswordGetCode(props) {
                         to_email: response.data.email,
                         reply_to: "otpdalffins@gmail.com",
                     }, emailJSDetails.userId).then((result) => {
-                        history.push("/forgotPasswordEnterCode", {'ActualOTP': randomNumber, passwordEntry: true, 'Email':  response.data.email})
+                        history.push("/forgotPasswordEnterCode", { 'ActualOTP': randomNumber, passwordEntry: true, 'Email': response.data.email })
                     },
                         (error) => {
                             alert("An error occurred, Please try again", error.text);
@@ -138,12 +142,12 @@ function ForgotPasswordGetCode(props) {
                                 Forgot Password?
                             </Typography>
                             <Typography variant="h6" className={classes.typo}>
-                                Enter the email ID associated with Dalffins account and we will send an email notification to reste your password.
+                                Enter the email ID associated with Dalffins account and we will send an email notification to reset your password.
                             </Typography>
                         </Grid>
 
-                        <Grid container spacing={6}>
-                            <Grid item xs={12} sm={12}>
+                        <Grid container spacing={3}>
+                            <Grid item xs={12} md={12}>
                                 <TextField
                                     variant="outlined"
                                     name="email"
@@ -169,19 +173,19 @@ function ForgotPasswordGetCode(props) {
                                     color="primary"
                                     variant="contained"
                                     className={classes.getCode}
-                                  >
+                                >
                                     Get Code
                                 </Button>
                                 <Snackbar open={error.errorSnackbar} autoHideDuration={6000} onClose={handleErrorSnackBar}>
                                     <MuiAlert elevation={6} variant="filled" onClose={handleErrorSnackBar} severity="error">
-                                        Email ID not registered! You can register <Link to="/signUp" style={{color:"white"}}> here </Link>
+                                        Email ID not registered! You can register <Link to="/signUp" style={{ color: "white" }}> here </Link>
                                     </MuiAlert>
                                 </Snackbar>
                             </Grid>
                         </Grid>
                     </form>
 
-                    <Card className={classes.card} md={2}>
+                    <Card className={classes.card} md={6}>
                         <CardMedia
                             image="images/tiffinsImage.jpg"
                             title="Tiffins image"

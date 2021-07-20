@@ -1,4 +1,5 @@
 //Author: Divyashree Bangalore Subbaraya (B00875916)
+//Email JS configuration details for sending OTP to the registered user to reset their password.
 const emailJSDetails = {
     "userId": 'user_7V83peFnY0nXGgVB7XOYZ',                //userID
     "templateID": 'template_bhvld8g',                 //templateID

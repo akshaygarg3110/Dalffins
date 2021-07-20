@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     mainContainer: {
-        padding: '2%',
+        padding: "40px",
         display: 'flex',
         justifyContent: 'center',
         height: '80%',
@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
         width: '200px',
         margin: '2%'
     }
-    
+
 }));
 
 function SignUp(props) {
@@ -137,6 +137,7 @@ function SignUp(props) {
             return
         }
 
+        //POST API call to register a new user to Dalffins. 
         saveUser({
             email: detail.email,
             password: detail.password,
@@ -158,6 +159,7 @@ function SignUp(props) {
                 }
             }).catch(function (error) {
                 console.log(error)
+                //Since email ID is a primary key, if duplicate email ID found, error is thrown.
                 setErrorSnackMessage(error.response.data.message)
                 setError(pre => ({ ...pre, errorSnackbar: true }))
             })
@@ -450,7 +452,7 @@ function SignUp(props) {
                                 </Snackbar>
                                 <Snackbar open={error.errorSnackbar} autoHideDuration={6000} onClose={handleErrorSnackBar}>
                                     <MuiAlert elevation={6} variant="filled" onClose={handleErrorSnackBar} severity="error">
-                                    {errorSnackMessage}
+                                        {errorSnackMessage}
                                     </MuiAlert>
                                 </Snackbar>
                             </Grid>
