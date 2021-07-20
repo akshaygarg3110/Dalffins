@@ -1,4 +1,6 @@
 //Author: Jay Patel (B00881906)
+const { sendTicketUpdateEmail } = require("../utils/emailClient");
+
 function helpController(HelpTicket) {
   function getTickets(req, res) {
     if (!req.query.email) {
@@ -40,6 +42,13 @@ function helpController(HelpTicket) {
     }
 
     ticket.save();
+    sendTicketUpdateEmail(
+      req.body.email,
+      req.body.messages[0].name,
+      `New ticket created - ${req.body.reason}`,
+      "You have created new support ticket created with the following message:",
+      req.body.messages[0].text
+    );
     res.status(201);
     return res.json(ticket);
   }
@@ -54,6 +63,19 @@ function helpController(HelpTicket) {
       if (err) {
         return res.send(err);
       }
+      sendTicketUpdateEmail(
+        req.body.messages[0].author,
+        req.body.messages[0].name,
+        `Update on your ticket - ${req.body.reason}`,
+        `There is a new comment on your ticket by 
+          ${
+            req.body.messages[req.body.messages.length - 1].name ===
+            req.body.messages[0].name
+              ? "you"
+              : req.body.messages[req.body.messages.length - 1].name
+          }`,
+        req.body.messages[req.body.messages.length - 1].text
+      );
       return res.json(ticket);
     });
   }
