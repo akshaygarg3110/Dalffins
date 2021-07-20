@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     mainContainer: {
-        padding: '4%',
+        padding: "40px",
         paddingBottom: '12%',
         display: 'flex',
         justifyContent: 'center',
@@ -135,6 +135,7 @@ function Login(props) {
             }
         }
 
+        //POST API call to validate user's login credentials.
         validateLogin({
             email: details.email,
             password: details.password,
@@ -247,7 +248,7 @@ function Login(props) {
 
                             <Typography variant="h6" className={classes.registerText}>
                                 <Grid item xs={12}>
-                                    New to Dalffins?<Link to="/"> Register here</Link>
+                                    New to Dalffins?<Link to="/signUp"> Register here</Link>
                                 </Grid>
                             </Typography>
 

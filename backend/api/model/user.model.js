@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 
 const bcrypt = require("bcryptjs");
 
+//User model
 const UserSchema = mongoose.Schema({
     firstName: {
         type: String,
@@ -29,6 +30,7 @@ const UserSchema = mongoose.Schema({
     }
 });
 
+//To hash the user's password
 UserSchema.pre("save", async function (next) {
     try {
         const salt = await bcrypt.genSalt(SALT_HASH_ROUNDS);
@@ -39,6 +41,7 @@ UserSchema.pre("save", async function (next) {
     }
 });
 
+//To verify the user's password on login
 UserSchema.methods.verifyPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
 };

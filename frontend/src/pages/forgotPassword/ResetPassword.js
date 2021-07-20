@@ -19,33 +19,31 @@ import { resetPassword } from "../../utils/Api";
 const useStyles = makeStyles((theme) => ({
 
     inside: {
-        paddingRight: "10px",
+        paddingRight: "15px",
         paddingLeft: "17px",
-        paddingBottom: '10px',
-        paddingTop: '5px',
-        width: "50%",
         display: "flex",
         flexDirection: "row",
         marginTop: "0",
         marginRight: "auto",
         marginBottom: "0",
-        marginLeft: "auto"
+        marginLeft: "auto",
+        width: "100%"
     },
 
     mainContainer: {
-        padding: "4%",
+        padding: "45px",
         display: "flex",
         justifyContent: "center",
         height: "60%",
         alignItems: "center",
-        position: "relative",
-        flexDirection: "column"
+        flexDirection: "column",
+        marginBottom: '5%'
     },
 
     personPin: {
-        height: '40%',
-        width: '40%',
-        marginLeft: '30%'
+        height: '60%',
+        width: '60%',
+        marginLeft: '20%'
     },
 
     typoText: {
@@ -55,7 +53,8 @@ const useStyles = makeStyles((theme) => ({
 
     button: {
         textTransform: 'none',
-        marginLeft: '25%'
+        marginLeft: '27%',
+        marginBottom: '17%'
     },
 
     card: {
@@ -65,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
 
     cardMedia: {
         height: '449px',
-        width: '590px'
+        width: '550px'
     },
 
     section: {
@@ -93,8 +92,14 @@ function ResetPassword(props) {
     useEffect(() => {
         const reset = () => {
             if (location.state) {
+                if (location.state.Email === "") {
+                    history.push('/forgotPassword', {})
+                }
                 setEmail(location.state.Email);
                 history.replace('/resetPassword', {})
+            }
+            else {
+                history.push('/forgotPassword', {})
             }
         }
         reset();
@@ -112,6 +117,8 @@ function ResetPassword(props) {
                 return
             }
         }
+
+        //PUT API call to update the user's password
         resetPassword({
             email: email,
             password: password
@@ -162,12 +169,18 @@ function ResetPassword(props) {
     return (
         <section className={classes.section}>
 
-            <Container component="main" maxWidth="lg" className={classes.mainContainer}>
+            <Container component="main" maxWidth="sm" className={classes.mainContainer}>
                 <Paper elevation={6} className={classes.inside}>
-
+                    <Card className={classes.card}>
+                        <CardMedia
+                            image="images/tiffinsImage.jpg"
+                            title="Tiffins image"
+                            className={classes.cardMedia}
+                        />
+                    </Card>
                     <form onSubmit={handleClickOnSubmit}>
 
-                        <Grid item xs={12} sm={12}>
+                        <Grid item xs={12} md={12}>
                             <PersonPinIcon color="primary" className={classes.personPin} />
                             <Typography variant="h6" className={classes.typoText}>
                                 Reset Password
@@ -176,7 +189,7 @@ function ResetPassword(props) {
 
                         <Grid container spacing={6}>
 
-                            <Grid item xs={12}>
+                            <Grid item xs={12} md={12}>
                                 <TextField
                                     name="password"
                                     variant="outlined"
@@ -204,7 +217,7 @@ function ResetPassword(props) {
                                 />
                             </Grid>
 
-                            <Grid item xs={12}>
+                            <Grid item xs={12} md={12}>
                                 <TextField
                                     variant="outlined"
                                     name="confirmPassword"
@@ -231,7 +244,7 @@ function ResetPassword(props) {
                                 />
                             </Grid>
 
-                            <Grid item xs={12}>
+                            <Grid item xs={12} md={12}>
                                 <Button type="submit"
                                     color="primary"
                                     variant="contained"
@@ -242,13 +255,6 @@ function ResetPassword(props) {
                             </Grid>
                         </Grid>
                     </form>
-                    <Card className={classes.card} md={2}>
-                        <CardMedia
-                            image="images/tiffinsImage.jpg"
-                            title="Tiffins image"
-                            className={classes.cardMedia}
-                        />
-                    </Card>
                 </Paper>
             </Container>
         </section>

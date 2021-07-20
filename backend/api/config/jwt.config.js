@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const tokenSecret = require('../config/token.config');
 
+// User authorization with the help of Json Web Tokens
 module.exports.jwtAuthenticate = (request, response, next) => {
     const authorizationHeader = request.headers['authorization']
     var accessToken = authorizationHeader && authorizationHeader.split(' ')[1]

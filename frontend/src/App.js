@@ -39,7 +39,6 @@ function App() {
     console.log(orderedItemsSize);
   };
 
-  console.log(id);
   return (
     <>
       {console.log("orderedItems " + orderedItems)}

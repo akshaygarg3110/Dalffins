@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 
 const User = mongoose.model("User");
 
+// Passport's local strategy used for user authentication with the help of user's email ID.
 passport.use(
     new localStrategy({ usernameField: "email" }, (username, password, done) => {
         User.findOne({ email: username }, function (err, user) {

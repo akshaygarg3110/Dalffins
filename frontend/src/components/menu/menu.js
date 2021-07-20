@@ -28,7 +28,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function DalffinsMenu(props) {
+
   const classes = useStyles();
+
   const [profileMenu, setProfileMenu] = React.useState(null);
 
   const history = useHistory();

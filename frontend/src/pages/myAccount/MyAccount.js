@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     mainContainer: {
-        padding: "4%",
+        padding: "40px",
         display: "flex",
         justifyContent: "center",
         height: "80%",
@@ -155,6 +155,7 @@ function MyAccount(props) {
         }
         async function userData() {
 
+            //GET API call to display user's details on My Account page.
             await fetchUserProfile((props.userId),
                 {
                     headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }

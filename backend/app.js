@@ -13,7 +13,7 @@ const passport = require("passport");
 
 const dbConfig = require("../backend/api/config/mongodb.config");
 
-const routeUser = require("../backend/api/routes/user.route");
+const userRoute = require("../backend/api/routes/user.route");
 
 const helpRoute = require("../backend/api/routes/help.route");
 
@@ -22,7 +22,6 @@ const dishRoute = require("../backend/api/routes/dish.route");
 const foodSelectionRoute = require("../backend/api/routes/food.selection.route");
 
 const passportConfig = require("../backend/api/config/passport.config");
-const { foodSelection } = require("./api/controller/food.selection.controller");
 
 app.use(cors());
 
@@ -61,12 +60,12 @@ mongoose
   });
 
 //Route user
-app.use("/user", routeUser);
+app.use("/user", userRoute);
 
 //Route help
 app.use("/help", helpRoute);
 
-//Route help
+//Route foodSelection
 app.use("/foodSelection", foodSelectionRoute);
 
 //Dish Items

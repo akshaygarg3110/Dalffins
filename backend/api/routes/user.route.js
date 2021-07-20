@@ -7,6 +7,7 @@ const userController = require('../controller/user.controller')
 
 const jwtAuth = require('../config/jwt.config')
 
+//Routes for the feature user profile management
 router.post('/signUp', userController.signUp);
 
 router.post('/login', userController.login);
