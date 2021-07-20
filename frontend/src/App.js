@@ -106,7 +106,9 @@ function App() {
           <Help userEmail={email} firstName={firstName} />
         </Route>
 
-        <Route exact path="/admin/help" component={AdminSupport} />
+        <Route exact path="/admin/help">
+          <AdminSupport userEmail={email} firstName={firstName} />
+        </Route>
 
         <Route exact path="/admin/login">
           <AdminLogin setFirstName={setFirstName} setEmail={setEmail} />

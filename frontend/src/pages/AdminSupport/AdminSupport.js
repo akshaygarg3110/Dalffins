@@ -49,6 +49,8 @@ class AdminSupport extends Component {
           isLoading={isLoading}
           tickets={tickets}
           fetchTickets={this.fetchTickets}
+          userEmail={this.props.userEmail}
+          firstName={this.props.firstName}
         />
       </div>
     );
