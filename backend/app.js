@@ -15,11 +15,7 @@ const dbConfig = require("../backend/api/config/mongodb.config");
 
 const userRoute = require("../backend/api/routes/user.route");
 
-const helpRoute = require("../backend/api/routes/help.route");
-
 const dishRoute = require("../backend/api/routes/dish.route");
-
-const foodSelectionRoute = require("../backend/api/routes/food.selection.route");
 
 const passportConfig = require("../backend/api/config/passport.config");
 
@@ -61,12 +57,6 @@ mongoose
 
 //Route user
 app.use("/user", userRoute);
-
-//Route help
-app.use("/help", helpRoute);
-
-//Route foodSelection
-app.use("/foodSelection", foodSelectionRoute);
 
 //Dish Items
 app.use("/dish", dishRoute);
