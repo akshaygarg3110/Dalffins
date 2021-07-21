@@ -12,16 +12,19 @@ import axios from "axios";
 import noimage from "../../images/noimage.png";
 
 const Food_Selection = (props) => {
+  //Defining the state of the component.
   const [kitchenName, setKitchenName] = useState("");
   const [kitchenImages, setKitchenImages] = useState([]);
   const [foodItems, setFoodItems] = useState([]);
 
   const param = useParams();
 
+  //api_url stores the url to fetch the collection data from MongoDB
   const api_url = "https://dalffins.herokuapp.com/foodSelection/" + param.id;
 
   useEffect(() => {
     async function fetchFooditems() {
+      // Making API call and storing the data in the state variables kitchenName, kitchenImages and foodItems
       await axios
         .get(api_url)
         .then((res) => {
@@ -44,60 +47,11 @@ const Food_Selection = (props) => {
   console.log("kitchenName    " + kitchenName);
   console.log("foodItems    " + foodItems);
 
-  // const [kitchenName, setKitchenName] = useState("Indian Kitchen");
-  // const [kitchenImages, setKitchenImages] = useState([
-  //   "images/Kitchen1.jpg",
-  //   "images/Kitchen2.jpg",
-  // ]);
-  // const [foodItems, setFoodItems] = useState([
-  //   {
-  //     id: 1,
-  //     image: "images/Dal-Makhani.jpg",
-  //     item: "Dal Makhani Meal",
-  //     description: "dal makhani, 4 roti, salad, 1 glass of lassi(700-900 Cal.)",
-  //     price: "$5.90 + tax",
-  //   },
-  //   {
-  //     id: 2,
-  //     image: "images/Rajma-Chawal-3.jpg",
-  //     item: "Rajma Chawal Meal",
-  //     description:
-  //       "red kidney bean, 2 rice portions, salad, 1 glass of lassi(800-1000 Cal.)",
-  //     price: "$6.20 + tax",
-  //   },
-  //   {
-  //     id: 3,
-  //     image: "images/paneer-butter-masala_-2.jpg",
-  //     item: "Paneer Butter Masala Meal",
-  //     description:
-  //       "paneer butter masala, 4 butter naan, salad, 1 glass of lassi(1300-1500 Cal.)",
-  //     price: "$8.10 + tax",
-  //   },
-  // ]);
-
-  // const [foodItems, setFoodItems] = useState([
-  //   {
-  //     id: 6,
-  //     title: "Dal Makhani Meal",
-  //     rating: 3,
-  //     img: "images/Dal-Makhani.jpg",
-  //     cost: "$6",
-  //     mealType: "Snack",
-  //     delivery: "Free",
-  //   },
-  //   {
-  //     id: 6,
-  //     title: "Rajma Chawal Meal",
-  //     rating: 3,
-  //     img: "images/Rajma-Chawal-3.jpg",
-  //     cost: "$6",
-  //     mealType: "Snack",
-  //     delivery: "Free",
-  //   },
-  // ]);
-
+  // orderedItemsMap stores the details of the ordered items with the quantity
   const [orderedItemsMap, setOrderedItemsMap] = useState(new Map());
 
+  //orderItemHandler adds the orderedItem to map if the quantity is greater than zero,
+  //otherwise delete it from orderedItemsMap if the quantity is reduced to zero.
   const orderItemHandler = (orderedItem) => {
     let orderItemId = orderedItem.id;
     let quantity = orderedItem.quantity;
@@ -121,6 +75,8 @@ const Food_Selection = (props) => {
       <br />
       <h1>{kitchenName}</h1>
       <br />
+
+      {/* Using crousel to show the kitchen images. */}
       <Carousel style={{ height: "50vh" }}>
         {kitchenImages.length > 0 ? (
           kitchenImages.map((image) => (
@@ -147,6 +103,7 @@ const Food_Selection = (props) => {
       <h4> Menu Items </h4>
       <br />
 
+      {/* Iterating the food items array and calling the food item component to render it. */}
       <Container>
         <Row>
           {foodItems.length > 0 ? (

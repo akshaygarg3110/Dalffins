@@ -7,14 +7,17 @@ import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 
 const Food_Item = (props) => {
+  // Defining the quantity state
   const [quantity, setQuantity] = useState(0);
 
+  // Adding the quantity by 1
   const addItem = () => {
     setQuantity(quantity + 1);
     props.foodItem.quantity = quantity + 1;
     props.onOrderItemClick(props.foodItem);
   };
 
+  // Removing the quantity by 1
   const removeItem = () => {
     if (quantity > 0) {
       setQuantity(quantity - 1);
@@ -25,11 +28,11 @@ const Food_Item = (props) => {
     }
   };
 
+  // Returns the card which contains the food item details
   return (
     <Card style={{ height: "350px", marginBottom: "50px" }}>
       <Card.Body>
         <Card.Img src={props.foodItem.img} style={{ height: "150px" }} />
-        {/* <Image src="images/Dal-Makhani.jpg" rounded fluid /> */}
         <Card.Title style={{ marginTop: "4%", fontSize: "16px" }}>
           {props.foodItem.title}
         </Card.Title>
@@ -39,9 +42,6 @@ const Food_Item = (props) => {
         <Card.Subtitle className="mb-2 text-muted" style={{ fontSize: "12px" }}>
           Rating: {props.foodItem.rating}
         </Card.Subtitle>
-        {/* <Card.Text>
-        Dal Makhani, 4 roti, salad, 1 glass of lassi(700-900 Cal.)
-      </Card.Text> */}
         <Card.Text style={{ fontSize: "16px", fontWeight: "bold" }}>
           {props.foodItem.cost}
         </Card.Text>

@@ -4,6 +4,7 @@ const SALT_HASH_ROUNDS = 10;
 
 const mongoose = require("mongoose");
 
+// Defining the model for the fooditems collection.
 const FoodItemsSchema = mongoose.Schema({
   kitchenName: {
     type: String,
