@@ -63,7 +63,7 @@ function App() {
         </Route>
 
         <Route exact path="/summaryAndPayment">
-          <SummaryAndPayment orderItems={orderedItems} />
+          <SummaryAndPayment orderedItems={orderedItems} email={email} />
         </Route>
 
         <Route exact path="/signUp">

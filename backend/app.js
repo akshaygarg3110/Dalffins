@@ -71,4 +71,7 @@ app.use("/foodSelection", foodSelectionRoute);
 //Dish Items
 app.use("/dish", dishRoute);
 
+//Route order summary and payment
+app.use("/summaryAndPayment", payRoute);
+
 module.exports = app;

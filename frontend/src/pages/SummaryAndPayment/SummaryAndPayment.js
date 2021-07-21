@@ -1,98 +1,173 @@
+//Author: Vamsi Krishna Utla (B00870632)
+
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
+import { useHistory } from "react-router-dom";
 import { Card, FormControl, Button, InputGroup, ListGroup, Col, Row, Form } from "react-bootstrap";
 
-function SummaryAndPayment() {
+function SummaryAndPayment(props) {
 
+    //variables and states required for page functioning
     const [interac, setInterac] = useState(false);
     const [stringEle, setStrg] = useState("      ");
+    const [specialInstructions, setInstructions] = useState("");
+    var [transactionID, setTransactionID] = useState("");
+    var totalPrice = 0;
+    var itemPrice = 0;
+    const history = useHistory();
+    var orderItems = '';
+    const foodItems = Array.from(props.orderedItems).map(([key, value]) => ({ key, value }))
+
+
+    //support functions after clicks or on changing of form elements
     const updateUpload = () => {
         setInterac(false);
     }
-    const upload = () => {
-        window.alert("E-Interac details...");
-        setInterac(true);
+
+    const back= () => {
+        history.push("/foodSelection");
     }
 
+    const upload = () => {
+        //props.orderedItems.email) - will be replaced below after integration
+        window.alert("E-Interac details: dalffinsofficial@gmail.com");
+        setInterac(true);
+
+    }
+
+    const payment = () => {
+
+        //interac API
+        const reg_urlInterac = "https://dalffins.herokuapp.com/summaryAndPayment/saveOrderInterac";
+
+        //cash API
+        const reg_urlCash = "https://dalffins.herokuapp.com/summaryAndPayment/saveOrderCash";
+        
+        //interac API call
+        async function storePaymentInterac() {
+            await axios.post(
+                reg_urlInterac,
+                { "user": props.email, "total": totalPrice, "orderItems": orderItems, "paymentOption": "E-Interac", "transactionID": transactionID, "instructions": specialInstructions }).then((res) => {
+                    window.alert("Order placed successfull");
+                    history.push("/");
+                })
+                .catch((error) => {
+                    if (error.response) {
+                        console.log("Technical Issue: Contact System Administrator");
+                    }
+                });
+        }
+
+        //cash API call
+        async function storePaymentCash() {
+            await axios.post(
+                reg_urlCash,
+                { "user": props.email, "total": totalPrice, "orderItems": orderItems, "paymentOption": "Cash", "instructions": specialInstructions }).then((res) => {
+                    window.alert("Order placed successfull");
+                    history.push("/");
+                })
+                .catch((error) => {
+                    if (error.response) {
+                        console.log("Technical Issue: Contact System Administrator");
+                    }
+                });
+        }
+        if (interac)
+            storePaymentInterac();
+        else
+            storePaymentCash();
+    }
+
+    const instructions = () => {
+        setInstructions(document.getElementById("special").value);
+    }
+
+    const transaction = () => {
+        setTransactionID(document.getElementById("transactionID").value);
+    }
+
+    //page rendering section
     return (
 
         <div>
-            <div style={{ marginTop: "5%",marginLeft:"5%", maxHeight: "50%" }}>
+            <div style={{ marginTop: "5%", marginLeft: "5%", maxHeight: "50%" }}>
                 <Row style={{ marginLeft: "auto", width: "90%", marginRight: "5%" }}>
                     <Col xs={6} class="col-md-6 border-right">
-                        <img src="images/Chef2.jpg" width="93%" height="72%"/>
+                        <img src="images/Chef2.jpg" width="93%" height="90%" />
                     </Col>
-                    <Col xs={6} style={{ paddingLeft: "3%" }}>
+                    <Col xs={6} style={{ paddingLeft: "3%", overflow: "scroll", maxHeight: "70%" }}>
                         <Row style={{ marginRight: "20%" }}>
                             <h1>Order Summary</h1>
                         </Row>
-                        <Row style={{ marginRight: "20%", marginTop: "2%", maxHeight: "22%", minHHeight:"80%" }}>
+                        <Row style={{ marginTop: "2%" }}>
                             <div>
-                            <ListGroup style={{ overflow: "scroll", maxHeight: "40%", width:"140%"}}>
-                                    <ListGroup.Item><b>Veg. Loaded Pizza x 3 </b> ... ($4 x 3 = $12)</ListGroup.Item>
-                                    <ListGroup.Item><b>Veg. Loaded Pizza x 3 </b> ... ($4 x 3 = $12)</ListGroup.Item>
-                                    <ListGroup.Item><b>Veg. Loaded Pizza x 3 </b> ... ($4 x 3 = $12)</ListGroup.Item>
-                                    <ListGroup.Item><b>Veg. Loaded Pizza x 3 </b> ... ($4 x 3 = $12)</ListGroup.Item>
-                                    <ListGroup.Item><b>Veg. Loaded Pizza x 3 </b> ... ($4 x 3 = $12)</ListGroup.Item>
-                                    <ListGroup.Item><b>Veg. Loaded Pizza x 3 </b> ... ($4 x 3 = $12)</ListGroup.Item>
-                                    <ListGroup.Item><b>Veg. Loaded Pizza x 3 </b> ... ($4 x 3 = $12)</ListGroup.Item>
-                                    <ListGroup.Item><b>Veg. Loaded Pizza x 3 </b> ... ($4 x 3 = $12)</ListGroup.Item>
-                                    <ListGroup.Item><b>Veg. Loaded Pizza x 3 </b> ... ($4 x 3 = $12)</ListGroup.Item>
-                                    <ListGroup.Item><b>Veg. Loaded Pizza x 3 </b> ... ($4 x 3 = $12)</ListGroup.Item>
-                                    <ListGroup.Item><b>Veg. Loaded Pizza x 3 </b> ... ($4 x 3 = $12)</ListGroup.Item>
+                                <ListGroup style={{ overflow: "scroll", maxHeight: "120%", width: "460px" }}>
+                                    {props.orderedItems.size > 0 ? foodItems.map((foodItem) => (itemPrice = (foodItem.value.price).substring(1) * foodItem.value.quantity,
+                                        totalPrice = totalPrice + itemPrice, orderItems = orderItems.concat(foodItem.value.item + " x " + foodItem.value.quantity),
+                                        <ListGroup.Item style={{ maxWidth: "200%" }}><b>{foodItem.value.item} x {foodItem.value.quantity} </b> ... ({foodItem.value.price} x {foodItem.value.quantity} = ${itemPrice})</ListGroup.Item>
 
+                                    )) : <h2 style={{ color: "red" }}>No items selected</h2>}
                                 </ListGroup>
+
                             </div>
                         </Row>
-                        <Row style={{ marginRight: "20%", marginTop:"3%" }}>
+                        <Row style={{ marginRight: "20%", marginTop: "3%" }}>
                             <InputGroup>
-                                <FormControl as="textarea" aria-label="With textarea" placeholder="Add special instructions..." style={{ backgroundColor: "lightgrey", fontStyle: "italic", fontSize: "20px", margin: "auto" }} />
+                                <FormControl id="special" as="textarea" aria-label="With textarea" placeholder="Add special instructions..." style={{ backgroundColor: "lightgrey", fontStyle: "italic", fontSize: "20px", margin: "auto" }} onChange={instructions} />
                             </InputGroup>
                         </Row>
                         <Row>
-                            <Card body style={{ color:"white",fontFamily:"cursive", fontSize:"130%" ,marginLeft: "19%", marginTop: "3%", backgroundColor: "#3f51b5", color: "white", width: "40%", textAlign: "center" }}><b>Total = 127.56$</b></Card>
+                            <Card body style={{ color: "white", fontFamily: "cursive", fontSize: "130%", marginLeft: "19%", marginTop: "3%", backgroundColor: "#3f51b5", color: "white", width: "40%", textAlign: "center" }}><b>Total = ${totalPrice.toFixed(2)}</b></Card>
                         </Row>
                         <Row style={{ marginRight: "25%", marginTop: "5%" }}>
                             <h1>Payment Option</h1>
                         </Row>
                         <Row>
                             <div>
-                            <Form.Check onClick={updateUpload} style={{ marginTop: "2%" }}
-                                type="radio"
-                                label="Pay by Cash"
-                                name="formHorizontalRadios"
-                                id="formHorizontalRadios1"
-                            />
-                           <Form.Check onClick={upload} style={{ marginTop: "2%" }}
-                                type="radio"
-                                label="Pay by E-Interac"
-                                name="formHorizontalRadios"
-                                id="formHorizontalRadios1"
-                            />
+                                <Form.Check onClick={updateUpload} style={{ marginTop: "2%" }}
+                                    type="radio"
+                                    label="Pay by Cash"
+                                    name="formHorizontalRadios"
+                                    id="formHorizontalRadios1"
+                                />
+                                <Form.Check onClick={upload} style={{ marginTop: "2%" }}
+                                    type="radio"
+                                    label="Pay by E-Interac"
+                                    name="formHorizontalRadios"
+                                    id="formHorizontalRadios1"
+                                />
                             </div>
                         </Row>
                         <Row>
                             <div>
                                 {interac ? (
-                                    <Form>
-                                        <Form.Group>
-                                            <Form.File id="exampleFormControlFile1" label="E-Interac receipt" style={{ marginTop: "2%", width: "90%" }} />
+                                    <Form style={{ maxHeight: "120%", width: "460px" }}>
+                                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                                            <Form.Label>Transacrion ID</Form.Label>
+                                            <Form.Control id="transactionID" type="transactionID" placeholder="Enter transaction ID..." onChange={transaction} />
+                                            <Form.Text className="text-muted">
+                                                <b>Please enter the transaction ID of the E-Interac transfer.</b>
+                                            </Form.Text>
                                         </Form.Group>
                                     </Form>
-                                ) : 
-                                   <div style={{marginBottom:"500%"}}>
-                                       {stringEle}
-                                       </div>
+                                ) :
+                                    <div style={{ marginBottom: "500%" }}>
+                                        {stringEle}
+                                    </div>
                                 }
                             </div>
                         </Row>
                         <Row>
                             <Col>
-                                <Button variant="danger" style={{ marginTop: "5%", width: "50%", padding: "5% 5%" }}>Go Back</Button>
+                                <Button variant="danger" onClick={back} style={{ marginTop: "5%", width: "50%", padding: "5% 5%" }}>Go Back</Button>
                             </Col>
                             <Col>
-                                <Button variant="success" style={{ marginTop: "5%", width: "50%", padding: "5% 5%" }}>Pay</Button></Col>
+                                <Button variant="success" onClick={payment} style={{ marginTop: "5%", width: "50%", padding: "5% 5%" }}>Pay</Button></Col>
                         </Row>
+                        <br></br>
+                        <br></br>
+                        <br></br>
                     </Col>
                 </Row>
             </div>
