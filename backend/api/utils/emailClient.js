@@ -1,12 +1,13 @@
 //Author: Jay Patel (B00881906)
 const nodemailer = require("nodemailer");
+const config = require("../config/email.config");
 
 const sendTicketUpdateEmail = (email, name, subject, messageTitle, message) => {
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "team.dalffins@gmail.com",
-      pass: "Jp@123456",
+      user: config.email,
+      pass: config.pass,
     },
   });
 
