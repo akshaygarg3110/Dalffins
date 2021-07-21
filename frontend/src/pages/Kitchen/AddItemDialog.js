@@ -20,6 +20,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/* Renders the addItem form for adding the dish details */
+
 function AddItemDialog({ addItem, nextId, open, handleClose, UserID , Email }) {
   const classes = useStyles();
   const [mealType, setMealType] = React.useState("");
@@ -59,7 +61,7 @@ function AddItemDialog({ addItem, nextId, open, handleClose, UserID , Email }) {
       delivery: form.delivery.value,
     };
     /* API call adding the dish into the backend system */
-    console.log(formData);
+  
     Axios.post("https://dalffins.herokuapp.com/dish/adddish", formData).then(
       (response) => {
         addItem(response.data);

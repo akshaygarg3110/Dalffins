@@ -33,6 +33,7 @@ const responsive = {
   },
 };
 
+/* Renders all the dish mapped to the logged in user's unique UserID */
 function DishList(props) {
   const [foodItems, setFoodItems] = React.useState([]);
   const [open, setOpen] = React.useState(false);
@@ -90,7 +91,8 @@ function DishList(props) {
   const handleSnackBarClose = () => {
     setShowSnackBar(false);
   };
-
+  
+  /* Iterates over foodItem array for fetching all the dish details . */
   return (
     <>
       <div style={{ textAlign: "center" }}>

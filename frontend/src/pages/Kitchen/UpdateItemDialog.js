@@ -20,6 +20,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+ /* Renders the dailog box for updating the item */
+
 function UpdateItemDialog({ foodItem, open, handleClose , UserID }) {
   const classes = useStyles();
   const [mealType, setMealType] = React.useState(foodItem.mealtype);

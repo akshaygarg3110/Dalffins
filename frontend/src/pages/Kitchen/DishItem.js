@@ -26,6 +26,7 @@ const FoodItem = styled(Card)`
   min-height: 300px;
 `;
 
+/* Renders the individual dish component of the Kitchen Feature */
 function DishItem({ removeItemFromList, foodItem, updateItem ,UserID}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(false);

@@ -28,6 +28,7 @@ const KitchenImage = styled.img`
   object-fit: cover;
 `;
 
+/* Main function which loads the DishList component for rendering the list of the dish */
 function MyKitchen(props) {
   const [kitchenName, setKitchenName] = useState("Indian Kitchen");
   const [kitchenImages, setKitchenImages] = useState([
@@ -35,6 +36,7 @@ function MyKitchen(props) {
     "images/Kitchen2.jpg",
   ]);
 
+  /* Carousel for displaying the Kitchen images on the main page of feature */
   return (
     <>
        <Carousel style={{ height: "50vh" }}>
