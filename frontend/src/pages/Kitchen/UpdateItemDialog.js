@@ -49,7 +49,7 @@ function UpdateItemDialog({ foodItem, open, handleClose , UserID }) {
       UserID: UserID,
       dishID: foodItem.dishID,
       dishname: form.title.value,
-      dishRating: 0,
+      dishRating: foodItem.dishRating,
       Image: image,
       dishcost: `${form.cost.value}`,
       mealtype: mealType,
