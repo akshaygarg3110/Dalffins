@@ -1,4 +1,4 @@
-//Author: Tanuj Sobti (B00864990)
+/* Author: Tanuj Sobti (B00864990) */
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -44,12 +44,12 @@ function DishList(props) {
     setOpen(true);
   };
   
-  // Get all the dishes added by logged in user .
+  /* Get all the dishes added by logged in user . */
   React.useEffect(() => {
-    if (props.userID) {
+    if (props.Id) {
     const fetchDishList = async () => {
         const res = await axios.get(
-        `https://dalffins.herokuapp.com/dish/getUserDish?UserID=${props.userID}`
+        `https://dalffins.herokuapp.com/dish/getUserDish?UserID=${props.Id}`
       );
       console.log(res.data)
       setFoodItems(res.data);
@@ -105,7 +105,7 @@ function DishList(props) {
             key={foodItem._id}
             removeItemFromList={removeItem}
             updateItem={updateItem}
-            UserID={props.userID}
+            UserID={props.Id}
           />
         ))}
       </Carousel>
@@ -117,7 +117,8 @@ function DishList(props) {
             addItem={addItem}
             handleClose={handleClose}
             nextId={foodItems[foodItems.length - 1]._id}
-            UserID={props.userID}
+            UserID={props.Id}
+            Email={props.email}
           />
         </React.Suspense>
       ) : null}

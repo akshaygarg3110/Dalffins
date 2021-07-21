@@ -1,4 +1,4 @@
-//Author: Tanuj Sobti (B00864990)
+/* Author: Tanuj Sobti (B00864990) */
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import DishList from "./DishList";
@@ -34,9 +34,9 @@ function MyKitchen(props) {
     "images/Kitchen1.jpg",
     "images/Kitchen2.jpg",
   ]);
+
   return (
     <>
-       
        <Carousel style={{ height: "50vh" }}>
         {kitchenImages.map((image) => (
           <Carousel.Item>
@@ -48,9 +48,8 @@ function MyKitchen(props) {
           </Carousel.Item>
         ))}
       </Carousel>
-      
       <br />
-      <DishList userID={props.userId} />
+      <DishList Id={props.userId} email={props.email} />
       <br />
       <br />
     </>

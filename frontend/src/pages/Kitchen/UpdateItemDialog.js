@@ -1,4 +1,4 @@
-//Author: Tanuj Sobti (B00864990)
+/* Author: Tanuj Sobti (B00864990) */
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -56,7 +56,7 @@ function UpdateItemDialog({ foodItem, open, handleClose , UserID }) {
       dishstatus: "True",
       delivery: form.delivery.value,
     };
-    // API call for updating the details of the dish
+    /* API call for updating the details of the dish */
     console.log(formData);
     Axios.put("https://dalffins.herokuapp.com/dish/updatedish/"+ foodItem._id, formData).then(
       (response) => {

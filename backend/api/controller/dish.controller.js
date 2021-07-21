@@ -1,4 +1,4 @@
-//Author: Tanuj Sobti (B00864990)
+/* Author: Tanuj Sobti (B00864990) */
 const passport = require('passport');
 const Dish = require('../model/dish.model')
 
@@ -8,6 +8,7 @@ module.exports.addDish = async (req, res) => {
             UserID      : req.body.UserID,
             dishID      : req.body.dishID,
             dishname    : req.body.dishname,
+            vendorEmail : req.body.vendorEmail,
             dishRating  : req.body.dishRating,
             dishcost    : req.body.dishcost,
             mealtype    : req.body.mealtype,

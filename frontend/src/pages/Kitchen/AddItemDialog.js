@@ -1,4 +1,4 @@
-//Author: Tanuj Sobti (B00864990)
+/* Author: Tanuj Sobti (B00864990) */
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function AddItemDialog({ addItem, nextId, open, handleClose, UserID }) {
+function AddItemDialog({ addItem, nextId, open, handleClose, UserID , Email }) {
   const classes = useStyles();
   const [mealType, setMealType] = React.useState("");
   const [image, setImage] = React.useState("");
@@ -42,12 +42,14 @@ function AddItemDialog({ addItem, nextId, open, handleClose, UserID }) {
   };
 
   console.log(UserID)
+  console.log(Email)
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const formData = {
       UserID: UserID,
       dishID: nextId,
+      vendorEmail : Email,
       dishname: form.title.value,
       dishRating: 0,
       Image: image,
@@ -56,7 +58,7 @@ function AddItemDialog({ addItem, nextId, open, handleClose, UserID }) {
       dishstatus: "True",
       delivery: form.delivery.value,
     };
-    // API call adding the dish into the backend system
+    /* API call adding the dish into the backend system */
     console.log(formData);
     Axios.post("https://dalffins.herokuapp.com/dish/adddish", formData).then(
       (response) => {

@@ -1,4 +1,4 @@
-//Author: Tanuj Sobti (B00864990)
+/*Author: Tanuj Sobti (B00864990)*/
 
 const mongoose = require("mongoose");
 const DishSchema = new mongoose.Schema(
@@ -8,6 +8,10 @@ const DishSchema = new mongoose.Schema(
       required: true,
     },
     dishID: {
+      type: String,
+      required: true,
+    },
+    vendorEmail: {
       type: String,
       required: true,
     },
@@ -36,7 +40,8 @@ const DishSchema = new mongoose.Schema(
       default: "",
     },
     Image: {
-        type: String,
+       data: Buffer,
+       type: String,
         default: "",
       }
   },

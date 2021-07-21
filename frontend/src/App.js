@@ -57,7 +57,7 @@ function App() {
         <Route exact path="/kitchen">
           <Layout>
             <Main>
-              <MyKitchen userId={id} />
+             <MyKitchen userId={id} email={email}/>
             </Main>
           </Layout>
         </Route>

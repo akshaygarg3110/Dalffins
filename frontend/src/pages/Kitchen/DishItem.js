@@ -1,4 +1,4 @@
-//Author: Tanuj Sobti (B00864990)
+/* Author: Tanuj Sobti (B00864990) */
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import {
@@ -38,7 +38,8 @@ function DishItem({ removeItemFromList, foodItem, updateItem ,UserID}) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+ 
+  /* API call for removing the dish from database */
   const handleConfirmRemove = () => {
     Axios.delete("https://dalffins.herokuapp.com/dish/removedish/" + foodItem._id, {
       data: {
@@ -64,7 +65,7 @@ function DishItem({ removeItemFromList, foodItem, updateItem ,UserID}) {
     setAnchorEl(null);
   };
 
-  // API call for disabling the inactive dish
+  /* API call for disabling the inactive dish */
   const handleDisable = () => {
     Axios.put("https://dalffins.herokuapp.com/dish/updatedish/"+ foodItem._id, {
         UserID : foodItem.UserID,       
@@ -76,7 +77,7 @@ function DishItem({ removeItemFromList, foodItem, updateItem ,UserID}) {
     );
   };
  
-  // API call for enabling the disabled dish
+  /* API call for enabling the disabled dish */
   const handleEnable = () => {
     Axios.put("https://dalffins.herokuapp.com/dish/updatedish/"+ foodItem._id, {
       UserID : foodItem.UserID, 
