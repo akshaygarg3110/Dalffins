@@ -17,18 +17,23 @@ class Help extends Component {
 
   componentDidMount() {
     if (!this.props.userEmail) {
+      // if user not logged-in, redirect to root
       this.props.history.push("/");
     } else {
+      // fetch support tickets
       this.fetchTickets();
     }
   }
 
   fetchTickets = () => {
+    // fetch support tickets
     const data = {
       params: {
         email: this.props.userEmail,
       },
     };
+
+    // call fetch ticket api
     fetchTicketsApi(data)
       .then((res) => {
         let tickets = res.data.map((item) => {

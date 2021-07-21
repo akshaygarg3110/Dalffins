@@ -31,6 +31,7 @@ const NewSupportTicketModal = ({ show, onClose, userEmail, firstName }) => {
     return false;
   };
   const createTicket = () => {
+    // create new ticket
     const data = {
       reason,
       messages: [
@@ -43,6 +44,8 @@ const NewSupportTicketModal = ({ show, onClose, userEmail, firstName }) => {
       ],
       email: userEmail,
     };
+
+    // call save ticket api
     saveTicketApi(data)
       .then((res) => {
         hideModal();

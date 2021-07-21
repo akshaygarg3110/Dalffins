@@ -13,10 +13,13 @@ class AdminSupport extends Component {
   };
 
   componentDidMount() {
+    // fetch support tickets
     this.fetchTickets();
   }
 
   fetchTickets = () => {
+    // fetch support tickets
+    // call fetch ticket api
     fetchAllTicketsApi()
       .then((res) => {
         let tickets = res.data.map((item) => {
