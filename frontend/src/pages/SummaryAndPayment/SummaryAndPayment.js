@@ -20,6 +20,7 @@ function SummaryAndPayment(props) {
     const foodItems = Array.from(props.orderedItems).map(([key, value]) => ({ key, value }))
 
 
+    console.log(foodItems);
     //support functions after clicks or on changing of form elements
     const updateUpload = () => {
         setInterac(false);
@@ -103,9 +104,9 @@ function SummaryAndPayment(props) {
                         <Row style={{ marginTop: "2%" }}>
                             <div>
                                 <ListGroup style={{ overflow: "scroll", maxHeight: "120%", width: "460px" }}>
-                                    {props.orderedItems.size > 0 ? foodItems.map((foodItem) => (itemPrice = (foodItem.value.price).substring(1) * foodItem.value.quantity,
-                                        totalPrice = totalPrice + itemPrice, orderItems = orderItems.concat(foodItem.value.item + " x " + foodItem.value.quantity),
-                                        <ListGroup.Item style={{ maxWidth: "200%" }}><b>{foodItem.value.item} x {foodItem.value.quantity} </b> ... ({foodItem.value.price} x {foodItem.value.quantity} = ${itemPrice})</ListGroup.Item>
+                                    {props.orderedItems.size > 0 ? foodItems.map((foodItem) => (itemPrice = (foodItem.value.cost).substring(1) * foodItem.value.quantity,
+                                        totalPrice = totalPrice + itemPrice, orderItems = orderItems.concat(foodItem.value.item + " x " + foodItem.value.quantity), console.log(foodItem.value.cost),
+                                        <ListGroup.Item style={{ maxWidth: "200%" }}><b>{foodItem.value.title} x {foodItem.value.quantity} </b> ... ({foodItem.value.cost} x {foodItem.value.quantity} = ${itemPrice})</ListGroup.Item>
 
                                     )) : <h2 style={{ color: "red" }}>No items selected</h2>}
                                 </ListGroup>
