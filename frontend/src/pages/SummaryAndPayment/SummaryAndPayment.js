@@ -27,7 +27,7 @@ function SummaryAndPayment(props) {
     }
 
     const back= () => {
-        history.push("/foodSelection");
+        history.push("/foodSelectionUI/60f2196968e5469cb518b9bd");
     }
 
     const upload = () => {
@@ -105,7 +105,7 @@ function SummaryAndPayment(props) {
                             <div>
                                 <ListGroup style={{ overflow: "scroll", maxHeight: "120%", width: "460px" }}>
                                     {props.orderedItems.size > 0 ? foodItems.map((foodItem) => (itemPrice = (foodItem.value.cost).substring(1) * foodItem.value.quantity,
-                                        totalPrice = totalPrice + itemPrice, orderItems = orderItems.concat(foodItem.value.item + " x " + foodItem.value.quantity), console.log(foodItem.value.cost),
+                                        totalPrice = totalPrice + itemPrice, orderItems = orderItems.concat(foodItem.value.item + " x " + foodItem.value.quantity), console.log(itemPrice),
                                         <ListGroup.Item style={{ maxWidth: "200%" }}><b>{foodItem.value.title} x {foodItem.value.quantity} </b> ... ({foodItem.value.cost} x {foodItem.value.quantity} = ${itemPrice})</ListGroup.Item>
 
                                     )) : <h2 style={{ color: "red" }}>No items selected</h2>}
