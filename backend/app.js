@@ -23,6 +23,8 @@ const foodSelectionRoute = require("../backend/api/routes/food.selection.route")
 
 const passportConfig = require("../backend/api/config/passport.config");
 
+const payRoute = require("../backend/api/routes/payment.route")
+
 app.use(cors());
 
 app.use(express.json());
