@@ -31,6 +31,7 @@ class AdminLogin extends Component {
   };
 
   handleEmailChange = (e) => {
+    // validate email address
     const { name, value } = e.target;
     if (value.match(/^\S+@\S+\.\S{2,}$/)) {
       this.setState((pre) => ({ error: { ...pre.error, [name]: false } }));
@@ -41,12 +42,14 @@ class AdminLogin extends Component {
   };
 
   handlePasswordChange = (e) => {
+    // set password change
     e.preventDefault();
     const { name, value } = e.target;
     this.setState((pre) => ({ details: { ...pre.details, [name]: value } }));
   };
 
   handleClickOnSubmit = (e) => {
+    // handle submit on click event
     e.preventDefault();
     const { error, details } = this.state;
     for (const [, value] of Object.entries(error)) {
@@ -194,4 +197,4 @@ class AdminLogin extends Component {
   }
 }
 
-export default withRouter( AdminLogin);
+export default withRouter(AdminLogin);

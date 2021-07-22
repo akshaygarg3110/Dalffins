@@ -9,16 +9,19 @@ function routes() {
   const controller = helpController(HelpTicket);
   const middleware = helpMiddleware(HelpTicket);
 
+  // route to fetch all tickets for admin
   helpRoute.route("/admin/tickets").get(controller.getAllTickets);
 
+  // route to tickets by email and save new ticket
   helpRoute
     .route("/tickets")
     .get(controller.getTickets)
     .post(controller.saveTicket);
 
-  // Middleware for /tickets/:ticketId API
+  // middleware for /tickets/:ticketId API
   helpRoute.use("/tickets/:ticketId", middleware.helpTicketFinderMiddleware);
 
+  // route to update specific ticket by given id
   helpRoute.route("/tickets/:ticketId").put(controller.updateTicket);
 
   return helpRoute;

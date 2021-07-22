@@ -28,6 +28,7 @@ const TicketDetailModal = ({
   }, [show, ticket]);
 
   const scrollToBottom = () => {
+    // scroll to the end of the chat
     if (messageRef.current) {
       messageRef.current.scrollIntoView({
         behavior: "smooth",
@@ -56,6 +57,7 @@ const TicketDetailModal = ({
   };
 
   const saveData = () => {
+    // save ticket data
     const newTicket = {
       ...currentTicket,
       messages: [
@@ -71,6 +73,8 @@ const TicketDetailModal = ({
     setDescription("");
     setCurrentTicket(newTicket);
     setTimeout(scrollToBottom, 100);
+
+    // call update ticket api
     updateTicketApi(newTicket)
       .then((res) => {
         showToast("Data saved successfully", "success");
@@ -82,6 +86,7 @@ const TicketDetailModal = ({
   };
 
   const markAsCloseHandler = () => {
+    // mark ticket as closed
     const newTicket = {
       ...currentTicket,
       status: "Closed",
