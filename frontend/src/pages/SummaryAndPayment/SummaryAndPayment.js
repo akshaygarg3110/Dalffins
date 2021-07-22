@@ -47,6 +47,7 @@ function SummaryAndPayment(props) {
         
         //interac API call
         async function storePaymentInterac() {
+            console.log("hello")
             await axios.post(
                 reg_urlInterac,
                 { "user": props.email, "total": totalPrice, "orderItems": orderItems, "paymentOption": "E-Interac", "transactionID": transactionID, "instructions": specialInstructions }).then((res) => {

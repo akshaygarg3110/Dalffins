@@ -40,6 +40,7 @@ module.exports.saveOrderInterac = (req, res, next) => {
         }
     });
 
+    console.log("Interac")
     //save order details to mongo db
     paymentObj.save();
     res.status(201);
@@ -77,7 +78,7 @@ module.exports.saveOrderInterac = (req, res, next) => {
             console.log('Email sent: ' + info.response);
         }
     });
-    return res.json(payment);
+    return res.json(paymentObj);
 };
 
 
