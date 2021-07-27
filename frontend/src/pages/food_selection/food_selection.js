@@ -107,14 +107,16 @@ const Food_Selection = (props) => {
       <Container>
         <Row>
           {foodItems.length > 0 ? (
-            foodItems.map((foodItem) => (
-              <Col sm={4}>
-                <Food_Item
-                  foodItem={foodItem}
-                  onOrderItemClick={orderItemHandler}
-                />
-              </Col>
-            ))
+            foodItems
+              .filter((foodItem) => foodItem.dishstatus == "True")
+              .map((foodItem) => (
+                <Col sm={4}>
+                  <Food_Item
+                    foodItem={foodItem}
+                    onOrderItemClick={orderItemHandler}
+                  />
+                </Col>
+              ))
           ) : (
             <b> No food items available for this Kitchen.</b>
           )}
