@@ -53,14 +53,14 @@ const Food_Selection = (props) => {
   //orderItemHandler adds the orderedItem to map if the quantity is greater than zero,
   //otherwise delete it from orderedItemsMap if the quantity is reduced to zero.
   const orderItemHandler = (orderedItem) => {
-    let orderItemId = orderedItem.id;
+    let orderItemDishName = orderedItem.dishname;
     let quantity = orderedItem.quantity;
 
-    if (orderedItemsMap.get(orderItemId) === undefined && quantity > 0) {
-      orderedItemsMap.set(orderedItem.id, orderedItem);
+    if (orderedItemsMap.get(orderItemDishName) === undefined && quantity > 0) {
+      orderedItemsMap.set(orderedItem.dishname, orderedItem);
     } else {
       if (quantity == 0) {
-        orderedItemsMap.delete(orderItemId);
+        orderedItemsMap.delete(orderItemDishName);
       }
     }
 

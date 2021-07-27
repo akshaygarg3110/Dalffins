@@ -43,7 +43,7 @@ const Food_Item = (props) => {
           Rating: {props.foodItem.dishRating}
         </Card.Subtitle>
         <Card.Text style={{ fontSize: "16px", fontWeight: "bold" }}>
-          {props.foodItem.dishcost}
+          ${props.foodItem.dishcost}
         </Card.Text>
         <div style={{ marginTop: "10%" }}>
           <Button onClick={removeItem}>-</Button>
