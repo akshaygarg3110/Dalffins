@@ -30,6 +30,18 @@ export default function Footer({ userEmail }) {
     history.push("/help");
   };
 
+  const handleFaq = () => {
+    history.push('/faq')
+  }
+
+  const handleAbout = () => {
+    history.push('/about')
+  }
+
+  const handleContact = () => {
+    history.push('/contact')
+  }
+
   return (
     <div className={classes.root}>
       <AppBar className={classes.footerBar}>
@@ -38,9 +50,9 @@ export default function Footer({ userEmail }) {
             Copyright © 2021 Dalffins. All rights reserved.
           </Typography>
 
-          <Button color="inherit">FAQs</Button>
-          <Button color="inherit">About Us</Button>
-          <Button color="inherit">Contact Us</Button>
+          <Button color="inherit" onClick={handleFaq}>FAQs</Button>
+          <Button color="inherit" onClick={handleAbout}>About Us</Button>
+          <Button color="inherit" onClick={handleContact}>Contact Us</Button>
           {userEmail && userEmail.length > 0 && !localStorage.getItem('isAdmin') ? (
             <Button color="inherit" onClick={onHelpClickHandler}>
               Help

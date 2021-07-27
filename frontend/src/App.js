@@ -18,6 +18,9 @@ import ResetPassword from "./pages/forgotPassword/ResetPassword";
 import MyAccount from "./pages/myAccount/MyAccount";
 import AdminSupport from "./pages/AdminSupport/AdminSupport";
 import AdminLogin from "./pages/AdminLogin/AdminLogin";
+import AboutUs from "./pages/About/AboutUs";
+import ContactUs from "./pages/Contact/ContactUs";
+import FAQs from "./pages/Faqs/FAQs";
 
 function App() {
   const [orderedItems, setOrderedItems] = useState(new Map());
@@ -116,6 +119,18 @@ function App() {
 
         <Route exact path="/myAccount">
           <MyAccount userId={id} setUserToken={setToken} />
+        </Route>
+
+        <Route exact path="/about">
+          <AboutUs />
+        </Route>
+
+        <Route exact path="/contact">
+          <ContactUs />
+        </Route>
+
+        <Route exact path="/faq">
+          <FAQs />
         </Route>
       </Switch>
 

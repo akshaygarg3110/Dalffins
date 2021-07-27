@@ -124,6 +124,8 @@ function MyAccount(props) {
 
     const [disabled, setDisabled] = useState(true);
 
+    const [saveSnackBar, setSaveSnackBar] = useState(false)
+
     const [detail, setDetail] = useState({
         firstName: '',
         lastName: '',
@@ -148,6 +150,9 @@ function MyAccount(props) {
 
     const [errorSnakebar, setErrorSnakeBar] = useState(false);
 
+    const handleSaveSnackBar = () => {
+        setSaveSnackBar(false)
+    }
 
     useEffect(() => {
         if (props.userId === "") {
@@ -200,6 +205,8 @@ function MyAccount(props) {
                 .then((response) => {
                     if (response.status === 200) {
                         setDetail(pre => ({ ...pre, [editPopUpLabelName]: editDetail[editPopUpLabelName] }))
+                        setSaveSnackBar(true)
+
                     }
                 }).catch(function (error) {
                     if (error.response.status === 400) {
@@ -517,6 +524,12 @@ function MyAccount(props) {
                     <Snackbar open={errorSnakebar} autoHideDuration={6000} onClose={handleCheckedSnackBar}>
                         <MuiAlert elevation={6} variant="filled" onClose={handleCheckedSnackBar} severity="error">
                             {errorSnackMessage}
+                        </MuiAlert>
+                    </Snackbar>
+
+                    <Snackbar open={saveSnackBar} autoHideDuration={6000} onClose={handleSaveSnackBar}>
+                        <MuiAlert elevation={6} variant="filled" onClose={handleSaveSnackBar} severity="success">
+                            Updated profile details Successfully!
                         </MuiAlert>
                     </Snackbar>
 

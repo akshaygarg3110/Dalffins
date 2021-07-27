@@ -59,7 +59,7 @@ export default function DalffinsMenu(props) {
 
   const handleCloseLogOut = () => {
     localStorage.removeItem("isAdmin");
-    history.push("/login");
+    history.push("/login",{logout:true});
     localStorage.removeItem("token");
     props.setUserToken("");
     setProfileMenu(null);

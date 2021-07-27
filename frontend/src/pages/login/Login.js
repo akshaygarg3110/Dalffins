@@ -1,11 +1,11 @@
 //Author: Divyashree Bangalore Subbaraya (B00875916)
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { TextField, InputAdornment } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
-import { useHistory, Link } from 'react-router-dom';
+import { useLocation, useHistory, Link } from 'react-router-dom';
 import { IconButton, Paper } from '@material-ui/core';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
@@ -93,6 +93,24 @@ const useStyles = makeStyles((theme) => ({
 function Login(props) {
 
     const classes = useStyles();
+
+    const location = useLocation();
+
+    const [logoutSnackBar, setLogoutSnackBar] = useState(false)
+
+    const handleLogoutSnackBar = () => {
+        setLogoutSnackBar(false)
+    }
+
+    useEffect(() => {
+        const home = () => {
+            if (location.state) {
+                setLogoutSnackBar(location.state.logout ? true : false);
+                history.replace('/login', {})
+            }
+        }
+        home();
+    }, []);
 
     const [error, setError] = useState({
         email: false,
@@ -266,6 +284,13 @@ function Login(props) {
                             Invalid Login Credentials!
                         </MuiAlert>
                     </Snackbar>
+
+                    <Snackbar open={logoutSnackBar} autoHideDuration={6000} onClose={handleLogoutSnackBar}>
+                        <MuiAlert elevation={6} variant="filled" onClose={handleLogoutSnackBar} severity="success">
+                            Logged out Successfully!
+                        </MuiAlert>
+                    </Snackbar>
+
                 </Paper>
             </Container>
         </section>

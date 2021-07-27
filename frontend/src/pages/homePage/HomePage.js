@@ -8,7 +8,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import Button from '@material-ui/core/Button';
 
-
 const useStyles = makeStyles((theme) => ({
 
     inside: {
@@ -138,7 +137,9 @@ const useStyles = makeStyles((theme) => ({
         padding: '2%',
         fontStyle: 'italic',
         lineHeight: '145%',
-        display: 'block'
+        display: 'block',
+        fontSize:'18px',
+        fontFamily: '"Times New Roman", Times, serif'
     },
 
     cite: {
@@ -237,18 +238,18 @@ function HomePage() {
                         justifyContent: 'center',
                         alignItems: 'center',
                         flexDirection: 'column',
-                        height: '20%', backgroundAttachment: 'fixed', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'cover'
+                        height: '21%', backgroundAttachment: 'fixed', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'cover'
                     }}>
 
-                    <text style={{ fontWeight: 'bold', fontSize: '30px' }}> Our customers can't live without us!</text>
+                    <text style={{ fontWeight: 'bold', fontSize: '30px' , fontFamily: '"Times New Roman", Times, serif'}}> Our customers can't live without us!</text>
 
-                    <blockquote className={classes.blockQuote} style={{ marginRight: '12%' }}>
+                    <blockquote className={classes.blockQuote} style={{ marginRight: '18%' }}>
                         <q>Dalffins is just a life-saver.
                             I just randomly came across this website and now I can't live without it.
                             Now that I got used to the application, I don't have a reason to skip my meal.</q>
                         <cite className={classes.cite}>
                             <img className={classes.citeImg} src="images/christian-buehner-DItYlc26zVI-unsplash.jpg" />
-                            Christian Buehner
+                                - Christian Buehner
                         </cite>
                     </blockquote>
 
@@ -258,7 +259,7 @@ function HomePage() {
                             Me and my family are so in love with the Dalffins application.</q>
                         <cite className={classes.cite}>
                             <img className={classes.citeImg} src="images/dahiana-waszaj-Xbe20Z_DlDs-unsplash.jpg" />
-                            Dahiana Waszaj
+                            - Dahiana Waszaj
                         </cite>
                     </blockquote>
 
@@ -268,7 +269,7 @@ function HomePage() {
                             Any place I travel to, first thing I do is to install the Dalffins application and order my home-made like food.</q>
                         <cite className={classes.cite}>
                             <img className={classes.citeImg} src="images/warren-wong-VVEwJJRRHgk-unsplash.jpg" />
-                            Warren Wong
+                            - Warren Wong
                         </cite>
                     </blockquote>
 
