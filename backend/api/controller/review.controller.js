@@ -1,4 +1,5 @@
 //Author: Jay Patel (B00881906)
+const foodItems = require("../model/kitchen.model");
 
 function reviewController(Review) {
   function getReview(req, res) {
@@ -34,6 +35,27 @@ function reviewController(Review) {
 
     // save review
     review.save();
+
+    foodItems.findOne(
+      { foodItems: { $elemMatch: { dishname: req.body.productId } } },
+      function (err, docs) {
+        if (err) {
+          console.log(err);
+        } else {
+          docs.foodItems = docs.foodItems.map((item) => {
+            if (item.dishname === req.body.productId) {
+              item.dishRating = Math.round(
+                (Number(item.dishRating) + Number(req.body.rating)) /
+                  (item.dishTotalRatings + 1)
+              );
+              item.dishTotalRatings = item.dishTotalRatings + 1;
+            }
+            return item;
+          });
+          docs.save();
+        }
+      }
+    );
 
     // send response
     res.status(201);
