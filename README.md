@@ -3,7 +3,19 @@
 * ‘Dalffins’ is an online tiffins system that provides its end users to sell and order food in a much easy, healthier, and efficient manner. ‘Dalffins’ is the only application that has provided the flexibility and opportunity for students
 to earn from their Culinary skills.
 
-
+<table>
+  <tr>
+    <td>First Screen Page</td>
+     <td>Holiday Mention</td>
+     <td>Present day in purple and selected day in pink</td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/Screenshot_1582745092.png" width=270 height=480></td>
+    <td><img src="screenshots/Screenshot_1582745125.png" width=270 height=480></td>
+    <td><img src="screenshots/Screenshot_1582745139.png" width=270 height=480></td>
+  </tr>
+ </table>
+ 
 ## Intended Features: 
 
 # User Profile Management
