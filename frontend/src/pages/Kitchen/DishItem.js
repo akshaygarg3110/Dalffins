@@ -21,16 +21,19 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Axios from "axios";
 import UpdateItemDialog from "./UpdateItemDialog";
+import { useKitchen } from "../../context/kitchen-context";
 
 const FoodItem = styled(Card)`
   min-height: 300px;
 `;
 
 /* Renders the individual dish component of the Kitchen Feature */
-function DishItem({ removeItemFromList, foodItem, updateItem ,UserID}) {
+function DishItem({ foodItem}) {
+  const {kitchenId,foodItems, setFoodItems} = useKitchen();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(false);
   const [updateDialogOpen, setUpdateDialogOpen] = React.useState(false);
+  const {_id:foodItemId} = foodItem;
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -40,15 +43,11 @@ function DishItem({ removeItemFromList, foodItem, updateItem ,UserID}) {
     setAnchorEl(null);
   };
  
-  /* API call for removing the dish from database */
+  /* API call for removing the dish from Kitchen */
   const handleConfirmRemove = () => {
-    Axios.delete("https://dalffins.herokuapp.com/dish/removedish/" + foodItem._id, {
-      data: {
-        UserID: foodItem.UserID,
-      },
-    }).then((response) => {
+    Axios.delete(`https://dalffins.herokuapp.com/kitchen/removedish?kitchenId=${kitchenId}&foodItemId=${foodItemId}`).then((response) => {
       setOpen(false);
-      removeItemFromList(foodItem._id);
+      setFoodItems(foodItems.filter((item) => item._id !== foodItemId));
     });
   };
 
@@ -66,32 +65,19 @@ function DishItem({ removeItemFromList, foodItem, updateItem ,UserID}) {
     setAnchorEl(null);
   };
 
-  /* API call for disabling the inactive dish */
-  const handleDisable = () => {
-    Axios.put("https://dalffins.herokuapp.com/dish/updatedish/"+ foodItem._id, {
-        UserID : foodItem.UserID,       
-        dishstatus: "False" }).then(
+  /* API call for Enabling/Disabling the dish in the Kitchen */
+  const changeDishStatus = (dishStatus) => {
+    Axios.put("https://dalffins.herokuapp.com/kitchen/updatedishstatus?kitchenId="+ kitchenId, {
+      _id : foodItemId, 
+      dishstatus: dishStatus }).then(
       (response) => {
-        updateItem({ ...foodItem, dishstatus: "False" });
+        setFoodItems(response.data)
         handleClose();
       }
     );
   };
  
-  /* API call for enabling the disabled dish */
-  const handleEnable = () => {
-    Axios.put("https://dalffins.herokuapp.com/dish/updatedish/"+ foodItem._id, {
-      UserID : foodItem.UserID, 
-      dishstatus: "True" }).then(
-      (response) => {
-        updateItem({ ...foodItem, dishstatus: "True" });
-        handleClose();
-      }
-    );
-  };
-
   const handleUpdateClose = (formData) => {
-    updateItem(formData);
     setUpdateDialogOpen(false);
   };
   return (
@@ -117,8 +103,8 @@ function DishItem({ removeItemFromList, foodItem, updateItem ,UserID}) {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleUpdate}>Update</MenuItem>
-                <MenuItem onClick={handleEnable}>Enable</MenuItem>
-                <MenuItem onClick={handleDisable}>Disable</MenuItem>
+                <MenuItem onClick={() => changeDishStatus("True")}>Enable</MenuItem>
+                <MenuItem onClick={() => changeDishStatus("False")}>Disable</MenuItem>
                 <MenuItem onClick={handleRemove}>Remove</MenuItem>
               </Menu>
             </>
@@ -182,12 +168,10 @@ function DishItem({ removeItemFromList, foodItem, updateItem ,UserID}) {
       </Dialog>
       {updateDialogOpen ? (
         <React.Suspense fallback={<p>loading</p>}>
-          // Updating dish added by the user
           <UpdateItemDialog
             open={updateDialogOpen}
             handleClose={handleUpdateClose}
             foodItem={foodItem}
-            UserID = {UserID}
           />
         </React.Suspense>
       ) : null}

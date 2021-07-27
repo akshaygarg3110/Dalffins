@@ -1,5 +1,6 @@
 //Author: Vamsi Krishna Utla (B00870632)
 
+var uuid = require('uuid');
 const Payment = require('../model/payment.model')
 var nodemailer = require('nodemailer');
 
@@ -15,29 +16,18 @@ var transporter = nodemailer.createTransport({
 //interac mode function
 module.exports.saveOrderInterac = (req, res, next) => {
 
-    var orderIDcounter;
+    var orderIDcounter = "ORD"+uuid.v4();
 
     //design mongo schema
     const paymentObj = new Payment({
         orderID: orderIDcounter,
         user: req.body.user,
+        vendor: req.body.vendor,
         total: req.body.total,
         orderItems: req.body.orderItems,
         paymentOption: req.body.paymentOption,
         transactionID: req.body.transactionID,
         instructions: req.body.instructions
-    });
-
-    //create orderID
-    Payment.find().sort({ _id: -1 }).limit(1).exec().then((data) => {
-        var jsonData = data;
-        if (data.length == 0) {
-            orderIDcounter = "ORD00000001"
-        }
-        else {
-            orderIDcounter = "ORD" + (parseInt(jsonData[0].orderID.substring(3, jsonData[0].orderID.length), 10) + 1);
-            console.log(orderIDcounter);
-        }
     });
 
     console.log("Interac")
@@ -48,7 +38,7 @@ module.exports.saveOrderInterac = (req, res, next) => {
     //user email parameters
     var userEmail = {
         from: 'dalffinsofficial@gmail.com',
-        to: "dalffinsofficial@gmail.com",
+        to: req.body.user,
         subject: 'Order confirmation: '+orderIDcounter,
         text: 'Hello,\n\nYour order has been placed successfully. Please find the details of the order as follows:\n\nItems:\n'+req.body.orderItems+'\nTotal:\n'+req.body.total+'\nSpecial Instructions:\n'+req.body.instructions+'\nThanks.\n\nRegards,\nDalffins Teams'
     };
@@ -56,7 +46,7 @@ module.exports.saveOrderInterac = (req, res, next) => {
     //vendor email parameters
     var vendorEmail = {
         from: 'dalffinsofficial@gmail.com',
-        to: "dalffinsofficial@gmail.com",
+        to: req.body.vendor,
         subject: 'New order: '+orderIDcounter,
         text: 'Hello,\n\nYou have got a new order. Please find the details of the order as follows:\n\nItems:\n'+req.body.orderItems+'\nTotal:\n'+req.body.total+'\nPayment Transaction: \n'+req.body.transactionID+'\nSpecial Instructions:\n'+req.body.instructions+'\nThanks.\n\nRegards,\nDalffins Teams'
     };
@@ -85,46 +75,38 @@ module.exports.saveOrderInterac = (req, res, next) => {
 //cash mode function
 module.exports.saveOrderCash = (req, res, next) => {
 
-    var orderIDcounter;
+    var orderIDcounter = "ORD"+uuid.v4();
 
     //design mongo schema
     const paymentObj = new Payment({
         orderID: orderIDcounter,
         user: req.body.user,
+        vendor: req.body.vendor,
         total: req.body.total,
         orderItems: req.body.orderItems,
         paymentOption: req.body.paymentOption,
         instructions: req.body.instructions
     });
 
-    //create orderID
-    Payment.find().sort({ _id: -1 }).limit(1).exec().then((data) => {
-        var jsonData = data;
-        if (data.length == 0) {
-            orderIDcounter = "ORD00000001"
-        }
-        else {
-            orderIDcounter = "ORD" + (parseInt(jsonData[0].orderID.substring(3, jsonData[0].orderID.length), 10) + 1);
-            console.log(orderIDcounter);
-        }
-    });
-
     //save order details to mongo db
     paymentObj.save();
     res.status(201);
     
-    //vendor email parameters
+    //user email parameters
     var userEmail = {
         from: 'dalffinsofficial@gmail.com',
-        to: 'dalffinsofficial@gmail.com',
+        to: req.body.user,
         subject: 'Order confirmation: '+orderIDcounter,
-        text: 'Hello,\n\nYour order has been placed successfully. Please find the details of the order as follows:\n\nItems:\n'+req.body.orderItems+'\nTotal:\n'+req.body.total+'\nSpecial Instructions:\n'+req.body.instructions
+        text: 'Hello,\n\nYour order has been placed successfully. Please find the details of the order as follows:\n\nItems:\n'+req.body.orderItems+'\nTotal:\n'+req.body.total+'\nSpecial Instructions:\n'+req.body.instructions+'\nThanks.\n\nRegards,\nDalffins Teams'
     };
 
+    console.log(req.body.vendor);
+    console.log(orderIDcounter);
+    
     //vendor email parameters
     var vendorEmail = {
         from: 'dalffinsofficial@gmail.com',
-        to: "dalffinsofficial@gmail.com",
+        to: req.body.vendor,
         subject: 'New order: '+orderIDcounter,
         text: 'Hello,\n\nYou have got a new order. Please find the details of the order as follows:\n\nItems:\n'+req.body.orderItems+'\nTotal:\n'+req.body.total+'\nPayment Transaction: \nCash'+'\nSpecial Instructions:\n'+req.body.instructions+'\nThanks.\n\nRegards,\nDalffins Teams'
     };

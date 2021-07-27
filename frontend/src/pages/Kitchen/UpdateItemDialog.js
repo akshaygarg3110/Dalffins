@@ -9,6 +9,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { DropzoneArea } from "material-ui-dropzone";
 import { Button, FormControl, makeStyles } from "@material-ui/core";
 import Axios from "axios";
+import { useKitchen } from "../../context/kitchen-context";
 
 const mealTypes = ["Breakfast", "Snack", "Lunch", "Dinner"];
 
@@ -22,11 +23,11 @@ const useStyles = makeStyles((theme) => ({
 
  /* Renders the dailog box for updating the item */
 
-function UpdateItemDialog({ foodItem, open, handleClose , UserID }) {
+function UpdateItemDialog({ foodItem, open, handleClose }) {
+  const {kitchenId, setFoodItems} = useKitchen();
   const classes = useStyles();
   const [mealType, setMealType] = React.useState(foodItem.mealtype);
   const [image, setImage] = React.useState("");
-  console.log(foodItem);
   const handleFileUpload = (files) => {
     const reader = new FileReader();
 
@@ -48,8 +49,6 @@ function UpdateItemDialog({ foodItem, open, handleClose , UserID }) {
     const form = event.target;
     const formData = {
       _id: foodItem._id,
-      UserID: UserID,
-      dishID: foodItem.dishID,
       dishname: form.title.value,
       dishRating: foodItem.dishRating,
       Image: image,
@@ -58,10 +57,11 @@ function UpdateItemDialog({ foodItem, open, handleClose , UserID }) {
       dishstatus: "True",
       delivery: form.delivery.value,
     };
-    /* API call for updating the details of the dish */
-    console.log(formData);
-    Axios.put("https://dalffins.herokuapp.com/dish/updatedish/"+ foodItem._id, formData).then(
+    
+    /* API call for updating the details of the dish in the Kitchen */
+    Axios.put("https://dalffins.herokuapp.com/kitchen/updatedish?kitchenId="+ kitchenId, formData).then(
       (response) => {
+        setFoodItems(response.data);
         handleClose(formData);
       }
     );

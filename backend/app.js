@@ -17,13 +17,13 @@ const userRoute = require("../backend/api/routes/user.route");
 
 const helpRoute = require("../backend/api/routes/help.route");
 
-const dishRoute = require("../backend/api/routes/dish.route");
-
 const foodSelectionRoute = require("../backend/api/routes/food.selection.route");
 
 const passportConfig = require("../backend/api/config/passport.config");
 
 const payRoute = require("../backend/api/routes/payment.route")
+
+const kitchenRoute = require("../backend/api/routes/kitchen.route");
 
 app.use(cors());
 
@@ -70,8 +70,8 @@ app.use("/help", helpRoute);
 //Route foodSelection
 app.use("/foodSelection", foodSelectionRoute);
 
-//Dish Items
-app.use("/dish", dishRoute);
+//Kitchen Items
+app.use("/kitchen", kitchenRoute);
 
 //Route order summary and payment
 app.use("/summaryAndPayment", payRoute);
