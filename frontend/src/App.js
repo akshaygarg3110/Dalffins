@@ -64,7 +64,7 @@ function App() {
         </Route>
 
         <Route exact path="/summaryAndPayment">
-          <SummaryAndPayment orderedItems={orderedItems} email={email} />
+          <SummaryAndPayment orderedItems={orderedItems} email={email} onOrderItemClick={orderItemHandler}/>
         </Route>
 
         <Route exact path="/orderfood">
