@@ -9,6 +9,7 @@ import { Alert } from "@material-ui/lab";
 import AddItemDialog from "./AddItemDialog";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { useKitchen } from "../../context/kitchen-context";
 
 const responsive = {
   superLargeDesktop: {
@@ -35,57 +36,21 @@ const responsive = {
 
 /* Renders all the dish mapped to the logged in user's unique UserID */
 function DishList(props) {
-  const [foodItems, setFoodItems] = React.useState([]);
+  const {foodItems} = useKitchen();
   const [open, setOpen] = React.useState(false);
   const [showSnackBar, setShowSnackBar] = React.useState(false);
-  const history = useHistory();
   
-
   const handleClickOpen = () => {
     setOpen(true);
   };
   
-  /* Get all the dishes added by logged in user . */
-  React.useEffect(() => {
-    if (props.Id) {
-    const fetchDishList = async () => {
-        const res = await axios.get(
-        `https://dalffins.herokuapp.com/dish/getUserDish?UserID=${props.Id}`
-      );
-      console.log(res.data)
-      setFoodItems(res.data);
-    };
-    fetchDishList();
-  } else {
-    window.alert("Please login in to dalffins. Thank you  !!!");
-    history.push("/login");
-  }
-  
-  }, []);
-
-
-
-  const addItem = (formData) => {
-    setFoodItems([...foodItems, formData]);
+  const addItem = () => {
     setOpen(false);
     setShowSnackBar(true);
   };
 
-  const updateItem = (formData) => {
-    let newFoodItems = [...foodItems];
-    newFoodItems = newFoodItems.map((foodItem) => {
-      if (foodItem._id === formData._id) return formData;
-      else return foodItem;
-    });
-    setFoodItems(newFoodItems);
-  };
-
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const removeItem = (itemId) => {
-    setFoodItems(foodItems.filter((item) => item._id !== itemId));
   };
 
   const handleSnackBarClose = () => {
@@ -105,21 +70,16 @@ function DishList(props) {
           <DishItem
             foodItem={foodItem}
             key={foodItem._id}
-            removeItemFromList={removeItem}
-            updateItem={updateItem}
-            UserID={props.Id}
           />
         ))}
       </Carousel>
       {open ? (
         <React.Suspense fallback={<p>loading</p>}>
-          // Adding dish to the kitchen 
           <AddItemDialog
             open={open}
             addItem={addItem}
             handleClose={handleClose}
-            nextId={foodItems[foodItems.length - 1]._id}
-            UserID={props.Id}
+            nextId={foodItems[foodItems.length - 1]}
             Email={props.email}
           />
         </React.Suspense>

@@ -1,7 +1,8 @@
 /* Author - Akshay Garg */
 
 // importing the model into foodItems
-const foodItems = require("../model/food.items");
+// const foodItems = require("../model/food.items");
+const foodItems = require("../model/kitchen.model");
 
 module.exports.getKitchenByOwnerId = (req, res, next) => {
   const id = req.params.id;

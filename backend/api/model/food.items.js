@@ -1,23 +1,23 @@
-/* Author - Akshay Garg */
+// /* Author - Akshay Garg */
 
-const SALT_HASH_ROUNDS = 10;
+// const SALT_HASH_ROUNDS = 10;
 
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
-// Defining the model for the fooditems collection.
-const FoodItemsSchema = mongoose.Schema({
-  kitchenName: {
-    type: String,
-    required: true,
-  },
-  kitchenImages: {
-    type: Array,
-    required: true,
-  },
-  foodItems: {
-    type: Array,
-    required: true,
-  },
-});
+// // Defining the model for the fooditems collection.
+// const FoodItemsSchema = mongoose.Schema({
+//   kitchenName: {
+//     type: String,
+//     required: true,
+//   },
+//   kitchenImages: {
+//     type: Array,
+//     required: true,
+//   },
+//   foodItems: {
+//     type: Array,
+//     required: true,
+//   },
+// });
 
-module.exports = mongoose.model("foodItems", FoodItemsSchema);
+// module.exports = mongoose.model("foodItems", FoodItemsSchema);
