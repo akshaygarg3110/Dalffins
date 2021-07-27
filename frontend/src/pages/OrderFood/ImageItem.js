@@ -15,7 +15,7 @@ export default function ProfileDetails(props) {
         <div>
              <Card variant="outlined" onClick={() => handleVendorClick(props.vendor._id)} >
              <CardContent style={{padding: 0}}>
-             <img style={{width: "100%", height: "30vh"}} src={props.vendor.kitchenImages[0]} alt={props.vendor._id} /> 
+             <img style={{width: "100%", height: "25vh"}} src={props.vendor.kitchenImages[0]} alt={props.vendor._id} /> 
              <h1>{props.vendor.kitchenName}</h1>
              </CardContent>
       </Card>
