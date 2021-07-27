@@ -4,20 +4,6 @@
 to earn from their Culinary skills.
 
  
- <table>
-  <th>
-  File Name
-  </th>
-  <th>
-  Author
-  </th>
-  <tr>
-    <td>1. SignUp.js</td>
-    <td>Divyashree Bangalore Subbaraya</td>
-  </tr>
-  
- </table>
- 
 ## Intended Features: 
 
 # User Profile Management
