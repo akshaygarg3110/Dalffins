@@ -311,6 +311,7 @@ function SummaryAndPayment(props) {
         title="Yay, your order placed successfully"
         subTitle="Please take a moment and review your order."
         orderId={orderId}
+        email={props.email}
       />
     </div>
   );

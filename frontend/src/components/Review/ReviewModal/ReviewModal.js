@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import "./ReviewModal.scss";
 import { Button, Modal } from "react-bootstrap";
-import { saveTicketApi } from "../../../utils/Api";
+import { saveReviewApi } from "../../../utils/Api";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
@@ -45,18 +45,25 @@ class ReviewModal extends Component {
   };
 
   saveReview = () => {
+    this.setState({ isLoading: true });
     const { rating, review } = this.state;
-    const data = {};
+    const { orderId, email } = this.props;
+    const data = {
+      productId: orderId,
+      rating,
+      review,
+      email,
+    };
 
-    // call save ticket api
-    // saveTicketApi(data)
-    //   .then((res) => {
-    //     hideModal();
-    //   })
-    //   .catch((err) => {
-    //     console.error(err.message);
-    //     setLoading(false);
-    //   });
+    // call save review api
+    saveReviewApi(data)
+      .then((res) => {
+        this.hideModal();
+      })
+      .catch((err) => {
+        console.error(err.message);
+        this.setState({ isLoading: false });
+      });
   };
 
   hideModal = () => {
@@ -66,17 +73,24 @@ class ReviewModal extends Component {
       rating: 3,
       review: "",
     });
+    this.props.onClose();
   };
 
   render() {
     const { showModal, rating, review } = this.state;
+    const { title, subTitle } = this.props;
     return (
       <Modal show={showModal} onHide={this.hideModal} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Rating & Review</Modal.Title>
+          <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="review-modal-body">
+            {subTitle ? (
+              <Typography component="legend" className="mb-2">
+                {subTitle}
+              </Typography>
+            ) : null}
             <Box component="fieldset" mb={1} borderColor="transparent">
               <Typography component="legend">Overall Rating:</Typography>
               <StyledRating
@@ -117,5 +131,10 @@ class ReviewModal extends Component {
     );
   }
 }
+
+ReviewModal.defaultProps = {
+  title: "Rating & Review",
+  subTitle: undefined,
+};
 
 export default ReviewModal;
