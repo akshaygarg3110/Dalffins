@@ -62,36 +62,113 @@ Tasks: user registration, user login, forgot user password, update user profile,
 
 * frontend files
 
-   		                            	                   
-        FileName                     |                  Author	
-1.  SignUp.js                        |      Divyashree Bangalore Subbaraya
-2.  Login.js			             |      Divyashree Bangalore Subbaraya          
-3.  MyAccount.js			         |      Divyashree Bangalore Subbaraya
-4.  HomePage.js			             |      Divyashree Bangalore Subbaraya
-5.  forgotPasswordEnterCode.js	     |      Divyashree Bangalore Subbaraya
-6.  ForgotPasswordGetCode.js	     |      Divyashree Bangalore Subbaraya
-7.  ResetPassword.js		         |      Divyashree Bangalore Subbaraya
-8.  footer.js			             |      Divyashree Bangalore Subbaraya
-9.  AboutUs.js                       |      Divyashree Bangalore Subbaraya
-10. ContactUs.js                     |      Divyashree Bangalore Subbaraya
-11. FAQs.js                          |      Divyashree Bangalore Subbaraya
-12. menu.js                          |      Divyashree Bangalore Subbaraya
+
+<table>
+  <th>
+  File Name
+  </th>
+  <th>
+  Author
+  </th>
+  <tr>
+    <td>1. SignUp.js</td>
+    <td>Divyashree Bangalore Subbaraya</td>
+  </tr>
+  <tr>
+    <td>2. Login.js</td>
+    <td>Divyashree Bangalore Subbaraya</td>
+  </tr>
+  <tr>
+    <td>3. MyAccount.js</td>
+    <td>Divyashree Bangalore Subbaraya</td>
+  </tr>
+  <tr>
+    <td>4. HomePage.js</td>
+    <td>Divyashree Bangalore Subbaraya</td>
+  </tr>
+  <tr>
+    <td>5. forgotPasswordEnterCode.js</td>
+    <td>Divyashree Bangalore Subbaraya</td>
+  </tr>
+  <tr>
+    <td>6. ForgotPasswordGetCode.js</td>
+    <td>Divyashree Bangalore Subbaraya</td>
+  </tr>
+  <tr>
+    <td>7. ResetPassword.js</td>
+    <td>Divyashree Bangalore Subbaraya</td>
+  </tr>
+  <tr>
+    <td>8. footer.js</td>
+    <td>Divyashree Bangalore Subbaraya</td>
+  </tr>
+  <tr>
+    <td>9. AboutUs.js</td>
+    <td>Divyashree Bangalore Subbaraya</td>
+  </tr>
+  <tr>
+    <td>10. ContactUs.js</td>
+    <td>Divyashree Bangalore Subbaraya</td>
+  </tr>
+  <tr>
+    <td>11. FAQs.js</td>
+    <td>Divyashree Bangalore Subbaraya</td>
+  </tr>
+   <tr>
+    <td>12. menu.js</td>
+    <td>Divyashree Bangalore Subbaraya</td>
+  </tr>
+ </table>
+
 
 
 * backend files
 
-	                            	                   
-        FileName                      |                  Author	
-1. jwt.config.js			          |     Divyashree Bangalore Subbaraya
-2. mongodb.config.js		          |     Divyashree Bangalore Subbaraya
-3. passport.config.js		          |     Divyashree Bangalore Subbaraya
-4. token.config.js		              |     Divyashree Bangalore Subbaraya
-5. user.controller.js		          |     Divyashree Bangalore Subbaraya
-6. user.model.js			          |     Divyashree Bangalore Subbaraya
-7. user.route.js			          |     Divyashree Bangalore Subbaraya
-8. app.js			                  |     Divyashree Bangalore Subbaraya
-9. server.js			              |     Divyashree Bangalore Subbaraya
 
+<table>
+  <th>
+  File Name
+  </th>
+  <th>
+  Author
+  </th>
+  <tr>
+    <td>1. jwt.config.js</td>
+    <td>Divyashree Bangalore Subbaraya</td>
+  </tr>
+  <tr>
+    <td>2. mongodb.config.js</td>
+    <td>Divyashree Bangalore Subbaraya</td>
+  </tr>
+  <tr>
+    <td>3. passport.config.js</td>
+    <td>Divyashree Bangalore Subbaraya</td>
+  </tr>
+  <tr>
+    <td>4. token.config.js</td>
+    <td>Divyashree Bangalore Subbaraya</td>
+  </tr>
+  <tr>
+    <td>5. user.controller.js</td>
+    <td>Divyashree Bangalore Subbaraya</td>
+  </tr>
+  <tr>
+    <td>6. user.model.js</td>
+    <td>Divyashree Bangalore Subbaraya</td>
+  </tr>
+  <tr>
+    <td>7. user.route.js</td>
+    <td>Divyashree Bangalore Subbaraya</td>
+  </tr>
+  <tr>
+    <td>8. app.js</td>
+    <td>Divyashree Bangalore Subbaraya</td>
+  </tr>
+  <tr>
+    <td>9. server.js</td>
+    <td>Divyashree Bangalore Subbaraya</td>
+  </tr>
+  </table>
 
 
 ## Front-end Framework used
