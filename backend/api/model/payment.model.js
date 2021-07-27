@@ -14,6 +14,10 @@ const paymentAndOrderInformation = mongoose.Schema(
       type: String,
       required: true,
     },
+    vendor: {
+      type: String,
+      required: true    
+    },
     orderItems: {
       type: String,
       required: true,

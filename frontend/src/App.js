@@ -18,6 +18,8 @@ import ResetPassword from "./pages/forgotPassword/ResetPassword";
 import MyAccount from "./pages/myAccount/MyAccount";
 import AdminSupport from "./pages/AdminSupport/AdminSupport";
 import AdminLogin from "./pages/AdminLogin/AdminLogin";
+import OrderFood from "./pages/OrderFood/OrderFood";
+import { KitchenProvider } from "./context/kitchen-context";
 
 function App() {
   const [orderedItems, setOrderedItems] = useState(new Map());
@@ -57,13 +59,17 @@ function App() {
         <Route exact path="/kitchen">
           <Layout>
             <Main>
-             <MyKitchen userId={id} email={email}/>
+             <KitchenProvider userId={id} ><MyKitchen userId={id} email={email}/></KitchenProvider>
             </Main>
           </Layout>
         </Route>
 
         <Route exact path="/summaryAndPayment">
-          <SummaryAndPayment orderedItems={orderedItems} email={email} />
+          <SummaryAndPayment orderedItems={orderedItems} email={email} onOrderItemClick={orderItemHandler}/>
+        </Route>
+
+        <Route exact path="/orderfood">
+          <OrderFood />
         </Route>
 
         <Route exact path="/signUp">

@@ -9,9 +9,12 @@ import { Card, FormControl, Button, InputGroup, ListGroup, Col, Row, Form } from
 function SummaryAndPayment(props) {
 
     //variables and states required for page functioning
-    const [interac, setInterac] = useState(false);
+    const [interac, setInterac] = useState(true);
     const [stringEle, setStrg] = useState("      ");
     const [specialInstructions, setInstructions] = useState("");
+
+    // const [vendor, setVendor] = useState("")
+    var vendor = "";
     var [transactionID, setTransactionID] = useState("");
     var totalPrice = 0;
     var itemPrice = 0;
@@ -19,14 +22,15 @@ function SummaryAndPayment(props) {
     var orderItems = '';
     const foodItems = Array.from(props.orderedItems).map(([key, value]) => ({ key, value }))
 
-
     console.log(foodItems);
+    console.log(props.email);
+
     //support functions after clicks or on changing of form elements
     const updateUpload = () => {
         setInterac(false);
     }
 
-    const back= () => {
+    const back = () => {
         history.push("/foodSelectionUI/60f2196968e5469cb518b9bd");
     }
 
@@ -44,41 +48,57 @@ function SummaryAndPayment(props) {
 
         //cash API
         const reg_urlCash = "https://dalffins.herokuapp.com/summaryAndPayment/saveOrderCash";
-        
-        //interac API call
-        async function storePaymentInterac() {
-            console.log("hello")
-            await axios.post(
-                reg_urlInterac,
-                { "user": props.email, "total": totalPrice, "orderItems": orderItems, "paymentOption": "E-Interac", "transactionID": transactionID, "instructions": specialInstructions }).then((res) => {
-                    window.alert("Order placed successfull");
-                    history.push("/");
-                })
-                .catch((error) => {
-                    if (error.response) {
-                        console.log("Technical Issue: Contact System Administrator");
-                    }
-                });
-        }
 
-        //cash API call
-        async function storePaymentCash() {
-            await axios.post(
-                reg_urlCash,
-                { "user": props.email, "total": totalPrice, "orderItems": orderItems, "paymentOption": "Cash", "instructions": specialInstructions }).then((res) => {
-                    window.alert("Order placed successfull");
-                    history.push("/");
-                })
-                .catch((error) => {
-                    if (error.response) {
-                        console.log("Technical Issue: Contact System Administrator");
-                    }
-                });
+        //validation for empty list of food items
+        if (props.orderedItems.size <= 0) {
+            window.alert("No items selected... please select items before placing for the order.");
         }
-        if (interac)
-            storePaymentInterac();
-        else
-            storePaymentCash();
+        //validation for incorrect payment details
+        else if (transactionID.length == 0 && interac) {
+            window.alert("Check payment option and transaction ID details.");
+        }
+        //valid case
+        else {
+            //interac API call
+            async function storePaymentInterac() {
+                console.log("hello")
+                await axios.post(
+                    reg_urlInterac,
+                    { "user": props.email, vendor: vendor, "total": totalPrice, "orderItems": orderItems, "paymentOption": "E-Interac", "transactionID": transactionID, "instructions": specialInstructions }).then((res) => {
+                        window.alert("Order placed successfull");
+                        history.push("/");
+                    })
+                    .catch((error) => {
+                        if (error.response) {
+                            console.log("Technical Issue: Contact System Administrator");
+                        }
+                    });
+                props.onOrderItemClick({});
+            }
+
+            //cash API call
+            async function storePaymentCash() {
+                console.log("Initiating REST API...")
+                console.log(vendor)
+                await axios.post(
+                    reg_urlCash,
+                    { "user": props.email, vendor: vendor, "total": totalPrice, "orderItems": orderItems, "paymentOption": "Cash", "instructions": specialInstructions }).then((res) => {
+                        window.alert("Order placed successfull");
+                        history.push("/");
+                    })
+                    .catch((error) => {
+                        if (error.response) {
+                            console.log("Technical Issue: Contact System Administrator");
+                        }
+                    });
+                props.onOrderItemClick({});
+            }
+            if (interac)
+                storePaymentInterac();
+            else
+                storePaymentCash();
+
+        }
     }
 
     const instructions = () => {
@@ -105,9 +125,9 @@ function SummaryAndPayment(props) {
                         <Row style={{ marginTop: "2%" }}>
                             <div>
                                 <ListGroup style={{ overflow: "scroll", maxHeight: "120%", width: "460px" }}>
-                                    {props.orderedItems.size > 0 ? foodItems.map((foodItem) => (itemPrice = (foodItem.value.cost).substring(1) * foodItem.value.quantity,
-                                        totalPrice = totalPrice + itemPrice, orderItems = orderItems.concat(foodItem.value.item + " x " + foodItem.value.quantity), console.log(itemPrice),
-                                        <ListGroup.Item style={{ maxWidth: "200%" }}><b>{foodItem.value.title} x {foodItem.value.quantity} </b> ... ({foodItem.value.cost} x {foodItem.value.quantity} = ${itemPrice})</ListGroup.Item>
+                                    {props.orderedItems.size > 0 ? foodItems.map((foodItem) => (itemPrice = (foodItem.value.dishcost) * foodItem.value.quantity, vendor = foodItem.value.vendorEmail,
+                                        totalPrice = totalPrice + itemPrice, orderItems = orderItems.concat(foodItem.value.dishname + " x " + foodItem.value.quantity), console.log(itemPrice),
+                                        <ListGroup.Item style={{ maxWidth: "200%" }}><b>{foodItem.value.dishname} x {foodItem.value.quantity} </b> ... ({foodItem.value.cost} x {foodItem.value.quantity} = ${itemPrice})</ListGroup.Item>
 
                                     )) : <h2 style={{ color: "red" }}>No items selected</h2>}
                                 </ListGroup>

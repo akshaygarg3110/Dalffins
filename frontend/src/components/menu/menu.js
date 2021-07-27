@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
   dalffinsButton: {
     fontSize: "23px",
-    color: "#ffc107",
+    color: "#ffc107"
   },
 }));
 
@@ -80,6 +80,10 @@ export default function DalffinsMenu(props) {
     history.push("/summaryAndPayment");
   };
 
+  const orderFood = () => {
+    history.push("/orderfood");
+  };
+
   const conNavBar = () => {
     if (props.userToken || localStorage.getItem("isAdmin") === "true") {
       return (
@@ -120,6 +124,9 @@ export default function DalffinsMenu(props) {
           <Box className={classes.title} />
           {!localStorage.hasOwnProperty("isAdmin") ? (
             <>
+              <Button color="inherit" onClick={orderFood}>
+                Order food
+              </Button>
               <Button color="inherit" onClick={update}>
                 Kitchen
               </Button>

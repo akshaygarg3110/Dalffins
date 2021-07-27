@@ -19,13 +19,13 @@ const helpRoute = require("../backend/api/routes/help.route");
 
 const reviewRoute = require("../backend/api/routes/review.route");
 
-const dishRoute = require("../backend/api/routes/dish.route");
-
 const foodSelectionRoute = require("../backend/api/routes/food.selection.route");
 
 const passportConfig = require("../backend/api/config/passport.config");
 
 const payRoute = require("../backend/api/routes/payment.route");
+
+const kitchenRoute = require("../backend/api/routes/kitchen.route");
 
 app.use(cors());
 
@@ -75,8 +75,8 @@ app.use("/rating", reviewRoute);
 //Route foodSelection
 app.use("/foodSelection", foodSelectionRoute);
 
-//Dish Items
-app.use("/dish", dishRoute);
+//Kitchen Items
+app.use("/kitchen", kitchenRoute);
 
 //Route order summary and payment
 app.use("/summaryAndPayment", payRoute);
