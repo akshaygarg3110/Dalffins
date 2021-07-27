@@ -59,37 +59,39 @@ Tasks: user registration, user login, forgot user password, update user profile,
 
 ## List of files and its author details
 
-* frontend
+* frontend files
 
-    FileName				                    Author
+   		                            	                   
+        FileName                     |                  Author	
+:-----------------------------------:|:--------------------------------------:
+1.  SignUp.js                        |      Divyashree Bangalore Subbaraya
+2.  Login.js			             |      Divyashree Bangalore Subbaraya          
+3.  MyAccount.js			         |      Divyashree Bangalore Subbaraya
+4.  HomePage.js			             |      Divyashree Bangalore Subbaraya
+5.  forgotPasswordEnterCode.js	     |      Divyashree Bangalore Subbaraya
+6.  ForgotPasswordGetCode.js	     |      Divyashree Bangalore Subbaraya
+7.  ResetPassword.js		         |      Divyashree Bangalore Subbaraya
+8.  footer.js			             |      Divyashree Bangalore Subbaraya
+9.  AboutUs.js                       |      Divyashree Bangalore Subbaraya
+10. ContactUs.js                     |      Divyashree Bangalore Subbaraya
+11. FAQs.js                          |      Divyashree Bangalore Subbaraya
+12. menu.js                          |      Divyashree Bangalore Subbaraya
 
-1.  SignUp.js			                Divyashree Bangalore Subbaraya
-2.  Login.js			                Divyashree Bangalore Subbaraya
-3.  MyAccount.js			            Divyashree Bangalore Subbaraya
-4.  HomePage.js			                Divyashree Bangalore Subbaraya
-5.  forgotPasswordEnterCode.js	        Divyashree Bangalore Subbaraya
-6.  ForgotPasswordGetCode.js	        Divyashree Bangalore Subbaraya
-7.  ResetPassword.js		            Divyashree Bangalore Subbaraya
-8.  footer.js			                Divyashree Bangalore Subbaraya
-9.  AboutUs.js                          Divyashree Bangalore Subbaraya
-10. ContactUs.js                        Divyashree Bangalore Subbaraya
-11. FAQs.js                             Divyashree Bangalore Subbaraya
-12. menu.js                             Divyashree Bangalore Subbaraya
 
+* backend files
 
-* backend 
-
-    FileName				                    Author
-
-1. jwt.config.js			            Divyashree Bangalore Subbaraya
-2. mongodb.config.js		            Divyashree Bangalore Subbaraya
-3. passport.config.js		            Divyashree Bangalore Subbaraya
-4. token.config.js		                Divyashree Bangalore Subbaraya
-5. user.controller.js		            Divyashree Bangalore Subbaraya
-6. user.model.js			            Divyashree Bangalore Subbaraya
-7. user.route.js			            Divyashree Bangalore Subbaraya
-8. app.js			                    Divyashree Bangalore Subbaraya
-9. server.js			                Divyashree Bangalore Subbaraya
+	                            	                   
+        FileName                     |                  Author	
+:-----------------------------------:|:--------------------------------------:
+1. jwt.config.js			          |     Divyashree Bangalore Subbaraya
+2. mongodb.config.js		          |     Divyashree Bangalore Subbaraya
+3. passport.config.js		          |     Divyashree Bangalore Subbaraya
+4. token.config.js		              |     Divyashree Bangalore Subbaraya
+5. user.controller.js		          |     Divyashree Bangalore Subbaraya
+6. user.model.js			          |     Divyashree Bangalore Subbaraya
+7. user.route.js			          |     Divyashree Bangalore Subbaraya
+8. app.js			                  |     Divyashree Bangalore Subbaraya
+9. server.js			              |     Divyashree Bangalore Subbaraya
 
 
 
@@ -101,6 +103,7 @@ Tasks: user registration, user login, forgot user password, update user profile,
 * We have used Material UI as part of for front end development.
 
 Justification: 
+
 		 * Material UI is an open-source, user-friendly React front-end framework [1].
 
 		 * Material UI provides extensive documentation that makes it simple to traverse the framework. 
@@ -122,6 +125,7 @@ Justification:
 * We have used the combination of Node and Express as part of back end development.
 
 Justification: 
+
 		 * Node.js is an open-source, cross-platform runtime environment that allows JavaScript developers to build a variety of server-side tools and applications [3]. 
 
 		 * The most popular Node web framework, Express, allows us to install middleware packages at any stage in the request pipeline [3]. 
@@ -137,6 +141,7 @@ Justification:
 * We have used MongoDb and Mongoose as part of database development.
 
 Justification: 
+
 		 * Mongoose is an Object Data Modeling (ODM) framework for MongoDB and Node.js [4]. 
 
 		 * Mongoose handles data associations, does schema validation, and is used to translate between objects in code and their representation in MongoDB [4].
@@ -156,6 +161,7 @@ Justification:
 * I have used passport for user authentication
 
 Justification:
+
 		 * Passport is a Node.js authentication middleware. Passport is very versatile and modular, and it can be seamlessly integrated into any Express-based online application [5].
 
 		 * Passport understands that each application has its own set of authentication needs. Individual authentication techniques, known as strategies, are bundled as modules [5]. 
@@ -173,6 +179,7 @@ Justification:
 * I have used Json Web Tokens for user authorisation
 
 Justification:
+
 		 * Authorization and information sharing are supported using JSON Web Tokens (JWTs) [7].
 
 		 * Allowing clients to save their session information after signing in is a typical use case [7]. 
@@ -186,6 +193,7 @@ Justification:
 * I have used Email JS for email integration to send the OTP to the user for the purpose of resetting their password.
 
 Justification:
+
 		 * Emailjs is used to send emails with text, attachments to any smtp sever while maintaining security [8].
 
 		 * Emailjs provides greater flexibility is customising the templates for email according to the project requirements. 
