@@ -60,7 +60,7 @@ Tasks: user registration, user login, forgot user password, update user profile,
 ## List of files and its author details
 
 
-# frontend files
+### frontend files
 
 
 
@@ -123,7 +123,7 @@ Tasks: user registration, user login, forgot user password, update user profile,
 
 
 
-# backend files
+### backend files
 
 
 <table>
@@ -278,7 +278,7 @@ Justification:
 
 ## Colour theme
 
-        * Since our project Dalffins is all about food, we have used white as our colour background theme to enhance readability for our customers. There will be multiple food images displayed on the dashboard, therefore, having a white background will allow users to view the images clearly and order food accordingly. 
+         * Since our project Dalffins is all about food, we have used white as our colour background theme to enhance readability for our customers. There will be multiple food images displayed on the dashboard, therefore, having a white background will allow users to view the images clearly and order food accordingly. 
 
 
 
@@ -286,23 +286,23 @@ Justification:
 
 We have referred the following:
 
-        * The main documentations of React and material-ui mainly for detailed syntaxes of different tags like typography, paper, text-fields, forms, checkbox, snack bar, card area, Input Adornment, MuiPhoneNumber, MuiAlert, Dialog Title and its actions on MyAccount page, Menu Item for the navigational bar, Accordion for Contact us page. Moreover, we have also used the material icons for all text fields that are part of the user registration, user profile, reset password, user login [2].
+         * The main documentations of React and material-ui mainly for detailed syntaxes of different tags like typography, paper, text-fields, forms, checkbox, snack bar, card area, Input Adornment, MuiPhoneNumber, MuiAlert, Dialog Title and its actions on MyAccount page, Menu Item for the navigational bar, Accordion for Contact us page. Moreover, we have also used the material icons for all text fields that are part of the user registration, user profile, reset password, user login [2].
 
-        * After creating a cluster in mongoDB cloud, Mongoose and its functions were used since it provided greater code flexibility in developing backend API calls [4].
+         * After creating a cluster in mongoDB cloud, Mongoose and its functions were used since it provided greater code flexibility in developing backend API calls [4].
 
-        * We have used the local strategy and user authentication was done easily using email ID and password [6]. 
+         * We have used the local strategy and user authentication was done easily using email ID and password [6]. 
 
-        * For token authorisation, We have included authorisation header as a mandatory one from response. Using the token, I have set then local session storage for registered/logged in user [7]. 
+         * For token authorisation, We have included authorisation header as a mandatory one from response. Using the token, I have set then local session storage for registered/logged in user [7]. 
 
-        * After logout and delete tasks, token would be removed from the session allowing only loggedIn users to order food [7].
+         * After logout and delete tasks, token would be removed from the session allowing only loggedIn users to order food [7].
 
-        * We have created a simple template for Dalffins project for sending the OTPs to the customer in order to reset their password [8]. 
+         * We have created a simple template for Dalffins project for sending the OTPs to the customer in order to reset their password [8]. 
 
-        * Usage of material-ui framework with React [9].  
+         * Usage of material-ui framework with React [9].  
 
-        * The image for the card area for all the pages of user profile management. [10]. 
+         * The image for the card area for all the pages of user profile management. [10]. 
 
-        * To integrate backend with frontend, we have used axios instances [11]. 
+         * To integrate backend with frontend, we have used axios instances [11]. 
 
 
 
