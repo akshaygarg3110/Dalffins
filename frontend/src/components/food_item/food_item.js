@@ -32,18 +32,18 @@ const Food_Item = (props) => {
   return (
     <Card style={{ height: "350px", marginBottom: "50px" }}>
       <Card.Body>
-        <Card.Img src={props.foodItem.img} style={{ height: "150px" }} />
+        <Card.Img src={props.foodItem.Image} style={{ height: "150px" }} />
         <Card.Title style={{ marginTop: "4%", fontSize: "16px" }}>
-          {props.foodItem.title}
+          {props.foodItem.dishname}
         </Card.Title>
         <Card.Subtitle className="mb-2 text-muted" style={{ fontSize: "12px" }}>
-          Meal Type: {props.foodItem.mealType}
+          Meal Type: {props.foodItem.mealtype}
         </Card.Subtitle>
         <Card.Subtitle className="mb-2 text-muted" style={{ fontSize: "12px" }}>
-          Rating: {props.foodItem.rating}
+          Rating: {props.foodItem.dishRating}
         </Card.Subtitle>
         <Card.Text style={{ fontSize: "16px", fontWeight: "bold" }}>
-          {props.foodItem.cost}
+          {props.foodItem.dishcost}
         </Card.Text>
         <div style={{ marginTop: "10%" }}>
           <Button onClick={removeItem}>-</Button>
