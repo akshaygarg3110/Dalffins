@@ -9,6 +9,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { DropzoneArea } from "material-ui-dropzone";
 import { Button, FormControl, makeStyles } from "@material-ui/core";
 import Axios from "axios";
+import { useKitchen } from "../../context/kitchen-context";
 
 const mealTypes = ["Breakfast", "Snack", "Lunch", "Dinner"];
 
@@ -22,8 +23,9 @@ const useStyles = makeStyles((theme) => ({
 
 /* Renders the addItem form for adding the dish details */
 
-function AddItemDialog({ addItem, nextId, open, handleClose, UserID , Email }) {
+function AddItemDialog({ addItem, open, handleClose, Email }) {
   const classes = useStyles();
+  const {kitchenId, setFoodItems} = useKitchen();
   const [mealType, setMealType] = React.useState("");
   const [image, setImage] = React.useState("");
 
@@ -43,15 +45,10 @@ function AddItemDialog({ addItem, nextId, open, handleClose, UserID , Email }) {
     }
   };
 
-  console.log(UserID)
-  console.log(Email)
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const formData = {
-      UserID: UserID,
-      dishID: nextId,
-      vendorEmail : Email,
       dishname: form.title.value,
       dishRating: 0,
       Image: image,
@@ -59,12 +56,15 @@ function AddItemDialog({ addItem, nextId, open, handleClose, UserID , Email }) {
       mealtype: mealType,
       dishstatus: "True",
       delivery: form.delivery.value,
+      vendorEmail : Email,
     };
-    /* API call adding the dish into the backend system */
+    /* API call adding the dish into the Kitchen */
   
-    Axios.post("https://dalffins.herokuapp.com/dish/adddish", formData).then(
+    Axios.post("https://dalffins.herokuapp.com/kitchen/adddish?kitchenId="+kitchenId, formData).then(
       (response) => {
-        addItem(response.data);
+        console.log(response);
+        setFoodItems(response.data)
+        addItem();
       }
     );
   };

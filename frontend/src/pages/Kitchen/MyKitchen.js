@@ -1,26 +1,10 @@
 /* Author: Tanuj Sobti (B00864990) */
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "@emotion/styled";
 import DishList from "./DishList";
 import Carousel from "react-bootstrap/Carousel";
-
-
-const TitleSection = styled.div`
-  height: 40vh;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
-`;
-
-const Title = styled.div`
-  position: absolute;
-  color: white;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-`;
+import { useKitchen } from "../../context/kitchen-context";
+import CreateKitchen from "./CreateKitchen";
 
 const KitchenImage = styled.img`
   height: 100%;
@@ -28,20 +12,22 @@ const KitchenImage = styled.img`
   object-fit: cover;
 `;
 
-/* Main function which loads the DishList component for rendering the list of the dish */
-function MyKitchen(props) {
-  const [kitchenName, setKitchenName] = useState("Indian Kitchen");
-  const [kitchenImages, setKitchenImages] = useState([
-    "images/Kitchen1.jpg",
-    "images/Kitchen2.jpg",
-  ]);
 
+/* Main function which loads the Kitchen and DishList component for rendering the Kitchen of the user. */
+function MyKitchen({userId, email}) {
+
+  const {kitchenName, kitchenImages, hasKitchen} = useKitchen();
+  console.log(userId)
+  if(!hasKitchen) return <CreateKitchen userId={userId}/>
   /* Carousel for displaying the Kitchen images on the main page of feature */
   return (
     <>
+      <br/>
+      <br/>
+      <h2>{kitchenName}</h2>
        <Carousel style={{ height: "50vh" }}>
-        {kitchenImages.map((image) => (
-          <Carousel.Item>
+        {kitchenImages.map((image, index) => (
+          <Carousel.Item key={index}>
             <KitchenImage
               className="d-block w-100"
               src={image}
@@ -51,7 +37,7 @@ function MyKitchen(props) {
         ))}
       </Carousel>
       <br />
-      <DishList Id={props.userId} email={props.email} />
+      <DishList Id={userId} email={email}/>
       <br />
       <br />
     </>
