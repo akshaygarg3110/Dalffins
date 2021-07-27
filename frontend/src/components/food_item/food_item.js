@@ -5,6 +5,8 @@ import "./food_item.css";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
+import { StyledRating } from "../Review/ReviewModal/ReviewModal";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 
 const Food_Item = (props) => {
   // Defining the quantity state
@@ -39,8 +41,18 @@ const Food_Item = (props) => {
         <Card.Subtitle className="mb-2 text-muted" style={{ fontSize: "12px" }}>
           Meal Type: {props.foodItem.mealtype}
         </Card.Subtitle>
-        <Card.Subtitle className="mb-2 text-muted" style={{ fontSize: "12px" }}>
-          Rating: {props.foodItem.dishRating}
+        <Card.Subtitle
+          className="mb-2 mt-1 text-muted d-flex align-items-center"
+          style={{ fontSize: "12px" }}
+        >
+          Rating:{" "}
+          <StyledRating
+            name="customized-color"
+            className=" ml-2"
+            value={props.foodItem.dishRating}
+            readOnly
+            icon={<FavoriteIcon fontSize="inherit" />}
+          />
         </Card.Subtitle>
         <Card.Text style={{ fontSize: "16px", fontWeight: "bold" }}>
           ${props.foodItem.dishcost}

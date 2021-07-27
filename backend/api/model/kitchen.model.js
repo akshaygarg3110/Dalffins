@@ -1,32 +1,37 @@
 const mongoose = require("mongoose");
- 
+
 const FoodItemSchema = mongoose.Schema({
-        "dishname"  : {
-          type: String,
-        },
-        "dishRating"  : {
-          type: String,
-        },
-        "Image"  : {
-          data: Buffer,
-          type: String,
-        },
-        "dishcost"  : {
-          type: String,
-        },
-        "mealtype"  : {
-          type: String,
-        },
-        "dishstatus": {
-          type: String,
-        },
-        "delivery"  : {
-          type: String,
-        },
-        "vendorEmail": {
-          type: String,
-        },
-})
+  dishname: {
+    type: String,
+  },
+  dishRating: {
+    type: Number,
+    default: 0,
+  },
+  dishTotalRatings: {
+    type: Number,
+    default: 0,
+  },
+  Image: {
+    data: Buffer,
+    type: String,
+  },
+  dishcost: {
+    type: String,
+  },
+  mealtype: {
+    type: String,
+  },
+  dishstatus: {
+    type: String,
+  },
+  delivery: {
+    type: String,
+  },
+  vendorEmail: {
+    type: String,
+  },
+});
 
 const KitchenSchema = mongoose.Schema({
   kitchenName: {
@@ -36,9 +41,9 @@ const KitchenSchema = mongoose.Schema({
     type: Array,
   },
   userId: {
-    type: mongoose.ObjectId
+    type: mongoose.ObjectId,
   },
-  foodItems: [FoodItemSchema]
+  foodItems: [FoodItemSchema],
 });
- 
+
 module.exports = mongoose.model("foodItems", KitchenSchema);
