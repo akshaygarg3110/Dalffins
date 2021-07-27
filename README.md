@@ -63,11 +63,11 @@ Tasks: user registration, user login, forgot user password, update user profile,
 
     FileName				                    Author
 
-1.  SignUp.js: Divyashree Bangalore Subbaraya
-2.  Login.js			                Divyashree Bangalore Subbaraya
-3.  MyAccount.js			            Divyashree Bangalore Subbaraya
+1.  SignUp.js				:               Divyashree Bangalore Subbaraya
+2.  Login.js			                	Divyashree Bangalore Subbaraya
+3.  MyAccount.js			        Divyashree Bangalore Subbaraya
 4.  HomePage.js			                Divyashree Bangalore Subbaraya
-5.  forgotPasswordEnterCode.js	        Divyashree Bangalore Subbaraya
+5.  forgotPasswordEnterCode.js	                Divyashree Bangalore Subbaraya
 6.  ForgotPasswordGetCode.js	        Divyashree Bangalore Subbaraya
 7.  ResetPassword.js		            Divyashree Bangalore Subbaraya
 8.  footer.js			                Divyashree Bangalore Subbaraya
@@ -101,6 +101,7 @@ Tasks: user registration, user login, forgot user password, update user profile,
 * We have used Material UI as part of for front end development.
 
 Justification: 
+
 		 * Material UI is an open-source, user-friendly React front-end framework [1].
 
 		 * Material UI provides extensive documentation that makes it simple to traverse the framework. 
