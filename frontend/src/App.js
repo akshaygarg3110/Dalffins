@@ -18,6 +18,7 @@ import ResetPassword from "./pages/forgotPassword/ResetPassword";
 import MyAccount from "./pages/myAccount/MyAccount";
 import AdminSupport from "./pages/AdminSupport/AdminSupport";
 import AdminLogin from "./pages/AdminLogin/AdminLogin";
+import OrderFood from "./pages/OrderFood/OrderFood";
 
 function App() {
   const [orderedItems, setOrderedItems] = useState(new Map());
@@ -64,6 +65,10 @@ function App() {
 
         <Route exact path="/summaryAndPayment">
           <SummaryAndPayment orderedItems={orderedItems} email={email} />
+        </Route>
+
+        <Route exact path="/orderfood">
+          <OrderFood />
         </Route>
 
         <Route exact path="/signUp">
