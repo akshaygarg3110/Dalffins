@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
   dalffinsButton: {
     fontSize: "23px",
-    color: "#ffc107",
+    color: "#ffc107"
   },
 }));
 
