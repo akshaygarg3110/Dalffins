@@ -59,6 +59,7 @@ Tasks: user registration, user login, forgot user password, update user profile,
 
 ## List of files and its author details
 
+
 * frontend files
 
    		                            	                   
@@ -92,7 +93,6 @@ Tasks: user registration, user login, forgot user password, update user profile,
 7. user.route.js			          |     Divyashree Bangalore Subbaraya
 8. app.js			                  |     Divyashree Bangalore Subbaraya
 9. server.js			              |     Divyashree Bangalore Subbaraya
-
 
 
 
