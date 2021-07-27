@@ -48,22 +48,26 @@ class ReviewModal extends Component {
     this.setState({ isLoading: true });
     const { rating, review } = this.state;
     const { orderId, email } = this.props;
-    const data = {
-      productId: orderId,
-      rating,
-      review,
-      email,
-    };
+    orderId.forEach((productId, index) => {
+      const data = {
+        productId,
+        rating,
+        review,
+        email,
+      };
 
-    // call save review api
-    saveReviewApi(data)
-      .then((res) => {
-        this.hideModal();
-      })
-      .catch((err) => {
-        console.error(err.message);
-        this.setState({ isLoading: false });
-      });
+      // call save review api
+      saveReviewApi(data)
+        .then((res) => {
+          if (index === orderId.length - 1) {
+            this.hideModal();
+          }
+        })
+        .catch((err) => {
+          console.error(err.message);
+          this.setState({ isLoading: false });
+        });
+    });
   };
 
   hideModal = () => {

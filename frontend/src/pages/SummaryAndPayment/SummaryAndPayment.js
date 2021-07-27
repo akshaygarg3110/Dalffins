@@ -92,7 +92,10 @@ function SummaryAndPayment(props) {
             instructions: specialInstructions,
           })
           .then((res) => {
-            setOrderId(res.data.orderID);
+            const ids = foodItems.map((item) => {
+              return item.value.id;
+            });
+            setOrderId(ids);
             setShowReviewModal(true);
           })
           .catch((error) => {
@@ -117,7 +120,10 @@ function SummaryAndPayment(props) {
             instructions: specialInstructions,
           })
           .then((res) => {
-            setOrderId(res.data.orderID);
+            const ids = foodItems.map((item) => {
+              return item.value.id;
+            });
+            setOrderId(ids);
             setShowReviewModal(true);
           })
           .catch((error) => {
