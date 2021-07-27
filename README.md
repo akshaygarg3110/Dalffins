@@ -64,7 +64,6 @@ Tasks: user registration, user login, forgot user password, update user profile,
 
    		                            	                   
         FileName                     |                  Author	
-:-----------------------------------:|:--------------------------------------:
 1.  SignUp.js                        |      Divyashree Bangalore Subbaraya
 2.  Login.js			             |      Divyashree Bangalore Subbaraya          
 3.  MyAccount.js			         |      Divyashree Bangalore Subbaraya
@@ -82,8 +81,7 @@ Tasks: user registration, user login, forgot user password, update user profile,
 * backend files
 
 	                            	                   
-        FileName                     |                  Author	
-:-----------------------------------:|:--------------------------------------:
+        FileName                      |                  Author	
 1. jwt.config.js			          |     Divyashree Bangalore Subbaraya
 2. mongodb.config.js		          |     Divyashree Bangalore Subbaraya
 3. passport.config.js		          |     Divyashree Bangalore Subbaraya
