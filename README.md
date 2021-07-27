@@ -63,7 +63,7 @@ Tasks: user registration, user login, forgot user password, update user profile,
 
     FileName				                    Author
 
-1.  SignUp.js			                Divyashree Bangalore Subbaraya
+1.  SignUp.js: Divyashree Bangalore Subbaraya
 2.  Login.js			                Divyashree Bangalore Subbaraya
 3.  MyAccount.js			            Divyashree Bangalore Subbaraya
 4.  HomePage.js			                Divyashree Bangalore Subbaraya
