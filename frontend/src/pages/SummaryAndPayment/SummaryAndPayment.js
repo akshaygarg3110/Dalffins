@@ -15,6 +15,8 @@ import {
   Form,
 } from "react-bootstrap";
 import ReviewModal from "../../components/Review/ReviewModal/ReviewModal";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 
 function SummaryAndPayment(props) {
   //variables and states required for page functioning
@@ -22,6 +24,7 @@ function SummaryAndPayment(props) {
   const [stringEle, setStrg] = useState("      ");
   const [specialInstructions, setInstructions] = useState("");
   const [showReviewModal, setShowReviewModal] = useState(false);
+  const [showSuccessSnackbar, setShowSuccessSnackbar] = useState(false);
   const [orderId, setOrderId] = useState("");
 
   // const [vendor, setVendor] = useState("")
@@ -138,7 +141,10 @@ function SummaryAndPayment(props) {
   };
 
   const handleReviewModalOnClose = () => {
-    history.push("/");
+    setShowSuccessSnackbar(true);
+    setTimeout(() => {
+      history.push("/");
+    }, 1000);
   };
 
   //page rendering section
@@ -313,6 +319,20 @@ function SummaryAndPayment(props) {
         orderId={orderId}
         email={props.email}
       />
+      <Snackbar
+        open={showSuccessSnackbar}
+        autoHideDuration={6000}
+        onClose={() => setShowSuccessSnackbar(false)}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={() => setShowSuccessSnackbar(false)}
+          severity={"success"}
+        >
+          "Review placed successfully"
+        </MuiAlert>
+      </Snackbar>
     </div>
   );
 }
