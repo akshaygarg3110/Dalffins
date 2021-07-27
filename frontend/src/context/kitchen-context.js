@@ -22,7 +22,7 @@ function KitchenProvider(props) {
     if(userId)
     {
     const res = await axios.get(
-    `http://localhost:8080/kitchen/getKitchen?userId=${userId}`
+    `https://dalffins.herokuapp.com/kitchen/getKitchen?userId=${userId}`
   );
   if(res.data.length > 0) {
     const kitchen = res.data[0];
