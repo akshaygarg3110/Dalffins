@@ -1,4 +1,4 @@
-## Group 03: Dalffins
+# Group 03: Dalffins
 
 * ‘Dalffins’ is an online tiffins system that provides its end users to sell and order food in a much easy, healthier, and efficient manner. ‘Dalffins’ is the only application that has provided the flexibility and opportunity for students
 to earn from their Culinary skills.
@@ -6,9 +6,9 @@ to earn from their Culinary skills.
  
 ## Intended Features: 
 
-# User Profile Management
+### User Profile Management
 
-Tasks: user registration, user login, forgot user password, update user profile, delete user profile, logout.
+* Tasks: user registration, user login, forgot user password, update user profile, delete user profile, logout.
 
 
 
