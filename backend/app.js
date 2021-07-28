@@ -17,11 +17,13 @@ const userRoute = require("../backend/api/routes/user.route");
 
 const helpRoute = require("../backend/api/routes/help.route");
 
+const reviewRoute = require("../backend/api/routes/review.route");
+
 const foodSelectionRoute = require("../backend/api/routes/food.selection.route");
 
 const passportConfig = require("../backend/api/config/passport.config");
 
-const payRoute = require("../backend/api/routes/payment.route")
+const payRoute = require("../backend/api/routes/payment.route");
 
 const kitchenRoute = require("../backend/api/routes/kitchen.route");
 
@@ -67,6 +69,9 @@ app.use("/user", userRoute);
 
 //Route help
 app.use("/help", helpRoute);
+
+//Route review
+app.use("/rating", reviewRoute);
 
 //Route foodSelection
 app.use("/foodSelection", foodSelectionRoute);

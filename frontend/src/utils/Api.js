@@ -63,3 +63,7 @@ export function emailCheck(data, header) {
 export function resetPassword(data, header) {
   return axiosInstance.put(`/user/resetPassword`, data, header);
 }
+
+export function saveReviewApi(data) {
+  return axiosInstance.post(`/rating/review`, data);
+}
