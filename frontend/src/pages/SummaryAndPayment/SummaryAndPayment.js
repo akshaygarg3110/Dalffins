@@ -93,6 +93,7 @@ function SummaryAndPayment(props) {
           })
           .then((res) => {
             const ids = foodItems.map((item) => {
+              if (item.value.hasOwnProperty("_id")) return item.value._id;
               return item.value.id;
             });
             setOrderId(ids);
@@ -103,7 +104,6 @@ function SummaryAndPayment(props) {
               console.log("Technical Issue: Contact System Administrator");
             }
           });
-        props.onOrderItemClick({});
       }
 
       //cash API call
@@ -121,6 +121,7 @@ function SummaryAndPayment(props) {
           })
           .then((res) => {
             const ids = foodItems.map((item) => {
+              if (item.value.hasOwnProperty("_id")) return item.value._id;
               return item.value.id;
             });
             setOrderId(ids);
@@ -131,7 +132,6 @@ function SummaryAndPayment(props) {
               console.log("Technical Issue: Contact System Administrator");
             }
           });
-        props.onOrderItemClick({});
       }
       if (interac) storePaymentInterac();
       else storePaymentCash();
@@ -148,6 +148,7 @@ function SummaryAndPayment(props) {
 
   const handleReviewModalOnClose = () => {
     setShowSuccessSnackbar(true);
+    props.onOrderItemClick({});
     setTimeout(() => {
       history.push("/");
     }, 1000);
