@@ -38,34 +38,42 @@ export default function DalffinsMenu(props) {
 
   const open = Boolean(profileMenu);
 
+  // Navigation to SignUp page
   const signUp = () => {
     history.push("/signup");
   };
 
+  // Navigation to Login page
   const login = () => {
     history.push("/login");
   };
 
+  // Navigation to Home page on page reload
   const pageRefresh = () => {
     history.push("/");
   };
+
+  // For dropdown menu on header
   const handleClick = (event) => {
     setProfileMenu(event.currentTarget);
   };
 
+  // Navigation to My Account page
   const handleCloseAccount = () => {
     history.push("/myAccount");
     setProfileMenu(null);
   };
 
+  // Navigation to Login page on Logout option
   const handleCloseLogOut = () => {
     localStorage.removeItem("isAdmin");
-    history.push("/login",{logout:true});
+    history.push("/login", { logout: true });
     localStorage.removeItem("token");
     props.setUserToken("");
     setProfileMenu(null);
   };
 
+  // Close of dropdown menu on header bar
   const handleClose = () => {
     setProfileMenu(null);
   };
@@ -73,18 +81,22 @@ export default function DalffinsMenu(props) {
   const noOfOrderItems = props.orderedItems.size;
   console.log(noOfOrderItems);
 
+  // Navigation to Kitchen page
   const update = () => {
     history.push("/kitchen");
   };
 
+  // Navigation to Payment page
   const summary = () => {
     history.push("/summaryAndPayment");
   };
 
+  // Navigation to Order food page
   const orderFood = () => {
     history.push("/orderfood");
   };
 
+  // Setting authentication of header post login/signup
   const conNavBar = () => {
     if (props.userToken || localStorage.getItem("isAdmin") === "true") {
       return (
@@ -115,6 +127,7 @@ export default function DalffinsMenu(props) {
     );
   };
 
+  // Render buttons on the header navigational bar
   return (
     <div className={classes.root}>
       <AppBar position="fixed">

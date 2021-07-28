@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 
 const bcrypt = require("bcryptjs");
 
-//User model
+//Creating a user model schema
 const UserSchema = mongoose.Schema({
     firstName: {
         type: String,

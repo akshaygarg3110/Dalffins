@@ -138,7 +138,7 @@ const useStyles = makeStyles((theme) => ({
         fontStyle: 'italic',
         lineHeight: '145%',
         display: 'block',
-        fontSize:'18px',
+        fontSize: '18px',
         fontFamily: '"Times New Roman", Times, serif'
     },
 
@@ -159,6 +159,7 @@ const useStyles = makeStyles((theme) => ({
 
 function HomePage() {
 
+    // Defining variables and states for Home page functioning
     const [registerSnackBar, setRegisterSnackBar] = useState(false)
 
     const [loginSnackBar, setLoginSnackBar] = useState(false)
@@ -173,6 +174,7 @@ function HomePage() {
 
     const classes = useStyles();
 
+    // Navigation to Kitchen page on click of Order Now button
     const handleSubmit = () => {
         history.push('/kitchen')
     }
@@ -193,7 +195,7 @@ function HomePage() {
         setDeleteSnackBar(false)
     }
 
-
+    // Set the status of snack bars
     useEffect(() => {
         const home = () => {
             if (location.state) {
@@ -207,9 +209,11 @@ function HomePage() {
         home();
     }, []);
 
+    //Render the homepage
     return (
         <Container component="main">
 
+            {/* Parallax scrolling effect used for homepage */}
             <Parallax pages={1} style={{ top: '0', left: '0', bottom: '0', right: '0' }}>
                 <ParallaxLayer
                     offset={0}
@@ -241,7 +245,7 @@ function HomePage() {
                         height: '21%', backgroundAttachment: 'fixed', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'cover'
                     }}>
 
-                    <text style={{ fontWeight: 'bold', fontSize: '30px' , fontFamily: '"Times New Roman", Times, serif'}}> Our customers can't live without us!</text>
+                    <text style={{ fontWeight: 'bold', fontSize: '30px', fontFamily: '"Times New Roman", Times, serif' }}> Our customers can't live without us!</text>
 
                     <blockquote className={classes.blockQuote} style={{ marginRight: '18%' }}>
                         <q>Dalffins is just a life-saver.
@@ -249,7 +253,7 @@ function HomePage() {
                             Now that I got used to the application, I don't have a reason to skip my meal.</q>
                         <cite className={classes.cite}>
                             <img className={classes.citeImg} src="images/christian-buehner-DItYlc26zVI-unsplash.jpg" />
-                                - Christian Buehner
+                            - Christian Buehner
                         </cite>
                     </blockquote>
 

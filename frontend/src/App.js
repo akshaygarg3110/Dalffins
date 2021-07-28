@@ -62,13 +62,13 @@ function App() {
         <Route exact path="/kitchen">
           <Layout>
             <Main>
-             <KitchenProvider userId={id} ><MyKitchen userId={id} email={email}/></KitchenProvider>
+              <KitchenProvider userId={id} ><MyKitchen userId={id} email={email} /></KitchenProvider>
             </Main>
           </Layout>
         </Route>
 
         <Route exact path="/summaryAndPayment">
-          <SummaryAndPayment orderedItems={orderedItems} email={email} onOrderItemClick={orderItemHandler}/>
+          <SummaryAndPayment orderedItems={orderedItems} email={email} onOrderItemClick={orderItemHandler} />
         </Route>
 
         <Route exact path="/orderfood">

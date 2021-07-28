@@ -9,7 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
-        padding:'50px',
+        padding: '50px',
         width: '100%',
         display: 'flex',
         flexDirection: 'row',
@@ -38,35 +38,36 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function AboutUs() {
+
     const classes = useStyles();
 
+    // Render the about us page on the click of About Us button on footer
     return (
         <Container component="main" maxWidth="md" className={classes.mainContainer}>
             <Typography className={classes.typoAbout}>
                 About Us
             </Typography>
-            
-                <Card className={classes.root}>
-                    <Typography component="h5" variant="h5" style={{margin:'2%', fontFamily: '"Times New Roman", Times, serif'}}>
-                        ‘Dalffins’ is an online tiffins system that provides its end users
-                        to sell and order food in a much easy, healthier, and efficient manner.
-                        <br></br>
-                        <br></br>
-                        ‘Dalffins’ is the only application that has provided the flexibility and opportunity for students
-                        to earn from their Culinary skills.
-                    </Typography>
-                    {/* <img src="images/tiffinLogo.png"></img> */}
-                    <CardMedia
-                        image="images/tiffinLogo.png"
-                        title="Tiffins image"
-                        style = {{    
-                            height: '300px',
-                            width: '290px',
-                            margin:'0 auto'
-                        }}
-                    />
-                </Card>
-           
+
+            <Card className={classes.root}>
+                <Typography component="h5" variant="h5" style={{ margin: '2%', fontFamily: '"Times New Roman", Times, serif' }}>
+                    ‘Dalffins’ is an online tiffins system that provides its end users
+                    to sell and order food in a much easy, healthier, and efficient manner.
+                    <br></br>
+                    <br></br>
+                    ‘Dalffins’ is the only application that has provided the flexibility and opportunity for students
+                    to earn from their Culinary skills.
+                </Typography>
+                <CardMedia
+                    image="images/tiffinLogo.png"
+                    title="Tiffins image"
+                    style={{
+                        height: '300px',
+                        width: '290px',
+                        margin: '0 auto'
+                    }}
+                />
+            </Card>
+
         </Container>
     );
 }

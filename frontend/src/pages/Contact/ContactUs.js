@@ -41,8 +41,8 @@ function ContactUs() {
 
     const classes = useStyles();
 
+    // Render the contact us page on the click of Contact Us button on footer
     return (
-
         <Container component="main" maxWidth="md" className={classes.mainContainer}>
             <Typography className={classes.typoContact}>
                 Contact Us

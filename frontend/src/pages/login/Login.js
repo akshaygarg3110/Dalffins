@@ -96,6 +96,7 @@ function Login(props) {
 
     const location = useLocation();
 
+    // Defining variables and states for Login functioning
     const [logoutSnackBar, setLogoutSnackBar] = useState(false)
 
     const handleLogoutSnackBar = () => {
@@ -163,6 +164,8 @@ function Login(props) {
         })
             .then((response) => {
                 if (response.status === 200) {
+
+                    // On successful login
                     props.setUserId(response.data.id)
                     localStorage.setItem('token', response.data.token);
                     props.setUserToken(response.data.token);
@@ -171,6 +174,7 @@ function Login(props) {
                     history.push("/home", { login: true })
                 }
             }, (error) => {
+                // In case of invalid credentails error, return error snack bar
                 setErrorSnakeBar(true)
             });
     }
@@ -183,7 +187,7 @@ function Login(props) {
         setDisplayPassword(!displayPassword)
     }
 
-
+    //Render the login page
     return (
         <section className={classes.section}>
             <Container component="main" maxWidth="sm" className={classes.mainContainer}>

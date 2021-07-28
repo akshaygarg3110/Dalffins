@@ -8,6 +8,7 @@ module.exports.jwtAuthenticate = (request, response, next) => {
     const authorizationHeader = request.headers['authorization']
     var accessToken = authorizationHeader && authorizationHeader.split(' ')[1]
 
+    // Find authorization header from the request header
     if ("authorization" in request.headers)
          accessToken = request.headers["authorization"].split(" ")[1];
 
@@ -20,6 +21,7 @@ module.exports.jwtAuthenticate = (request, response, next) => {
         )
     }
     else {
+        // Verify access token along with its saved token secret
         jwt.verify(accessToken, tokenSecret.ACCESS_TOKEN_SECRET, (err, user) => {
             if (err) {
 

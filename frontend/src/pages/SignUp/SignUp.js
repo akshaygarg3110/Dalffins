@@ -94,6 +94,7 @@ function SignUp(props) {
 
     const classes = useStyles();
 
+    // Defining variables and states for SignUp functioning
     const [password, setPassword] = useState("");
 
     const [displayPassword, setDisplayPassword] = useState(false)
@@ -149,6 +150,8 @@ function SignUp(props) {
         })
             .then((response) => {
                 if (response.status === 200) {
+
+                    // On Successful user registration
                     localStorage.setItem('token', response.data.token);
                     props.setUserId(response.data._id)
                     props.setFirstName(response.data.firstName)
@@ -255,6 +258,7 @@ function SignUp(props) {
         setDetail(pre => ({ ...pre, checkbox: !detail.checkbox }))
     }
 
+    // Render the Sign Up page
     return (
         <section className={classes.section}>
 

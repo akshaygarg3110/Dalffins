@@ -11,6 +11,8 @@ to earn from their Culinary skills.
 Tasks: user registration, user login, forgot user password, update user profile, delete user profile, logout.
 
 
+
+
 * Date Created: 27 07 2021
 * Last Modification Date: 30 07 2021
 
@@ -60,7 +62,7 @@ Tasks: user registration, user login, forgot user password, update user profile,
 ## List of files and its author details
 
 
-### frontend files
+### Frontend files
 
 
 
@@ -123,7 +125,7 @@ Tasks: user registration, user login, forgot user password, update user profile,
 
 
 
-### backend files
+### Backend files
 
 
 <table>
@@ -304,6 +306,8 @@ We have referred the following:
 
          * To integrate backend with frontend, we have used axios instances [11]. 
 
+         * Parallax scrolling effect for homepage [12].
+
 
 
 ## References
@@ -329,4 +333,6 @@ We have referred the following:
 [10] "Photo by Rachel Park on Unsplash", Unsplash.com, 2021.[Online] Available: <https://unsplash.com/photos/hrlvr2ZlUNk> [Accessed: 07 June 2021].
 
 [11] "axios", npm, 2021. [Online] Available: <https://www.npmjs.com/package/axios> [Accessed: 18 July 2021].
+
+[12] "react-spring", react-spring, 2021. [Online] Available: <https://react-spring.io/components/parallax> [Accessed: 28 July 2021].
 

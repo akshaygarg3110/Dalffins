@@ -77,6 +77,7 @@ function ResetPassword(props) {
 
     const classes = useStyles();
 
+    // Defining variables and states for Reset password functioning
     const [password, setPassword] = useState("")
 
     const [displayPassword, setDisplayPassword] = useState(false)
@@ -127,6 +128,7 @@ function ResetPassword(props) {
         })
             .then((response) => {
                 if (response.status === 200) {
+                    // Password reset success
                     props.setUserId(response.data.id)
                     history.push("/home", { reset: true })
                 }
@@ -155,7 +157,6 @@ function ResetPassword(props) {
         else {
             setError(pre => ({ ...pre, [name]: true }))
         }
-
     }
 
     const handlePasswordClickChange = () => {
@@ -166,6 +167,7 @@ function ResetPassword(props) {
         setDisplayConfirmPassword(!displayConfirmPassword)
     }
 
+    // Render the Reset password page
     return (
         <section className={classes.section}>
 

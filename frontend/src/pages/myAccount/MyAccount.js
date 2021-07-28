@@ -116,6 +116,8 @@ function MyAccount(props) {
 
     const classes = useStyles();
 
+    // Defining variables and states for My Account page functioning
+
     const history = useHistory();
 
     const [error, setError] = useState(false);
@@ -204,12 +206,16 @@ function MyAccount(props) {
             })
                 .then((response) => {
                     if (response.status === 200) {
+
+                        // On successful updation of profile details
                         setDetail(pre => ({ ...pre, [editPopUpLabelName]: editDetail[editPopUpLabelName] }))
                         setSaveSnackBar(true)
 
                     }
                 }).catch(function (error) {
                     if (error.response.status === 400) {
+
+                        // In case of error, returning error snack bars
                         setErrorSnakeBar(true);
                         setErrorSnackMessage(error.response.data.message)
                         setEditDetail(detail)
@@ -313,6 +319,7 @@ function MyAccount(props) {
         }
     }
 
+    // Edit details pop up action
     const editPopUp = () => (<div>
 
         <Dialog fullWidth={true}
@@ -336,6 +343,8 @@ function MyAccount(props) {
         </Dialog>
     </div>)
 
+
+    // Render the My Account Profile page
     return (
         <section className={classes.section}>
             <Container component="main" maxWidth="md" className={classes.mainContainer}>

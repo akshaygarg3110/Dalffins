@@ -19,7 +19,7 @@ module.exports.signUp = (req, res, next) => {
             phoneNumber: req.body.phoneNumber,
             password: req.body.password,
         });
-
+        // Save the user's data to MongoDb on successful registration
         user.save().then(data => {
             res.status(200).json({
                 ...data['_doc'],
@@ -28,6 +28,7 @@ module.exports.signUp = (req, res, next) => {
         }).catch(err => {
             if (err['code'] === 11000) {
                 return (
+                    //In case of duplicate email ID error returning error json.
                     res.status(400).json({
                         success: 'false',
                         message: `${Object.keys(err['keyValue'])} already registered!! Try again`
@@ -35,6 +36,7 @@ module.exports.signUp = (req, res, next) => {
                 )
             }
             else {
+                //In case of other error returning error json.
                 res.status(500).json({
                     success: 'false',
                     message: "Failure to save the data in db!",
@@ -52,8 +54,8 @@ module.exports.signUp = (req, res, next) => {
 module.exports.login = (req, res, next) => {
     passport.authenticate('local', function (err, user, info) {
         if (err) {
-            console.log(err.message)
             return (
+                //In case of error returning error json.
                 res.status(400).json({
                     success: 'false',
                     message: "Bad Request",
@@ -63,6 +65,7 @@ module.exports.login = (req, res, next) => {
         }
         else if (user) {
             return (
+                // Validatation success json message
                 res.status(200).json({
                     success: "true",
                     message: "Validation success",
@@ -75,6 +78,7 @@ module.exports.login = (req, res, next) => {
         }
         else {
             return (
+                //In case of error returning error json.
                 res.status(404).json({
                     success: 'false',
                     message: info
@@ -91,6 +95,7 @@ module.exports.userProfile = (req, res, next) => {
 
             if (!user) {
                 return (
+                    //In case of error returning error json.
                     res.status(404).json({
                         success: 'false',
                         message: "user not found!",
@@ -99,6 +104,7 @@ module.exports.userProfile = (req, res, next) => {
             }
 
             else return (
+                // Fetch the details of the user if found
                 res.status(200).json({
                     success: "true",
                     message: "User found!",
@@ -128,6 +134,7 @@ module.exports.updateUserPassword = async (req, res, next) => {
 
                 if (err) {
                     return (
+                        //In case of error returning error json.
                         res.status(400).json({
                             success: 'false',
                             message: "user not registered!"
@@ -136,6 +143,7 @@ module.exports.updateUserPassword = async (req, res, next) => {
                 }
                 else if (userProfile) {
                     return (
+                        // Password updation success message
                         res.status(200).json({
                             success: "true",
                             message: "Update password success",
@@ -144,6 +152,7 @@ module.exports.updateUserPassword = async (req, res, next) => {
                 }
                 else {
                     return (
+                        //In case of error returning error json.
                         res.status(404).json({
                             success: 'false',
                             message: info
@@ -176,6 +185,7 @@ module.exports.updateUserProfile = async (req, res, next) => {
                     if (err['codeName'] === 'DuplicateKey') {
 
                         return (
+                            //In case of already existing email ID, returning error json.
                             res.status(400).json({
                                 success: 'false',
                                 message: `${Object.keys(err['keyValue'])} already registered!! Try again`
@@ -184,6 +194,7 @@ module.exports.updateUserProfile = async (req, res, next) => {
 
                     }
                     return (
+                        // If user is not registered, return error json
                         res.status(400).json({
                             success: 'false',
                             message: "user not registered!"
@@ -192,6 +203,7 @@ module.exports.updateUserProfile = async (req, res, next) => {
                 }
                 else if (userProfile) {
                     return (
+                        // Return profile updation success
                         res.status(200).json({
                             success: "true",
                             message: "Update profile success",
@@ -200,6 +212,7 @@ module.exports.updateUserProfile = async (req, res, next) => {
                 }
                 else {
                     return (
+                        //In case of error returning error json.
                         res.status(404).json({
                             success: 'false',
                             message: info
@@ -220,6 +233,7 @@ module.exports.deleteUserProfile = async (req, res, next) => {
         await User.findByIdAndDelete({ _id: req.params.id }, function (err, user) {
             if (!user) {
                 return (
+                    //In case of user not found, returning error json.
                     res.status(404).json({
                         success: 'false',
                         message: "user not found!",
@@ -229,7 +243,7 @@ module.exports.deleteUserProfile = async (req, res, next) => {
 
             else {
                 return (
-
+                    //User deletion success, returning success json.
                     res.status(200).json({
                         success: "true",
                         message: "User Deleted!",
@@ -247,6 +261,7 @@ module.exports.deleteUserProfile = async (req, res, next) => {
 //Function used for password reset PUT call
 module.exports.resetPassword = async (req, res, next) => {
     try {
+        // Hash the entered password
         const salt = await bcrypt.genSalt(10)
         req.body.password = await bcrypt.hash(req.body.password, salt)
         await User.findOneAndUpdate(
@@ -258,6 +273,7 @@ module.exports.resetPassword = async (req, res, next) => {
 
                 if (err) {
                     return (
+                        //In case of error returning error json.
                         res.status(400).json({
                             success: 'false',
                             message: "user not registered!"
@@ -266,6 +282,7 @@ module.exports.resetPassword = async (req, res, next) => {
                 }
                 else if (userProfile) {
                     return (
+                        //Password updation success
                         res.status(200).json({
                             success: "true",
                             message: "Update password success",
@@ -274,6 +291,7 @@ module.exports.resetPassword = async (req, res, next) => {
                 }
                 else {
                     return (
+                        //In case of error returning error json.
                         res.status(404).json({
                             success: 'false',
                             message: info
@@ -296,6 +314,7 @@ module.exports.emailCheck = async (req, res, next) => {
 
                 if (err) {
                     return (
+                        //In case of error returning error json.
                         res.status(404).json({
                             success: 'false',
                             message: "Bad request"
@@ -304,6 +323,7 @@ module.exports.emailCheck = async (req, res, next) => {
                 }
                 else if (userProfile) {
                     return (
+                        //Registered email found
                         res.status(200).json({
                             success: "true",
                             message: "Email found success!",
@@ -315,6 +335,7 @@ module.exports.emailCheck = async (req, res, next) => {
                 }
                 else {
                     return (
+                        //In case of error returning error json.
                         res.status(400).json({
                             success: 'false',
                             message: info

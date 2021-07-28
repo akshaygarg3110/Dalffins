@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Footer({ userEmail }) {
+
   const classes = useStyles();
 
   const history = useHistory();
@@ -31,18 +32,22 @@ export default function Footer({ userEmail }) {
     history.push("/help");
   };
 
+  // Navigation to FAQ page
   const handleFaq = () => {
     history.push('/faq')
   }
 
+  // Navigation to About page
   const handleAbout = () => {
     history.push('/about')
   }
 
+  // Navigation to Contact page
   const handleContact = () => {
     history.push('/contact')
   }
 
+  // Render Buttons on the footer bar
   return (
     <div className={classes.root}>
       <AppBar className={classes.footerBar}>

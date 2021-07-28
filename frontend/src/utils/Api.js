@@ -29,30 +29,37 @@ export function saveTicketApi(data) {
   return axiosInstance.post(`/help/tickets`, data);
 }
 
+// sign up call
 export function saveUser(data, header) {
   return axiosInstance.post(`/user/signUp`, data, header);
 }
 
+// login call
 export function validateLogin(data, header) {
   return axiosInstance.post(`/user/login`, data, header);
 }
 
+// fetch user profile call
 export function fetchUserProfile(userId, header) {
   return axiosInstance.get(`/user/userProfile/${userId}`, header);
 }
 
+// update profile details call
 export function updateUserProfile(userId, data, header) {
   return axiosInstance.put(`/user/updateProfile/${userId}`, data, header);
 }
 
+// delete user profile call
 export function deleteUserProfile(userId) {
   return axiosInstance.delete(`/user/deleteProfile/${userId}`);
 }
 
+// check email existence call
 export function emailCheck(data, header) {
   return axiosInstance.post(`/user/emailCheck`, data, header);
 }
 
+// reset password call
 export function resetPassword(data, header) {
   return axiosInstance.put(`/user/resetPassword`, data, header);
 }

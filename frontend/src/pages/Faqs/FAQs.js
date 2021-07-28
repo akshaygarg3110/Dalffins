@@ -71,7 +71,8 @@ function FAQs() {
 
     const classes = useStyles();
 
-    return (
+    // Render the FAQs us page on the click of FAQs button on footer
+    return ( 
         <section className={classes.section}>
             <Typography className={classes.typoFAQ}>
                 FAQs

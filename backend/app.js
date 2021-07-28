@@ -46,6 +46,7 @@ app.use((req, res, next) => {
 
 mongoose.Promise = global.Promise;
 
+//connect to mongo db database
 mongoose
   .connect(dbConfig.url, {
     useNewUrlParser: true,

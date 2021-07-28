@@ -84,6 +84,7 @@ function ForgotPasswordGetCode(props) {
 
     const classes = useStyles();
 
+    // Defining variables and states for Password get Code page functioning
     const [email, setEmail] = useState('')
 
     const [error, setError] = useState({
@@ -105,8 +106,11 @@ function ForgotPasswordGetCode(props) {
         })
             .then((response) => {
                 if (response.status === 200) {
+                    // If the user is a registered user
                     props.setUserId(response.data.id)
                     const randomNumber = Math.floor(1000 + Math.random() * 9000);
+
+                    //email js send function to send email with otp to registered user
                     emailjs.send(emailJSDetails.serviceId, emailJSDetails.templateID, {
                         to_name: response.data.firstName,
                         otp: randomNumber,
@@ -121,6 +125,7 @@ function ForgotPasswordGetCode(props) {
                         });
                 }
             }).catch(function (error) {
+                // In case of error, return error snack bars
                 setError(pre => ({ ...pre, errorSnackbar: true }))
             })
     }
@@ -129,6 +134,7 @@ function ForgotPasswordGetCode(props) {
         setError(pre => ({ ...pre, snackbar: false }))
     }
 
+    // Render the forgot password get page
     return (
         <section className={classes.section}>
 

@@ -76,6 +76,11 @@ function ForgotPasswordEnterCode() {
 
     const classes = useStyles()
 
+    const history = useHistory()
+
+    const location = useLocation()
+
+    // Defining variables and states for forgot password enter code page functioning
     const [enteredOtp, setEnteredOTP] = useState(0)
 
     const [actualOtp, setActualOTP] = useState(0)
@@ -89,10 +94,6 @@ function ForgotPasswordEnterCode() {
     const handleSuccessSnackBar = () => {
         setSnackBar(false)
     }
-
-    const history = useHistory()
-
-    const location = useLocation()
 
     useEffect(() => {
         const enterCode = () => {
@@ -122,6 +123,7 @@ function ForgotPasswordEnterCode() {
 
     const handleClickOnCheckOTP = (e) => {
         e.preventDefault()
+        // Check if the entered otp matches with the actual otp
         if (actualOtp === parseInt(enteredOtp)) {
             history.push("/resetPassword", { 'Email': email })
         }
@@ -130,6 +132,7 @@ function ForgotPasswordEnterCode() {
         }
     }
 
+    // Render the forgot password enter code page
     return (
         <section className={classes.section}>
             <Container component="main" maxWidth="md" className={classes.mainContainer}>
