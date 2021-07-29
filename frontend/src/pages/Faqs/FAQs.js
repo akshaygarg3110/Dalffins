@@ -113,9 +113,22 @@ function FAQs() {
                                  ‘Dalffins’ is the only application that has provided the flexibility and opportunity for students 
                                   to earn from their Culinary skills. 
                                  </Typography>
+                            </AccordionDetails>   
+                        </Accordion>
+                        <Accordion className={classes.accordion}>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                            >
+                                <Typography className={classes.question}>
+                                    What is Kitchen ?
+                                </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography >
+                                    Kitchen is a web page where you can add and manage your dish items
+                                    for selling purpose. You can add your kitchen here <Link to="/kitchen"> Add Kitchen </Link>. You need to login first using Dalffins account for using the Kitchen feature.    
+                                </Typography>
                             </AccordionDetails>
-
-                            
                         </Accordion>
                         
                         <br></br>
@@ -269,6 +282,82 @@ function FAQs() {
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
+                        <br></br>
+                        <Typography className={classes.detailHeading}>
+                            Managing your Kitchen
+                        </Typography>
+                        
+                        <Accordion className={classes.accordion}>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                            >
+                                <Typography className={classes.question}>
+                                    How to add new dish to my kitchen ?
+                                </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography >
+                                    You can add dish by clicking "Add dish" button on the Kitchen page . You can provide all the details regarding the dish and click on submit .    
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion>
+                        <Accordion className={classes.accordion}>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                            >
+                                <Typography className={classes.question}>
+                                    How to update existing dish item in my kitchen ?
+                                </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography >
+                                    You can update dish by clicking "Kebab/Three dot menu" on each individual dish item button on the Kitchen page.Then choose "Update" option . You can update the existing details and click on submit .    
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion>
+                        <Accordion className={classes.accordion}>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                            >
+                                <Typography className={classes.question}>
+                                    How to remove dish item from my kitchen ?
+                                </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography >
+                                     You can remove dish by clicking "Kebab/Three dot menu" on each individual dish item on the Kitchen page.Then choose "Remove" option . You can remove the dish item by clicking on "Remove" on the promopt.    
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion>
+                        <Accordion className={classes.accordion}>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                            >
+                                <Typography className={classes.question}>
+                                    How to enable existing dish item in my kitchen ?
+                                </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography >
+                                     You can enable dish for selling by clicking "Kebab/Three dot menu" on each individual dish item on the Kitchen page.Then choose "Enable" option . Your dish item will be enabled for selling .    
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion>
+                        <Accordion className={classes.accordion}>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                            >
+                                <Typography className={classes.question}>
+                                    How to disable existing dish item in my kitchen ?
+                                </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography >
+                                     You can disable dish for selling by clicking "Kebab/Three dot menu" on each individual dish item on the Kitchen page.Then choose "disable" option . Your dish item will be disabled for selling .    
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion>
+                        
                     </div>
                 </Paper>
             </Container>
