@@ -301,6 +301,7 @@ function FAQs() {
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
+
                         <Accordion className={classes.accordion}>
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
@@ -315,6 +316,7 @@ function FAQs() {
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
+
                         <Accordion className={classes.accordion}>
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
@@ -329,6 +331,7 @@ function FAQs() {
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
+
                         <Accordion className={classes.accordion}>
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
@@ -343,6 +346,7 @@ function FAQs() {
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>
+
                         <Accordion className={classes.accordion}>
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
@@ -358,6 +362,37 @@ function FAQs() {
                             </AccordionDetails>
                         </Accordion>
                         
+                        <Accordion className={classes.accordion}>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                            >
+                                <Typography className={classes.question}>
+                                    How to add food item to the cart?
+                                </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography >
+                                     You can click on 'Order Food' from the menu and select the vendor. After selecting the vendor, a list of food items are displayed
+                                     and you can select the selected item by clicking on '+' icon.   
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion>
+
+                        <Accordion className={classes.accordion}>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                            >
+                                <Typography className={classes.question}>
+                                    How to remove food item from the cart?
+                                </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography >
+                                     You can click on 'Order Food' from the menu and select the vendor. After selecting the vendor, a list of food items are displayed
+                                     and you can remove the selected item by clicking on '-' icon.   
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion>
                     </div>
                 </Paper>
             </Container>

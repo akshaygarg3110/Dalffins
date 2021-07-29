@@ -4,6 +4,7 @@
 to earn from their Culinary skills.
 
  
+
 ## Intended Features: 
 
 ### User Profile Management
@@ -16,7 +17,11 @@ to earn from their Culinary skills.
 
 ### Payment Management
 
-* Tasks: order summary, payment option - Cash/E-Interac, save order details after payment, generate notiifications to user and vendor on order comfirmation, add special instructions to an order, display total bill.
+* Tasks: order summary, payment option - Cash/E-Interac, save order details after payment, generate notiifications to user and vendor on order comfirmation, add special instructions to an order.
+
+### Food Selection
+
+* Tasks: Add food item, remove food item, examine vendor, cancel/clear food selection
 
 
 
@@ -30,8 +35,9 @@ to earn from their Culinary skills.
 ## Authors
 
 * Divyashree Bangalore Subbaraya (dv520656@dal.ca) – Developer 
-* Vamsi Krishna Utla (B00870632) - Developer
-* Tanuj Sobti (B00864990) - Developer
+* Vamsi Krishna Utla (utla@dal.ca) - Developer
+* Tanuj Sobti (tanuj.sobti@dal.ca) - Developer
+* Akshay Garg (ak561005@dal.ca) - Developer
 
 
 
@@ -164,6 +170,22 @@ to earn from their Culinary skills.
     <td>20. kitchen-context.js</td>
     <td>Tanuj Sobti</td>
   </tr>	
+  <tr>
+    <td>21. food_item.js</td>
+    <td>Akshay Garg</td>
+  </tr>	
+  <tr>
+    <td>22. food_selection.css</td>
+    <td>Akshay Garg</td>
+  </tr>	
+  <tr>
+    <td>23. food_selection.js</td>
+    <td>Akshay Garg</td>
+  </tr>
+  <tr>
+    <td>24. food_item.css</td>
+    <td>Akshay Garg</td>
+  </tr>
  </table>
 
 
@@ -237,6 +259,14 @@ to earn from their Culinary skills.
    <tr>
     <td>15. kitchen.model.js</td>
     <td>Tanuj Sobti</td>
+  </tr>
+  <tr>
+    <td>16. food.selection.route.js</td>
+    <td>Akshay Garg</td>
+  </tr>
+  <tr>
+    <td>17. food.selection.controller.js</td>
+    <td>Akshay Garg</td>
   </tr>
   </table>
 
