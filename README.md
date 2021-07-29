@@ -10,6 +10,10 @@ to earn from their Culinary skills.
 
 * Tasks: user registration, user login, forgot user password, update user profile, delete user profile, logout.
 
+### User Kitchen Management
+
+* Tasks: Add dish, Update dish, Enable dish, Disable dish and Remove dish .
+
 ### Payment Management
 
 * Tasks: order summary, payment option - Cash/E-Interac, save order details after payment, generate notiifications to user and vendor on order comfirmation, add special instructions to an order, display total bill.
@@ -27,6 +31,7 @@ to earn from their Culinary skills.
 
 * Divyashree Bangalore Subbaraya (dv520656@dal.ca) – Developer 
 * Vamsi Krishna Utla (B00870632) - Developer
+* Tanuj Sobti (B00864990) - Developer
 
 
 
@@ -131,6 +136,34 @@ to earn from their Culinary skills.
     <td>13. SummaryAndPayment.js</td>
     <td>Vamsi Krishna Utla</td>
   </tr>
+  <tr>
+    <td>14. AddItemDialog.js</td>
+    <td>Tanuj Sobti</td>
+  </tr>
+  <tr>
+    <td>15. CreateKitchen.js</td>
+    <td>Tanuj Sobti</td>
+  </tr>
+  <tr>
+    <td>16. DishItem.js</td>
+    <td>Tanuj Sobti</td>
+  </tr>
+  <tr>
+    <td>17. DishList.js</td>
+    <td>Tanuj Sobti</td>
+  </tr>	
+  <tr>
+    <td>18. MyKitchen.js</td>
+    <td>Tanuj Sobti</td>
+  </tr>
+  <tr>
+    <td>19. UpdateItemDialog.js</td>
+    <td>Tanuj Sobti</td>
+  </tr>	
+  <tr>
+    <td>20. kitchen-context.js</td>
+    <td>Tanuj Sobti</td>
+  </tr>	
  </table>
 
 
@@ -192,6 +225,18 @@ to earn from their Culinary skills.
    <tr>
     <td>12. payment.route.js</td>
     <td>Vamsi Krishna Utla</td>
+  </tr>
+   <tr>
+    <td>13. kitchen.route.js</td>
+    <td>Tanuj Sobti</td>
+  </tr>
+   <tr>
+    <td>14. kitchen.controller.js</td>
+    <td>Tanuj Sobti</td>
+  </tr>
+   <tr>
+    <td>15. kitchen.model.js</td>
+    <td>Tanuj Sobti</td>
   </tr>
   </table>
 
