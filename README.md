@@ -10,6 +10,11 @@ to earn from their Culinary skills.
 
 * Tasks: user registration, user login, forgot user password, update user profile, delete user profile, logout.
 
+### Payment Management
+
+* Tasks: order summary, payment option - Cash/E-Interac, save order details after payment, generate notiifications to user and vendor on order comfirmation, add special instructions to an order, display total bill.
+
+
 
 ## Creation and Modification dates
 
@@ -21,6 +26,7 @@ to earn from their Culinary skills.
 ## Authors
 
 * Divyashree Bangalore Subbaraya (dv520656@dal.ca) – Developer 
+* Vamsi Krishna Utla (B00870632) - Developer
 
 
 
@@ -121,6 +127,10 @@ to earn from their Culinary skills.
     <td>12. menu.js</td>
     <td>Divyashree Bangalore Subbaraya</td>
   </tr>
+  <tr>
+    <td>13. SummaryAndPayment.js</td>
+    <td>Vamsi Krishna Utla</td>
+  </tr>
  </table>
 
 
@@ -171,6 +181,18 @@ to earn from their Culinary skills.
     <td>9. server.js</td>
     <td>Divyashree Bangalore Subbaraya</td>
   </tr>
+   <tr>
+    <td>10. payment.model.js</td>
+    <td>Vamsi Krishna Utla</td>
+  </tr>
+   <tr>
+    <td>11. payment.controller.js</td>
+    <td>Vamsi Krishna Utla</td>
+  </tr>
+   <tr>
+    <td>12. payment.route.js</td>
+    <td>Vamsi Krishna Utla</td>
+  </tr>
   </table>
 
 
@@ -194,6 +216,19 @@ Justification:
 
 		 * Material UI is a trendy framework utilised by numerous firms such as JP Morgan, Walmart, Spotify, and many more, paving the door for fantastic job prospects [2].
 
+# React Bootstrap
+
+* We have also used React Bootstrap as part of front end development.
+
+Justification:
+    
+    * Recat Bootstrap offers a variety of components that can be used for designing the front end.
+
+    * It is an open source and thus provides more flexibility in accessing the required componets as per the project specs.
+
+    * It is also easy to incorporate and easy to understand especially for beginners who are trying to get a hold on front end development.
+
+    * React Bootstrap has a wide community that is helpful in case of debugging any issues.
 
 
 ## Back-end Development
@@ -236,7 +271,7 @@ Justification:
 
 # Passport
 
-* I have used passport for user authentication
+* We have used passport for user authentication
 
 Justification:
 
@@ -254,7 +289,7 @@ Justification:
 
 # Json Web Tokens(JWTs)
 
-* I have used Json Web Tokens for user authorisation
+* We have used Json Web Tokens for user authorisation
 
 Justification:
 
@@ -265,10 +300,22 @@ Justification:
 		 * The server may trust that the client is a registered user by keeping session information locally and sending it to the server for authentication when performing requests [7].
 
 
+# Nodemailer (emails)
+
+* We have used nodemailer for generating emails for confirming orders to users and vendors.
+
+Justification:
+
+     * Nodemailer is easy to install and configure in the development process to genearte email notifications.
+
+     * It contains simple steps in sending emails to required users by configuring 'to' and 'from' addresses.
+
+     * It does not require to setup any server externally to configure the emails.
+
 
 # Email JS
 
-* I have used Email JS for email integration to send the OTP to the user for the purpose of resetting their password.
+* We have used Email JS for email integration to send the OTP to the user for the purpose of resetting their password.
 
 Justification:
 
@@ -308,6 +355,10 @@ We have referred the following:
 
          * Parallax scrolling effect for homepage [12].
 
+         * React Bootstrap for designing front end components [13].
+
+         * Nodemailer for generating order confirmation emails [14].
+
 
 
 ## References
@@ -335,4 +386,8 @@ We have referred the following:
 [11] "axios", npm, 2021. [Online] Available: <https://www.npmjs.com/package/axios> [Accessed: 18 July 2021].
 
 [12] "react-spring", react-spring, 2021. [Online] Available: <https://react-spring.io/components/parallax> [Accessed: 28 July 2021].
+
+[13] "React Bootstrap", React Bootsrtap, 2021. [Online] Available: <https://react-bootstrap.github.io/> [Accessed: 01 July 2021].
+
+[14] "Nodemailer", Nodemailer, 2021. [Online] Available: <https://nodemailer.com/about/> [Accessed: 24 July 2021].
 

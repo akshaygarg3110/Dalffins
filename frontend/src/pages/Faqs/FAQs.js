@@ -114,6 +114,8 @@ function FAQs() {
                                   to earn from their Culinary skills. 
                                  </Typography>
                             </AccordionDetails>
+
+                            
                         </Accordion>
                         
                         <br></br>
@@ -181,6 +183,89 @@ function FAQs() {
                                     If you want to update your first name,
                                     click on <Link to="/myAccount"> My Account</Link> option from the drop-down menu of profile logo on the navigational bar,
                                     to update your last name.
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion>
+
+                        <Accordion className={classes.accordion}>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                            >
+                                <Typography className={classes.question}>
+                                    I want to pay for an order by Cash. How to achieve this in Dalffins?
+                                </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography >
+                                    If you want to pay for an order by cash,
+                                    click on <Link to="/summaryAndPayment"> Order Summary and Payment</Link> select Payment Option as Cash and click on Pay. 
+                                    Please make sure that the items are added to the cart before proceeding for payment.     
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion>
+
+                        <Accordion className={classes.accordion}>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                            >
+                                <Typography className={classes.question}>
+                                    I want to pay for an order by E-Interac. How to achieve this in Dalffins?
+                                </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography >
+                                    If you want to pay for an order by E-Interac,
+                                    click on <Link to="/summaryAndPayment"> Order Summary and Payment</Link> select Payment Option as E-Interac and the system displays the E-Interac ID of vendor.
+                                    Make the E-Interac from your banking application and enter the transaction ID in the associatd field and click on Pay.
+                                    Please make sure that the items are added to the cart before proceeding for payment.     
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion>
+
+                        <Accordion className={classes.accordion}>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                            >
+                                <Typography className={classes.question}>
+                                    I want to view order summary of the current order. How to achieve this in Dalffins?
+                                </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography >
+                                    If you want view order summary of the current order,
+                                    click on <Link to="/summaryAndPayment"> Order Summary and Payment</Link> to view the list of items added to the cart. 
+                                    Please make sure that the items are added to the cart.    
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion>
+
+                        <Accordion className={classes.accordion}>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                            >
+                                <Typography className={classes.question}>
+                                    How would I know if my order is placed successfully?
+                                </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography >
+                                    You will get an email confirmation to your registered email ID wuth order summary.    
+                                </Typography>
+                            </AccordionDetails>
+                        </Accordion>
+
+                        <Accordion className={classes.accordion}>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                            >
+                                <Typography className={classes.question}>
+                                    Where can I add special instructions to my order?
+                                </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Typography >
+                                    If you want add special instructions to your order,
+                                    click on <Link to="/summaryAndPayment"> Order Summary and Payment</Link> link and add special instructions in the provided field.    
                                 </Typography>
                             </AccordionDetails>
                         </Accordion>

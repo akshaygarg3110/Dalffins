@@ -39,6 +39,7 @@ function SummaryAndPayment(props) {
     value,
   }));
 
+  //required for logging purpose
   console.log(foodItems);
   console.log(props.email);
 
@@ -47,13 +48,14 @@ function SummaryAndPayment(props) {
     setInterac(false);
   };
 
+  //go back to food selection page
   const back = () => {
-    history.push("/foodSelectionUI/60f2196968e5469cb518b9bd");
+    history.push("/orderFood/");
   };
 
   const upload = () => {
     //props.orderedItems.email) - will be replaced below after integration
-    window.alert("E-Interac details: dalffinsofficial@gmail.com");
+    window.alert("E-Interac details: "+vendor);
     setInterac(true);
   };
 
@@ -138,10 +140,12 @@ function SummaryAndPayment(props) {
     }
   };
 
+  //update special instructions
   const instructions = () => {
     setInstructions(document.getElementById("special").value);
   };
 
+  //update transaction ID in case of E-Interac transfer
   const transaction = () => {
     setTransactionID(document.getElementById("transactionID").value);
   };
