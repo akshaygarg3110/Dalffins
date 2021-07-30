@@ -42,17 +42,19 @@ function reviewController(Review) {
         if (err) {
           console.log(err);
         } else {
-          docs.foodItems = docs.foodItems.map((item) => {
-            if (item.dishname === req.body.productId) {
-              item.dishRating = Math.round(
-                (Number(item.dishRating) + Number(req.body.rating)) /
-                  (item.dishTotalRatings + 1)
-              );
-              item.dishTotalRatings = item.dishTotalRatings + 1;
-            }
-            return item;
-          });
-          docs.save();
+          if (docs && docs.hasOwnProperty("foodItems")) {
+            docs.foodItems = docs.foodItems.map((item) => {
+              if (item.dishname === req.body.productId) {
+                item.dishRating = Math.round(
+                  (Number(item.dishRating) + Number(req.body.rating)) /
+                    (item.dishTotalRatings + 1)
+                );
+                item.dishTotalRatings = item.dishTotalRatings + 1;
+              }
+              return item;
+            });
+            docs.save();
+          }
         }
       }
     );
