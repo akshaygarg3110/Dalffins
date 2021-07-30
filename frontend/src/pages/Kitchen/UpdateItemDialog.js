@@ -73,7 +73,7 @@ function UpdateItemDialog({ foodItem, open, handleClose }) {
       aria-labelledby="form-dialog-title"
     >
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-        <DialogTitle id="form-dialog-title">Add Dish</DialogTitle>
+        <DialogTitle id="form-dialog-title">Update Dish</DialogTitle>
         <DialogContent>
           <TextField
             id="title"
