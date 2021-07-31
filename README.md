@@ -402,7 +402,7 @@ Justification:
 
 ## Colour theme
 
-         * Since our project Dalffins is all about food, we have used white as our colour background theme to enhance readability for our customers. There will be multiple food images displayed on the dashboard, therefore, having a white background will allow users to view the images clearly and order food accordingly. 
+         * Since our project Dalffins is all about food, we have used white as our colour background theme to enhance readability for our customers. There will be multiple food images displayed on the dashboard, therefore, having a white background will allow users to view the images clearly and order food accordingly.
 
 
 
@@ -466,3 +466,6 @@ We have referred the following:
 
 [14] "Nodemailer", Nodemailer, 2021. [Online] Available: <https://nodemailer.com/about/> [Accessed: 24 July 2021].
 
+[15] "North Indian Food or South Indian Food ,Deep Learning Knows it all !!:Part 1", Medium, 2021. [Online] Available: <https://towardsdatascience.com/north-indian-food-or-south-indian-food-deep-learning-knows-it-all-part-1-13e1d20c359c> [Accessed: 28 July 2021].
+
+[16] "Logo Maker | Make a Free Logo | LogoMaker.com", Logomaker.com, 2021. [Online] Available: <https://www.logomaker.com/> [Accessed 28 July 2021].
