@@ -23,7 +23,13 @@ to earn from their Culinary skills.
 
 * Tasks: Add food item, remove food item, examine vendor, cancel/clear food selection
 
+### Review & Feedback
 
+* Tasks: Rate order, edit rating, raise a support ticket, interactions with a support ticket
+
+### Admin Support
+
+* Tasks: admin login, admin interactions with support ticket, ticket update notifications 
 
 ## Creation and Modification dates
 
@@ -38,6 +44,7 @@ to earn from their Culinary skills.
 * Vamsi Krishna Utla (utla@dal.ca) - Developer
 * Tanuj Sobti (tanuj.sobti@dal.ca) - Developer
 * Akshay Garg (ak561005@dal.ca) - Developer
+* Jay Patel (jy680475@dal.ca) - Developer
 
 
 
@@ -186,6 +193,58 @@ to earn from their Culinary skills.
     <td>24. food_item.css</td>
     <td>Akshay Garg</td>
   </tr>
+  <tr>
+    <td>25. Api.js</td>
+    <td>Jay Patel</td>
+  </tr>
+	<tr>
+    <td>26. dateUtils.js</td>
+    <td>Jay Patel</td>
+  </tr>
+<tr>
+    <td>27. Help.js</td>
+    <td>Jay Patel</td>
+  </tr>
+<tr>
+    <td>28. Help.scss</td>
+    <td>Jay Patel</td>
+  </tr>
+<tr>
+    <td>29. AdminSupport.js</td>
+    <td>Jay Patel</td>
+  </tr>
+<tr>
+    <td>30. AdminSupport.scss</td>
+    <td>Jay Patel</td>
+  </tr>
+<tr>
+    <td>31. AdminLogin.js</td>
+    <td>Jay Patel</td>
+  </tr>
+<tr>
+    <td>32. AdminLogin.scss</td>
+    <td>Jay Patel</td>
+  </tr>
+<tr>
+    <td>33. TicketListView.js</td>
+    <td>Jay Patel</td>
+  </tr>
+<tr>
+    <td>34. TicketListView.scss</td>
+    <td>Jay Patel</td>
+  </tr>
+<tr>
+    <td>35. TicketDetailModal.js</td>
+    <td>Jay Patel</td>
+  </tr>
+<tr>
+    <td>36. TicketDetailModal.scss</td>
+    <td>Jay Patel</td>
+  </tr>
+<tr>
+    <td>37. NewSupportTicketModal.js</td>
+    <td>Jay Patel</td>
+  </tr>
  </table>
 
 
@@ -267,6 +326,31 @@ to earn from their Culinary skills.
   <tr>
     <td>17. food.selection.controller.js</td>
     <td>Akshay Garg</td>
+  </tr>
+  <tr>
+    <td>18. help.model.js</td>
+    <td>Jay Patel</td>
+  </tr>
+
+  <tr>
+    <td>19. help.route.js</td>
+    <td>Jay Patel</td>
+  </tr>
+  <tr>
+    <td>20. help.middleware.js</td>
+    <td>Jay Patel</td>
+  </tr>
+  <tr>
+    <td>21. help.controller.js</td>
+    <td>Jay Patel</td>
+  </tr>
+  <tr>
+    <td>22. email.config.js</td>
+    <td>Jay Patel</td>
+  </tr>
+  <tr>
+    <td>23. emailClient.js</td>
+    <td>Jay Patel</td>
   </tr>
   </table>
 
